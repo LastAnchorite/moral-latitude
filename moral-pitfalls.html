@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moral Pitfalls | Moral Latitude</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #f5f0e8; background-image: repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px), repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px); color: #2c2416; font-family: 'EB Garamond', Georgia, serif; font-size: 1.15rem; line-height: 1.85; min-height: 100vh; }
+    nav { text-align: center; padding: 0.75rem 2rem; background-color: rgba(140,110,60,0.12); border-bottom: 1px solid rgba(140,110,60,0.28); font-size: 0.9rem; letter-spacing: 0.07em; text-transform: uppercase; }
+    nav a { color: #5a3e10; text-decoration: none; margin: 0 1.1rem; transition: color 0.2s; }
+    nav a:hover { color: #b8860b; }
+    nav a.active { font-weight: bold; border-bottom: 2px solid #b8860b; }
+    .page-header { background-color: #2c2416; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px); padding: 3rem 2rem 2.5rem; text-align: center; }
+    .breadcrumb { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,134,11,0.65); margin-bottom: 1rem; }
+    .breadcrumb a { color: rgba(184,134,11,0.65); text-decoration: none; }
+    .breadcrumb a:hover { color: #b8860b; }
+    .page-header h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #f0e8d0; max-width: 780px; margin: 0 auto 0.7rem; }
+    .header-meta { font-style: italic; font-size: 0.95rem; color: rgba(220,200,155,0.7); }
+    .header-tag { display: inline-block; margin-top: 0.6rem; padding: 0.25rem 0.9rem; border: 1px solid rgba(184,134,11,0.45); border-radius: 2px; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,134,11,0.75); }
+    main { max-width: 820px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+    .section-label { font-family: 'Libre Baskerville', serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.5rem; }
+    h2 { font-family: 'Libre Baskerville', serif; font-size: 1.4rem; font-weight: 700; color: #3a2a0e; margin: 2.8rem 0 0.9rem; padding-bottom: 0.35rem; border-bottom: 1px solid rgba(140,110,60,0.3); }
+    h2.first { margin-top: 0; }
+    p { margin-bottom: 1.2rem; }
+
+    /* Intro box */
+    .intro-box { background-color: rgba(44,36,22,0.04); border: 1px solid rgba(140,110,60,0.3); border-left: 4px solid #b8860b; border-radius: 3px; padding: 1.6rem 2rem; margin-bottom: 2.5rem; }
+
+    /* Pitfall cards */
+    .pitfall { border: 1px solid rgba(140,110,60,0.28); border-radius: 3px; margin-bottom: 2.2rem; overflow: hidden; }
+    .pitfall-header { background-color: rgba(44,36,22,0.06); padding: 1.2rem 1.8rem; border-bottom: 1px solid rgba(140,110,60,0.2); display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+    .pitfall-number { font-family: 'Libre Baskerville', serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #b8860b; flex-shrink: 0; }
+    .pitfall-header h3 { font-family: 'Libre Baskerville', serif; font-size: 1.25rem; font-weight: 700; color: #3a2a0e; margin: 0; }
+    .pitfall-body { padding: 1.5rem 1.8rem; }
+    .pitfall-body p { font-size: 1rem; }
+    .pitfall-definition { font-style: italic; font-size: 1.05rem; color: #4a3510; border-left: 3px solid rgba(184,134,11,0.5); padding-left: 1rem; margin: 0 0 1.3rem; }
+
+    /* What's right / what's wrong columns */
+    .pitfall-balance { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.3rem 0; }
+    @media (max-width: 560px) { .pitfall-balance { grid-template-columns: 1fr; } }
+    .balance-col { border: 1px solid rgba(140,110,60,0.2); border-radius: 3px; padding: 1rem 1.2rem; }
+    .balance-col.concern { background-color: rgba(140,60,60,0.04); border-color: rgba(140,60,60,0.2); }
+    .balance-col.insight { background-color: rgba(60,100,60,0.04); border-color: rgba(60,100,60,0.2); }
+    .balance-label { font-family: 'Libre Baskerville', serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .balance-col.concern .balance-label { color: #8a3a2a; }
+    .balance-col.insight .balance-label { color: #3a6a3a; }
+    .balance-col ul { list-style: none; padding: 0; margin: 0; }
+    .balance-col ul li { font-size: 0.92rem; color: #4a3a1a; line-height: 1.6; padding: 0.2rem 0 0.2rem 1.2rem; position: relative; margin-bottom: 0.2rem; }
+    .balance-col.concern ul li::before { content: '–'; position: absolute; left: 0; color: #8a3a2a; }
+    .balance-col.insight ul li::before { content: '+'; position: absolute; left: 0; color: #3a6a3a; }
+
+    /* Contemporary case */
+    .contemporary-case { background-color: rgba(184,134,11,0.07); border: 1px solid rgba(184,134,11,0.28); border-radius: 3px; padding: 1.2rem 1.5rem; margin-top: 1.2rem; }
+    .contemporary-case .cc-label { font-family: 'Libre Baskerville', serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.5rem; }
+    .contemporary-case p { font-size: 0.93rem; color: #4a3a1a; line-height: 1.65; margin: 0; }
+
+    /* Failure formula */
+    .failure-note { font-size: 0.92rem; font-style: italic; color: #6a5a3a; border-top: 1px solid rgba(140,110,60,0.2); padding-top: 0.9rem; margin-top: 1rem; }
+
+    /* Companion link */
+    .companion-link { margin-top: 3rem; padding: 1.5rem 2rem; border: 1px solid rgba(140,110,60,0.28); border-radius: 3px; background-color: rgba(245,240,232,0.4); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; text-decoration: none; color: inherit; transition: border-color 0.2s, background-color 0.2s; }
+    .companion-link:hover { border-color: rgba(184,134,11,0.5); background-color: rgba(245,240,232,0.75); }
+    .companion-link .cl-label { font-family: 'Libre Baskerville', serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.3rem; }
+    .companion-link .cl-title { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 700; color: #3a2a0e; }
+    .companion-link .cl-desc { font-size: 0.92rem; color: #6a5a3a; margin-top: 0.2rem; }
+    .companion-link .cl-arrow { font-size: 1.5rem; color: rgba(184,134,11,0.6); flex-shrink: 0; }
+
+    .page-tools { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(140,110,60,0.2); display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .copy-btn { padding: 0.5rem 1.2rem; background-color: #5a3e10; color: #f5f0e8; font-family: 'EB Garamond', serif; font-size: 0.95rem; border: none; border-radius: 3px; cursor: pointer; transition: background-color 0.2s; }
+    .copy-btn:hover { background-color: #b8860b; }
+    .copy-confirm { display: none; color: #5a7a3a; font-style: italic; font-size: 0.9rem; }
+    .back-link { font-size: 0.95rem; color: #7a6035; text-decoration: none; font-style: italic; }
+    .back-link:hover { color: #b8860b; }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(140,110,60,0.25); font-size: 0.85rem; color: #9a8060; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="#" class="active">Ethical Frameworks</a>
+  <a href="#">Dilemmas</a>
+  <a href="#">Contribute</a>
+</nav>
+
+<div class="page-header">
+  <div class="breadcrumb"><a href="index.html">Moral Latitude</a> &nbsp;&rsaquo;&nbsp; <a href="#">Ethical Frameworks</a> &nbsp;&rsaquo;&nbsp; Moral Pitfalls</div>
+  <h1>Moral Pitfalls</h1>
+  <div class="header-meta">Five ways ethical reasoning goes wrong &mdash; and what each failure gets partially right</div>
+  <div class="header-tag">Ethical Frameworks &nbsp;&middot;&nbsp; Foundational &nbsp;&middot;&nbsp; Companion to Foundations of Moral Reasoning</div>
+</div>
+
+<main>
+
+  <div class="intro-box">
+    <p>Every ethical tradition contains a genuine insight. Each one is also capable of being pushed too far &mdash; of becoming, in its extreme form, a way of <em>avoiding</em> moral reasoning rather than practicing it. The five patterns described here are not exotic errors made only by bad actors. They are temptations built into the very frameworks that make ethical reasoning possible.</p>
+    <p style="margin-bottom:0;">Understanding them is not an exercise in cynicism. It is an act of intellectual honesty. The goal is not to immunize yourself against all moral commitment &mdash; it is to hold your commitments carefully enough that they remain open to scrutiny, including your own.</p>
+  </div>
+
+  <div class="section-label">&#9670; The Five Pitfalls</div>
+  <h2 class="first">A Map of Common Failures</h2>
+
+  <!-- PITFALL 1: ABSOLUTISM -->
+  <div class="pitfall">
+    <div class="pitfall-header">
+      <span class="pitfall-number">Pitfall 01</span>
+      <h3>Absolutism</h3>
+    </div>
+    <div class="pitfall-body">
+      <p class="pitfall-definition">The mistaken proposition that for every moral problem there is a single truthful solution, prescribed by a single truthful tradition &mdash; and that all other answers are simply in error.</p>
+      <p>Absolutism is seductive precisely because it offers certainty. It replaces the difficulty of moral reasoning with the comfort of a fixed answer. Its failure is not that it believes in truth &mdash; it is that it believes only one tradition has access to it, and therefore sees no reason to engage seriously with any other.</p>
+      <p>The breakdown occurs not in the conviction itself, but in what the conviction does to dialogue. When a moral position is held absolutely, it no longer needs to justify itself to those who disagree. It only needs to repeat itself, more loudly if necessary.</p>
+
+      <div class="pitfall-balance">
+        <div class="balance-col concern">
+          <div class="balance-label">Where It Goes Wrong</div>
+          <ul>
+            <li>Refuses to recognize any authority beyond its own tradition</li>
+            <li>Neglects the shared human capacity for moral reasoning</li>
+            <li>Treats disagreement as error rather than as a starting point for inquiry</li>
+            <li>Cannot engage constructively with pluralism</li>
+          </ul>
+        </div>
+        <div class="balance-col insight">
+          <div class="balance-label">What It Gets Right</div>
+          <ul>
+            <li>Takes moral truth seriously rather than dismissing it</li>
+            <li>Offers coherence and ideological consistency</li>
+            <li>Provides a strong foundation for identity and community</li>
+            <li>Maintains a clear sense of moral purpose</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="contemporary-case">
+        <div class="cc-label">&#9670; Contemporary Illustration</div>
+        <p>In the debates surrounding end-of-life care &mdash; physician-assisted dying, withdrawal of treatment, palliative sedation &mdash; some religious and bioethical traditions have refused to engage with opposing frameworks at all, treating their own position as self-evidently correct and the views of patients, families, and other traditions as morally inadmissible. The result is not a richer moral conversation but its foreclosure: policy is shaped not by reasoning across difference but by the insistence that difference itself is error. The insight of such traditions may be genuine; the absolutism is what makes it unavailable to others.</p>
+      </div>
+
+      <p class="failure-note">Absolutism becomes a failure when the belief in moral truth leads to the breakdown of the very dialogue through which moral truth is pursued.</p>
+    </div>
+  </div>
+
+  <!-- PITFALL 2: RELATIVISM -->
+  <div class="pitfall">
+    <div class="pitfall-header">
+      <span class="pitfall-number">Pitfall 02</span>
+      <h3>Relativism</h3>
+    </div>
+    <div class="pitfall-body">
+      <p class="pitfall-definition">The mistaken proposition that there are no moral truths that extend beyond the individual or the culture &mdash; that all claims to truth are contingent, and that no tradition's conclusions are more valid than any other's.</p>
+      <p>Relativism appears to be the opposite of absolutism, but it produces a remarkably similar outcome: the end of meaningful moral dialogue. Where absolutism refuses to listen because it already knows the answer, relativism refuses to listen because it believes no answer matters beyond the one you already hold. Both shut down inquiry &mdash; one from above, one from below.</p>
+      <p>The failure of relativism is not that it acknowledges the existence of competing moral traditions. That acknowledgment is valuable. The failure is what it does with that acknowledgment: instead of using it as a reason to reason more carefully across difference, it uses it as a reason to stop reasoning at all.</p>
+
+      <div class="pitfall-balance">
+        <div class="balance-col concern">
+          <div class="balance-label">Where It Goes Wrong</div>
+          <ul>
+            <li>Denies the possibility of shared moral conclusions</li>
+            <li>Treats "you have your truth, I have mine" as a stopping point rather than a starting point</li>
+            <li>Cannot provide grounds for moral criticism of harmful practices in any tradition</li>
+            <li>Undermines the very dialogue it appears to celebrate</li>
+          </ul>
+        </div>
+        <div class="balance-col insight">
+          <div class="balance-label">What It Gets Right</div>
+          <ul>
+            <li>Honestly acknowledges the existence of competing moral claims</li>
+            <li>Resists the arrogance of assuming one culture's answers are universal</li>
+            <li>Validates moral experience across diverse traditions</li>
+            <li>Can reduce certain kinds of moralistic conflict</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="contemporary-case">
+        <div class="cc-label">&#9670; Contemporary Illustration</div>
+        <p>The phrase "your truth" &mdash; now common in personal, therapeutic, and social media discourse &mdash; captures the appeal and the failure of relativism simultaneously. As a recognition that people's lived experiences differ, and that those differences deserve respect, it is valuable. But when "your truth" becomes a reason not to examine claims, not to ask whether experiences are being accurately interpreted, or not to hold anyone accountable for conduct that harms others, it has become something else: a way of ending conversation by wrapping it in the language of validation. Relativism in this form does not liberate moral reasoning; it abandons it.</p>
+      </div>
+
+      <p class="failure-note">Relativism becomes a failure when the recognition of competing truths leads to the conclusion that no truth is worth reasoning toward together.</p>
+    </div>
+  </div>
+
+  <!-- PITFALL 3: RATIONALISM -->
+  <div class="pitfall">
+    <div class="pitfall-header">
+      <span class="pitfall-number">Pitfall 03</span>
+      <h3>Rationalism</h3>
+    </div>
+    <div class="pitfall-body">
+      <p class="pitfall-definition">The mistaken proposition that moral problems can be resolved through knowledge alone &mdash; that to know what is right is, automatically, to will the good.</p>
+      <p>Rationalism is the occupational hazard of ethics education. Every course in moral theory operates on the reasonable assumption that understanding ethical frameworks will improve students' moral reasoning and, eventually, their moral behavior. That assumption is defensible. The rationalist error is in pushing it too far: in believing that the transfer of ethical knowledge is, by itself, sufficient to produce ethical conduct.</p>
+      <p>Human moral failure is rarely a failure of information. People who behave badly usually know, at some level, that they are behaving badly. What they lack is not knowledge but the moral formation &mdash; the habits, the character, the emotional and social resources &mdash; that make acting on that knowledge possible under pressure.</p>
+
+      <div class="pitfall-balance">
+        <div class="balance-col concern">
+          <div class="balance-label">Where It Goes Wrong</div>
+          <ul>
+            <li>Underestimates the gap between knowing and doing</li>
+            <li>Neglects the emotional, psychological, and social dimensions of moral behavior</li>
+            <li>Produces simplistic solutions: inform the wrongdoer, expect change</li>
+            <li>Cannot explain why intelligent, informed people do harmful things knowingly</li>
+          </ul>
+        </div>
+        <div class="balance-col insight">
+          <div class="balance-label">What It Gets Right</div>
+          <ul>
+            <li>Knowledge genuinely matters to moral reasoning</li>
+            <li>Ethical reflection is a prerequisite for ethical growth</li>
+            <li>Data, evidence, and careful analysis are indispensable moral tools</li>
+            <li>Ignorance is never a moral virtue</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="contemporary-case">
+        <div class="cc-label">&#9670; Contemporary Illustration</div>
+        <p>In 2019, it emerged that Boeing engineers and executives had known for years that the MCAS flight control system on the 737 MAX had a dangerous flaw &mdash; one that had already caused two fatal crashes. Many of these individuals were technically sophisticated, professionally trained, and in some cases personally troubled by what they knew. Internal communications showed employees expressing serious concerns. And yet the plane remained in service, and the information remained concealed from regulators and the flying public. The failure was not a failure of ethical knowledge. It was a failure of institutional culture, incentive structures, professional courage, and the complex social dynamics that make it possible for informed people to remain silent while harm accumulates. Rationalism has no account of this.</p>
+      </div>
+
+      <p class="failure-note">Rationalism becomes a failure when the accumulation of ethical knowledge becomes a substitute for the moral formation that actually produces ethical behavior.</p>
+    </div>
+  </div>
+
+  <!-- PITFALL 4: INTENTIONALISM -->
+  <div class="pitfall">
+    <div class="pitfall-header">
+      <span class="pitfall-number">Pitfall 04</span>
+      <h3>Intentionalism</h3>
+    </div>
+    <div class="pitfall-body">
+      <p class="pitfall-definition">The mistaken proposition that moral evaluation can be determined entirely by the intentions of the agent &mdash; that good intentions, sincerely held, are sufficient to justify an action regardless of what it actually does.</p>
+      <p>Intentions matter. Anyone who has been genuinely wronged by a well-meaning person understands that they matter less than pure intentionalism assumes. The problem with intentionalism is not that it takes motivation seriously &mdash; it should. The problem is that it treats motivation as the whole of the moral story, leaving consequences, competence, and accountability outside the frame entirely.</p>
+      <p>Intentionalism is also uniquely vulnerable to manipulation. In a moral framework that evaluates actions solely on the basis of stated intentions, the easiest way to escape accountability is to claim a benign motive &mdash; whether it is true or not. Intentions, unlike consequences, cannot be directly observed.</p>
+
+      <div class="pitfall-balance">
+        <div class="balance-col concern">
+          <div class="balance-label">Where It Goes Wrong</div>
+          <ul>
+            <li>Cannot effectively address deception: stated intentions may be false</li>
+            <li>Cannot effectively address incompetence: good intentions do not excuse foreseeable harm</li>
+            <li>Dilutes accountability: harmful outcomes are excused by benign motives</li>
+            <li>Cannot adjudicate competing claims about intent</li>
+          </ul>
+        </div>
+        <div class="balance-col insight">
+          <div class="balance-label">What It Gets Right</div>
+          <ul>
+            <li>Motivation is a genuine moral consideration, not merely a legal one</li>
+            <li>Unforeseeable consequences should affect our moral judgments</li>
+            <li>We do not have ultimate control over outcomes &mdash; only over what we bring to a situation</li>
+            <li>Character and purpose are morally relevant</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="contemporary-case">
+        <div class="cc-label">&#9670; Contemporary Illustration</div>
+        <p>The Sackler family and Purdue Pharma's leadership maintained, for years, that they had genuinely believed OxyContin was not highly addictive &mdash; that their intentions in marketing it aggressively were to help patients manage pain. Internal documents later revealed that company executives were aware of the drug's addiction potential and the scale of its misuse far earlier than they publicly acknowledged. More than 500,000 Americans died of opioid overdoses between 1999 and 2020. Intentionalism, applied uncritically, would locate moral responsibility entirely in the gap between what executives claimed to believe and what they actually knew &mdash; a gap that litigation and investigation have significantly narrowed. Consequences of this magnitude cannot be contained within a framework of intentions, however sincerely presented.</p>
+      </div>
+
+      <p class="failure-note">Intentionalism becomes a failure when the focus on motivation places the act itself and its consequences entirely outside the moral landscape.</p>
+    </div>
+  </div>
+
+  <!-- PITFALL 5: DETERMINISM -->
+  <div class="pitfall">
+    <div class="pitfall-header">
+      <span class="pitfall-number">Pitfall 05</span>
+      <h3>Determinism</h3>
+    </div>
+    <div class="pitfall-body">
+      <p class="pitfall-definition">The mistaken proposition that human behavior is determined &mdash; by biology, psychology, sociology, or genetics &mdash; in ways that eliminate or severely limit moral responsibility and the freedom to choose otherwise.</p>
+      <p>Determinism acknowledges something true and important: human beings are shaped by forces they did not choose. Poverty, trauma, neurological difference, social disadvantage &mdash; these genuinely affect moral capacity in ways that a purely voluntarist account of human behavior ignores. The error of determinism is in moving from "shaped by" to "determined by" &mdash; in treating the influence of these forces as the elimination of freedom rather than its complication.</p>
+      <p>A moral framework that cannot hold individuals accountable for their choices &mdash; because all choices are the product of prior causes &mdash; is not a moral framework at all. It is a description of mechanics. Moral reasoning requires the assumption that, whatever the pressures bearing on a person, something called a choice is still possible.</p>
+
+      <div class="pitfall-balance">
+        <div class="balance-col concern">
+          <div class="balance-label">Where It Goes Wrong</div>
+          <ul>
+            <li>Denies or severely limits human freedom and agency</li>
+            <li>Undermines accountability: if behavior is programmed, blame is incoherent</li>
+            <li>Reduces human dignity by treating persons as products of their conditions</li>
+            <li>Cannot distinguish between genuine constraint and convenient excuse</li>
+          </ul>
+        </div>
+        <div class="balance-col insight">
+          <div class="balance-col insight">
+          <div class="balance-label">What It Gets Right</div>
+          <ul>
+            <li>Context genuinely affects moral culpability and should affect our judgments</li>
+            <li>Trauma, disadvantage, and social conditions are morally relevant factors</li>
+            <li>Human reason does not operate in a vacuum free from emotion and circumstance</li>
+            <li>Accountability must be calibrated to actual capacity, not merely assumed</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="contemporary-case">
+        <div class="cc-label">&#9670; Contemporary Illustration</div>
+        <p>When Amazon, Meta, and other technology companies have faced scrutiny over the racially discriminatory outcomes of their hiring algorithms and content moderation systems, a common defense has taken a deterministic form: no one <em>intended</em> the system to discriminate, and therefore the system cannot be said to discriminate in any morally significant sense. The algorithm, the argument goes, simply reflects the data it was trained on &mdash; data that is itself a product of historical forces no single engineer chose or designed. This reasoning captures something real: structural injustice is genuinely built into many of the datasets that train machine learning systems. But it collapses into determinism when it is used to foreclose accountability entirely. The engineers who built the system, the executives who deployed it, and the regulators who permitted it all made choices &mdash; choices that included choosing not to audit for discriminatory outcomes, not to diversify training data, and not to treat equity as a design requirement. Determinism, in this context, does not describe a constraint on human agency. It becomes a shield against it.</p>
+      </div>
+
+      <p class="failure-note">Determinism becomes a failure when the recognition of the forces that shape human behavior is used to deny that human beings retain the freedom &mdash; and therefore the responsibility &mdash; to choose differently.</p>
+    </div>
+  </div>
+
+  <!-- Companion link back -->
+  <a href="foundations.html" class="companion-link">
+    <div class="cl-arrow">&larr;</div>
+    <div>
+      <div class="cl-label">&#9670; Return to Companion Page</div>
+      <div class="cl-title">Foundations of Moral Reasoning</div>
+      <div class="cl-desc">How ethical theories are organized &mdash; and the three fonts of every moral situation.</div>
+    </div>
+  </a>
+
+  <div class="page-tools">
+    <button class="copy-btn" onclick="copyPageHTML()">Copy Page HTML for CMS</button>
+    <span class="copy-confirm" id="copyConfirm">&#10003; Copied to clipboard!</span>
+    <a href="index.html" class="back-link">&larr; Return to Moral Latitude</a>
+  </div>
+
+</main>
+
+<footer>
+  Moral Latitude &nbsp;|&nbsp; Freely available for educational use &nbsp;|&nbsp;
+  Content may be freely adapted for non-commercial educational purposes with attribution.
+</footer>
+
+<script>
+  function copyPageHTML() {
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    navigator.clipboard.writeText(html).then(() => {
+      const c = document.getElementById('copyConfirm');
+      c.style.display = 'inline';
+      setTimeout(() => { c.style.display = 'none'; }, 3000);
+    }).catch(() => { alert('Copy failed — please select all and copy manually.'); });
+  }
+</script>
+</body>
+</html>

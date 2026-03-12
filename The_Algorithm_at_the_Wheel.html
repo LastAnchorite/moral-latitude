@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Algorithm at the Wheel | Moral Latitude</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #f5f0e8;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px),
+        repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px);
+      color: #2c2416;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.85;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      text-align: center;
+      padding: 0.75rem 2rem;
+      background-color: rgba(140,110,60,0.12);
+      border-bottom: 1px solid rgba(140,110,60,0.28);
+      font-size: 0.9rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+    nav a { color: #5a3e10; text-decoration: none; margin: 0 1.1rem; transition: color 0.2s; }
+    nav a:hover { color: #b8860b; }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      background-color: #2c2416;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px);
+      padding: 3rem 2rem 2.5rem;
+      text-align: center;
+    }
+
+    .breadcrumb {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(184,134,11,0.65);
+      margin-bottom: 1rem;
+    }
+    .breadcrumb a { color: rgba(184,134,11,0.65); text-decoration: none; }
+    .breadcrumb a:hover { color: #b8860b; }
+
+    .page-header h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: #f0e8d0;
+      letter-spacing: 0.03em;
+      max-width: 700px;
+      margin: 0 auto 0.7rem;
+    }
+
+    .header-meta {
+      font-style: italic;
+      font-size: 0.95rem;
+      color: rgba(220,200,155,0.7);
+    }
+
+    .dilemma-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.25rem 0.9rem;
+      border: 1px solid rgba(184,134,11,0.45);
+      border-radius: 2px;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(184,134,11,0.75);
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-label {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #b8860b;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #3a2a0e;
+      margin: 2.8rem 0 0.9rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid rgba(140,110,60,0.3);
+    }
+
+    h2.first { margin-top: 0; }
+    p { margin-bottom: 1.2rem; }
+
+    /* ── CASE NARRATIVE ── */
+    .case-box {
+      background-color: rgba(44,36,22,0.04);
+      border: 1px solid rgba(140,110,60,0.3);
+      border-left: 4px solid #b8860b;
+      border-radius: 3px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .case-box p { margin-bottom: 1rem; }
+    .case-box p:last-child { margin-bottom: 0; }
+
+    /* ── CENTRAL QUESTION ── */
+    .central-question {
+      text-align: center;
+      padding: 2rem;
+      margin: 2.5rem 0;
+      border-top: 1px solid rgba(140,110,60,0.25);
+      border-bottom: 1px solid rgba(140,110,60,0.25);
+    }
+
+    .central-question p {
+      font-style: italic;
+      font-size: 1.25rem;
+      color: #3a2a0e;
+      line-height: 1.7;
+      margin: 0;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ── STAKEHOLDER GRID ── */
+    .stakeholders {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.1rem;
+      margin: 1.5rem 0 2.5rem;
+    }
+
+    .stakeholder {
+      border: 1px solid rgba(140,110,60,0.25);
+      border-radius: 3px;
+      padding: 1.2rem 1.3rem;
+      background-color: rgba(245,240,232,0.5);
+    }
+
+    .stakeholder h3 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #3a2a0e;
+      margin-bottom: 0.5rem;
+    }
+
+    .stakeholder p {
+      font-size: 0.92rem;
+      color: #5a4a2a;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── GUIDED QUESTIONS ── */
+    .questions-list {
+      counter-reset: question-counter;
+      list-style: none;
+      margin: 1.2rem 0 2rem;
+    }
+
+    .questions-list li {
+      counter-increment: question-counter;
+      position: relative;
+      padding: 1.2rem 1.4rem 1.2rem 3.4rem;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(140,110,60,0.22);
+      border-radius: 3px;
+      background-color: rgba(245,240,232,0.4);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    .questions-list li::before {
+      content: counter(question-counter);
+      position: absolute;
+      left: 1rem;
+      top: 1.2rem;
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #b8860b;
+      width: 1.6rem;
+      text-align: center;
+    }
+
+    .questions-list li em {
+      display: block;
+      font-size: 0.88rem;
+      color: #7a6035;
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    /* ── LENS CARDS ── */
+    .lens-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin: 1.5rem 0 2.5rem;
+    }
+
+    .lens-card {
+      border: 1px solid rgba(140,110,60,0.28);
+      border-radius: 3px;
+      padding: 1.4rem 1.5rem;
+      background-color: rgba(245,240,232,0.45);
+    }
+
+    .lens-card .lens-name {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #b8860b;
+      margin-bottom: 0.6rem;
+    }
+
+    .lens-card p {
+      font-size: 0.95rem;
+      color: #4a3a1a;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ── COMPLICATION BOX ── */
+    .complication {
+      background-color: rgba(184,134,11,0.07);
+      border: 1px solid rgba(184,134,11,0.3);
+      border-radius: 3px;
+      padding: 1.5rem 1.8rem;
+      margin: 2rem 0;
+    }
+
+    .complication h3 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #5a3e10;
+      margin-bottom: 0.7rem;
+    }
+
+    .complication p { font-size: 1rem; margin-bottom: 0.8rem; }
+    .complication p:last-child { margin-bottom: 0; }
+
+    /* ── WRITING PROMPT ── */
+    .writing-prompt {
+      margin-top: 3rem;
+      padding: 1.8rem 2rem;
+      border: 1px solid rgba(140,110,60,0.3);
+      border-top: 3px solid #5a3e10;
+      border-radius: 3px;
+      background-color: rgba(245,240,232,0.5);
+    }
+
+    .writing-prompt h2 {
+      border-bottom: none;
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+    }
+
+    .writing-prompt p { font-size: 1rem; }
+
+    .prompt-options {
+      margin-top: 1.2rem;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .prompt-options li {
+      padding: 0.9rem 1.2rem 0.9rem 2.8rem;
+      margin-bottom: 0.8rem;
+      border: 1px solid rgba(140,110,60,0.2);
+      border-radius: 3px;
+      background-color: rgba(245,240,232,0.5);
+      font-size: 1rem;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    .prompt-options li::before {
+      content: '✦';
+      position: absolute;
+      left: 0.9rem;
+      color: rgba(184,134,11,0.6);
+      font-size: 0.8rem;
+      top: 1rem;
+    }
+
+    /* ── FOOTER TOOLS ── */
+    .page-tools {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(140,110,60,0.2);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .copy-btn {
+      padding: 0.5rem 1.2rem;
+      background-color: #5a3e10;
+      color: #f5f0e8;
+      font-family: 'EB Garamond', serif;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .copy-btn:hover { background-color: #b8860b; }
+    .copy-confirm { display: none; color: #5a7a3a; font-style: italic; font-size: 0.9rem; }
+
+    .back-link {
+      font-size: 0.95rem;
+      color: #7a6035;
+      text-decoration: none;
+      font-style: italic;
+    }
+    .back-link:hover { color: #b8860b; }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(140,110,60,0.25);
+      font-size: 0.85rem;
+      color: #9a8060;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="#">Ethical Frameworks</a>
+  <a href="#">Dilemmas</a>
+  <a href="#">Contribute</a>
+</nav>
+
+<!-- ── PAGE HEADER ── -->
+<div class="page-header">
+  <div class="breadcrumb">
+    <a href="index.html">Moral Latitude</a> &nbsp;›&nbsp;
+    <a href="#">Dilemmas</a> &nbsp;›&nbsp;
+    The Algorithm at the Wheel
+  </div>
+  <h1>The Algorithm at the Wheel</h1>
+  <div class="header-meta">An applied ethics dilemma &mdash; technology, responsibility, and the moral weight of code</div>
+  <div class="dilemma-tag">Theory-Agnostic &nbsp;·&nbsp; Applied Dilemma</div>
+</div>
+
+<!-- ── MAIN ── -->
+<main>
+
+  <!-- The Case -->
+  <div class="section-label">&#9670; The Case</div>
+  <div class="case-box">
+    <p>It is a Tuesday morning in November. A self-driving vehicle — fully autonomous, no steering wheel, no brake pedal — is carrying a single passenger along a rain-slicked interstate at 68 miles per hour. The passenger, a 34-year-old nurse named Mara, is reviewing patient charts on her tablet. She is not watching the road. She has no reason to.</p>
+    <p>Without warning, a group of six construction workers steps onto the highway from behind a stopped truck. The workers believed they were in a protected zone. They were wrong, or the zone markings were inadequate — that detail will be disputed in court. The vehicle's sensor array processes the obstacle in 11 milliseconds. No human reflex could match that. No human is being asked to.</p>
+    <p>The system calculates two options: maintain course and strike the workers, or swerve hard into the concrete median barrier, which will likely kill or gravely injure Mara. There is no third option. The road is too wet, the speed too high, the gap too narrow.</p>
+    <p>In the 11 milliseconds before the outcome is determined, the algorithm executes the decision its engineers programmed it to make three years earlier, in a conference room in San Jose, during a product development sprint that ran long into the evening.</p>
+    <p>The question of what the vehicle should do in this situation has already been answered. The question we are left with is whether it was answered correctly — and by whom it had any right to be answered at all.</p>
+  </div>
+
+  <!-- Central Question -->
+  <div class="central-question">
+    <p>When a machine causes harm or prevents it according to a pre-programmed moral calculus, who bears responsibility — and on what grounds do we assign it?</p>
+  </div>
+
+  <!-- What Is at Stake -->
+  <h2 class="first">What Is at Stake, and for Whom?</h2>
+  <p>Before asking what the right answer is, it is worth mapping the moral landscape — identifying who has a stake in this situation, and what each stands to lose or gain beyond the immediate physical outcome.</p>
+
+  <div class="stakeholders">
+
+    <div class="stakeholder">
+      <h3>Mara, the Passenger</h3>
+      <p>She consented to ride in an autonomous vehicle. But did she consent to a specific calculus about the value of her life relative to others? Was she ever asked?</p>
+    </div>
+
+    <div class="stakeholder">
+      <h3>The Construction Workers</h3>
+      <p>They entered a roadway under assumptions about their safety. Their lives were assigned a weight in an equation they knew nothing about, by people they never met.</p>
+    </div>
+
+    <div class="stakeholder">
+      <h3>The Engineers</h3>
+      <p>They made a consequential moral decision late on a Tuesday evening and embedded it in shipping code. Were they qualified to make it? Were they ever asked if they wanted to?</p>
+    </div>
+
+    <div class="stakeholder">
+      <h3>The Manufacturer</h3>
+      <p>A corporation that profited from the sale of this vehicle and the promise of its safety. Does liability follow profit? What did their terms of service actually say?</p>
+    </div>
+
+    <div class="stakeholder">
+      <h3>Regulators</h3>
+      <p>Government agencies approved this vehicle for public roads. They may have required extensive safety testing — but did any of that testing include a review of the ethical framework embedded in its decision logic?</p>
+    </div>
+
+    <div class="stakeholder">
+      <h3>The Public</h3>
+      <p>Millions of people share roads with autonomous vehicles operating on undisclosed moral algorithms. Their exposure to those algorithms was never consented to, discussed, or voted upon.</p>
+    </div>
+
+  </div>
+
+  <!-- Guided Questions -->
+  <h2>Questions for Inquiry</h2>
+  <p>The following questions are designed to be worked through in sequence. Each one opens a line of inquiry rather than closing one. There are no correct answers here — only more and less carefully reasoned ones.</p>
+
+  <ol class="questions-list">
+
+    <li>
+      The engineers who wrote the collision algorithm made a moral decision — they determined, in effect, whose life the vehicle would prioritize. Should that decision have been made by engineers at all? If not them, then who?
+      <em>Consider: governments, ethicists, affected communities, the vehicle owners themselves, or some combination.</em>
+    </li>
+
+    <li>
+      Mara purchased and entered this vehicle voluntarily. Does her consent to ride in it constitute implicit consent to the moral choices embedded in its programming? What would genuine informed consent look like in this context — and is it even achievable?
+      <em>Consider what it would actually mean to read and understand a document disclosing the vehicle's ethical decision logic before purchasing.</em>
+    </li>
+
+    <li>
+      The construction workers did not consent to being parties in anyone's algorithmic calculus. Does the absence of their consent change the moral character of what happens to them — as compared to a scenario where a human driver made the same split-second decision?
+      <em>Consider whether the source of a harmful decision — human reflex vs. pre-programmed code — changes its moral character.</em>
+    </li>
+
+    <li>
+      Suppose the algorithm was programmed to always protect the maximum number of lives — classic utilitarian logic. In this case, it would sacrifice Mara to save six workers. Now suppose it was programmed to always protect the passenger, on the grounds that the passenger accepted the risk and others did not. Which default seems more defensible — and who should get to choose?
+      <em>Consider whether a single universal default is even coherent, or whether different contexts demand different frameworks.</em>
+    </li>
+
+    <li>
+      A human driver who swerved and killed their own passenger to save six workers might be considered heroic — or might face criminal charges. A human who froze and killed the workers might be forgiven. How should law and moral judgment handle the same outcome when the agent is not a person but a program?
+      <em>Consider whether moral and legal responsibility require a conscious agent, and what happens to our frameworks when that agent is absent.</em>
+    </li>
+
+    <li>
+      Autonomous vehicles are statistically far safer than human drivers. If wide adoption would save tens of thousands of lives per year, does that aggregate benefit change the moral calculus in individual cases like this one? Or does it risk treating individuals as acceptable losses for the greater good?
+      <em>This question sits at the fault line between utilitarian and rights-based reasoning. Neither framework resolves it cleanly.</em>
+    </li>
+
+    <li>
+      Imagine that the algorithm's decision logic was published openly before the vehicle went to market — available to anyone who wanted to read it. Would transparency change the moral status of the outcome? Does knowing the rules in advance constitute a form of social consent?
+      <em>Consider the difference between consent and mere notification. Consider also who, in practice, would actually read such a document.</em>
+    </li>
+
+  </ol>
+
+  <!-- Complications -->
+  <div class="complication">
+    <h3>A Complication Worth Sitting With</h3>
+    <p>Research in behavioral ethics suggests that human drivers in genuine emergencies do not choose — they react. The moral credit or blame we assign to human decisions in crisis is complicated by the fact that those decisions are rarely deliberate. The autonomous vehicle, by contrast, is always deliberate in its outcomes, even if the deliberation happened years in advance.</p>
+    <p>This raises an uncomfortable question: are we holding the machine to a higher standard than we hold ourselves? And if so, is that standard the right one — or does it simply reveal how poorly our moral frameworks were designed for agents that do not panic, do not freeze, and do not forget?</p>
+  </div>
+
+  <!-- Through Different Lenses -->
+  <h2>Through Different Lenses</h2>
+  <p>The following perspectives do not resolve the dilemma. They illuminate different aspects of it. A careful ethical reasoner will want to consider what each lens reveals — and what each one leaves in shadow.</p>
+
+  <div class="lens-cards">
+
+    <div class="lens-card">
+      <div class="lens-name">Consequences and Welfare</div>
+      <p>A framework focused on outcomes asks which decision produces the best result for the greatest number. But it must also confront the question of whose welfare counts, how to measure it, and whether aggregate benefit can justify individual sacrifice — especially without that individual's consent.</p>
+    </div>
+
+    <div class="lens-card">
+      <div class="lens-name">Duties and Rights</div>
+      <p>A framework centered on rights asks whether any algorithm may treat a person purely as a means to an end — as a unit in a calculation — without violating something fundamental about human dignity. It also asks whether the manufacturer assumed a duty of care toward the passenger that cannot simply be coded away.</p>
+    </div>
+
+    <div class="lens-card">
+      <div class="lens-name">Character and Integrity</div>
+      <p>A framework focused on character asks what kind of engineers, companies, and regulators we want to be — and what habits of moral reasoning we are cultivating when we outsource life-and-death decisions to software. It asks what virtues are at stake, beyond the immediate outcome.</p>
+    </div>
+
+    <div class="lens-card">
+      <div class="lens-name">Care and Relationship</div>
+      <p>A framework grounded in care asks whether the abstraction required by algorithmic ethics — reducing people to variables — misses something morally essential about human vulnerability and our obligations to one another that cannot be captured by any formula.</p>
+    </div>
+
+    <div class="lens-card">
+      <div class="lens-name">Fairness and Agreement</div>
+      <p>A framework built on what principles rational people could agree to asks: would anyone, behind a veil of ignorance — not knowing whether they would be the passenger or a construction worker — agree to the algorithm as written? What principles could be justified to all parties affected?</p>
+    </div>
+
+    <div class="lens-card">
+      <div class="lens-name">Structural and Systemic</div>
+      <p>A broader lens asks who, in practice, can afford autonomous vehicles and who cannot — and whose lives and neighborhoods are therefore most likely to become the data points in collision scenarios. Injustice may be embedded in the system long before the algorithm runs.</p>
+    </div>
+
+  </div>
+
+  <!-- Writing Prompt -->
+  <div class="writing-prompt">
+    <h2>For Discussion or Written Reflection</h2>
+    <p>The following prompts are designed for use in undergraduate or graduate seminars, or as written assignments. Each asks for a reasoned position — not a correct answer.</p>
+    <ul class="prompt-options">
+      <li>Identify what you take to be the single most morally significant question raised by this case. Explain why it is the most important question, and what considerations would need to be resolved in order to answer it.</li>
+      <li>Two reasonable people, reasoning carefully, might reach opposite conclusions about whether the manufacturer acted wrongly. Construct the strongest version of each position, and then explain which you find more persuasive and why.</li>
+      <li>Should governments require that the ethical decision logic of autonomous vehicles be made publicly available before market approval? Develop and defend a position, anticipating at least two serious objections.</li>
+      <li>Does the moral status of this case change depending on who, if anyone, is harmed? Consider separately the scenario in which the vehicle protects Mara, the scenario in which it does not, and a hypothetical third scenario in which both outcomes are somehow avoided. What does your answer reveal about your underlying moral commitments?</li>
+    </ul>
+  </div>
+
+  <!-- Page Tools -->
+  <div class="page-tools">
+    <button class="copy-btn" onclick="copyPageHTML()">Copy Page HTML for CMS</button>
+    <span class="copy-confirm" id="copyConfirm">&#10003; Copied to clipboard!</span>
+    <a href="index.html" class="back-link">&larr; Return to Moral Latitude</a>
+  </div>
+
+</main>
+
+<footer>
+  Moral Latitude &nbsp;|&nbsp; Freely available for educational use &nbsp;|&nbsp;
+  Content may be freely adapted for non-commercial educational purposes with attribution.
+</footer>
+
+<script>
+  function copyPageHTML() {
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    navigator.clipboard.writeText(html).then(() => {
+      const c = document.getElementById('copyConfirm');
+      c.style.display = 'inline';
+      setTimeout(() => { c.style.display = 'none'; }, 3000);
+    }).catch(() => {
+      alert('Copy failed — please select all and copy manually (Ctrl+A / Cmd+A, then Ctrl+C / Cmd+C).');
+    });
+  }
+</script>
+
+</body>
+</html>

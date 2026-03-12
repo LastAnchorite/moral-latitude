@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foundations of Moral Reasoning | Moral Latitude</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #f5f0e8; background-image: repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px), repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px); color: #2c2416; font-family: 'EB Garamond', Georgia, serif; font-size: 1.15rem; line-height: 1.85; min-height: 100vh; }
+    nav { text-align: center; padding: 0.75rem 2rem; background-color: rgba(140,110,60,0.12); border-bottom: 1px solid rgba(140,110,60,0.28); font-size: 0.9rem; letter-spacing: 0.07em; text-transform: uppercase; }
+    nav a { color: #5a3e10; text-decoration: none; margin: 0 1.1rem; transition: color 0.2s; }
+    nav a:hover { color: #b8860b; }
+    nav a.active { font-weight: bold; border-bottom: 2px solid #b8860b; }
+    .page-header { background-color: #2c2416; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px); padding: 3rem 2rem 2.5rem; text-align: center; }
+    .breadcrumb { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,134,11,0.65); margin-bottom: 1rem; }
+    .breadcrumb a { color: rgba(184,134,11,0.65); text-decoration: none; }
+    .breadcrumb a:hover { color: #b8860b; }
+    .page-header h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #f0e8d0; max-width: 780px; margin: 0 auto 0.7rem; }
+    .header-meta { font-style: italic; font-size: 0.95rem; color: rgba(220,200,155,0.7); }
+    .header-tag { display: inline-block; margin-top: 0.6rem; padding: 0.25rem 0.9rem; border: 1px solid rgba(184,134,11,0.45); border-radius: 2px; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,134,11,0.75); }
+    main { max-width: 820px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+    .section-label { font-family: 'Libre Baskerville', serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.5rem; }
+    h2 { font-family: 'Libre Baskerville', serif; font-size: 1.4rem; font-weight: 700; color: #3a2a0e; margin: 2.8rem 0 0.9rem; padding-bottom: 0.35rem; border-bottom: 1px solid rgba(140,110,60,0.3); }
+    h2.first { margin-top: 0; }
+    h3 { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 700; color: #3a2a0e; margin: 1.8rem 0 0.5rem; }
+    p { margin-bottom: 1.2rem; }
+
+    /* Intro box */
+    .intro-box { background-color: rgba(44,36,22,0.04); border: 1px solid rgba(140,110,60,0.3); border-left: 4px solid #b8860b; border-radius: 3px; padding: 1.6rem 2rem; margin-bottom: 2.5rem; }
+
+    /* Theory category cards */
+    .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.3rem; margin: 1.5rem 0 2.5rem; }
+    .category-card { border: 1px solid rgba(140,110,60,0.28); border-radius: 3px; padding: 1.4rem 1.5rem; background-color: rgba(245,240,232,0.45); }
+    .category-card .card-question { font-family: 'Libre Baskerville', serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.5rem; }
+    .category-card h3 { margin-top: 0; margin-bottom: 0.5rem; font-size: 1rem; }
+    .category-card p { font-size: 0.93rem; color: #4a3a1a; line-height: 1.65; margin-bottom: 0.6rem; }
+    .theory-list { list-style: none; padding: 0; margin: 0; }
+    .theory-list li { font-size: 0.88rem; color: #6a5a3a; padding: 0.2rem 0 0.2rem 1rem; border-left: 2px solid rgba(184,134,11,0.3); margin-bottom: 0.25rem; }
+
+    /* Fonts of the moral landscape */
+    .fonts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.3rem; margin: 1.5rem 0 2rem; }
+    .font-card { border: 1px solid rgba(140,110,60,0.28); border-radius: 3px; padding: 1.5rem 1.6rem; background-color: rgba(245,240,232,0.5); position: relative; }
+    .font-number { font-family: 'Libre Baskerville', serif; font-size: 2.2rem; font-weight: 700; color: rgba(184,134,11,0.2); position: absolute; top: 0.8rem; right: 1rem; line-height: 1; }
+    .font-card h3 { margin-top: 0; margin-bottom: 0.6rem; font-size: 1.05rem; color: #3a2a0e; }
+    .font-card p { font-size: 0.93rem; color: #4a3a1a; line-height: 1.65; margin-bottom: 0.7rem; }
+    .font-card .font-question { font-style: italic; font-size: 0.9rem; color: #7a6035; border-top: 1px solid rgba(140,110,60,0.2); padding-top: 0.6rem; margin: 0; }
+
+    /* Case illustration */
+    .case-illustration { background-color: rgba(184,134,11,0.07); border: 1px solid rgba(184,134,11,0.3); border-radius: 3px; padding: 1.6rem 2rem; margin: 2rem 0; }
+    .case-illustration h3 { margin-top: 0; color: #5a3e10; }
+    .case-illustration p { font-size: 1rem; }
+    .font-analysis { margin-top: 1.2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.9rem; }
+    .font-analysis-item { background-color: rgba(245,240,232,0.7); border: 1px solid rgba(140,110,60,0.2); border-radius: 3px; padding: 0.9rem 1rem; }
+    .font-analysis-item .fa-label { font-family: 'Libre Baskerville', serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.4rem; }
+    .font-analysis-item p { font-size: 0.88rem; color: #4a3a1a; line-height: 1.55; margin: 0; }
+
+    /* Pull quote */
+    .pull-quote { margin: 2.5rem 0; padding: 1.2rem 2rem; border-left: 4px solid rgba(184,134,11,0.6); font-style: italic; font-size: 1.2rem; color: #4a3510; line-height: 1.7; }
+
+    /* Navigation between pages */
+    .companion-link { margin-top: 3rem; padding: 1.5rem 2rem; border: 1px solid rgba(140,110,60,0.28); border-radius: 3px; background-color: rgba(245,240,232,0.4); display: flex; align-items: center; justify-content: space-between; flex-wrap: gap; gap: 1rem; text-decoration: none; color: inherit; transition: border-color 0.2s, background-color 0.2s; }
+    .companion-link:hover { border-color: rgba(184,134,11,0.5); background-color: rgba(245,240,232,0.75); }
+    .companion-link .cl-label { font-family: 'Libre Baskerville', serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.3rem; }
+    .companion-link .cl-title { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 700; color: #3a2a0e; }
+    .companion-link .cl-desc { font-size: 0.92rem; color: #6a5a3a; margin-top: 0.2rem; }
+    .companion-link .cl-arrow { font-size: 1.5rem; color: rgba(184,134,11,0.6); flex-shrink: 0; }
+
+    .page-tools { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(140,110,60,0.2); display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .copy-btn { padding: 0.5rem 1.2rem; background-color: #5a3e10; color: #f5f0e8; font-family: 'EB Garamond', serif; font-size: 0.95rem; border: none; border-radius: 3px; cursor: pointer; transition: background-color 0.2s; }
+    .copy-btn:hover { background-color: #b8860b; }
+    .copy-confirm { display: none; color: #5a7a3a; font-style: italic; font-size: 0.9rem; }
+    .back-link { font-size: 0.95rem; color: #7a6035; text-decoration: none; font-style: italic; }
+    .back-link:hover { color: #b8860b; }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(140,110,60,0.25); font-size: 0.85rem; color: #9a8060; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="#" class="active">Ethical Frameworks</a>
+  <a href="#">Dilemmas</a>
+  <a href="#">Contribute</a>
+</nav>
+
+<div class="page-header">
+  <div class="breadcrumb"><a href="index.html">Moral Latitude</a> &nbsp;&rsaquo;&nbsp; <a href="#">Ethical Frameworks</a> &nbsp;&rsaquo;&nbsp; Foundations of Moral Reasoning</div>
+  <h1>Foundations of Moral Reasoning</h1>
+  <div class="header-meta">How ethical theories are organized &mdash; and what every moral situation asks us to examine</div>
+  <div class="header-tag">Ethical Frameworks &nbsp;&middot;&nbsp; Foundational</div>
+</div>
+
+<main>
+
+  <div class="intro-box">
+    <p>Before applying any ethical theory to a real situation, it helps to understand how the major traditions of moral reasoning are organized &mdash; and what elements of a situation each tradition tends to emphasize. This page introduces two foundational ideas: the categories into which ethical theories fall, and the three dimensions of every moral situation that careful ethical reasoning must address.</p>
+    <p style="margin-bottom:0;">Neither the categories nor the three dimensions are a theory in themselves. They are navigational tools &mdash; ways of orienting yourself before the harder work of ethical reasoning begins.</p>
+  </div>
+
+  <!-- PART ONE: THEORY CATEGORIES -->
+  <div class="section-label">&#9670; Part One</div>
+  <h2 class="first">How Ethical Theories Are Organized</h2>
+
+  <p>Ethical theories can be grouped according to the primary question they ask when confronted with a moral situation. Some theories are primarily concerned with what we should <em>do</em>. Others are primarily concerned with who we should <em>be</em>. And some insist that neither question can be answered in isolation from the other.</p>
+
+  <p>Understanding these categories does not tell you which theory is correct. It does tell you what each theory prioritizes &mdash; and therefore what it tends to see clearly, and what it tends to miss.</p>
+
+  <div class="category-grid">
+
+    <div class="category-card">
+      <div class="card-question">Primary Question</div>
+      <h3>What Should I Do?</h3>
+      <p>These theories focus on decisions, actions, and their evaluation. They ask: given this situation, what is the right course of action? Their primary unit of analysis is the <em>choice</em> &mdash; and the principles, rules, or outcomes that govern it.</p>
+      <ul class="theory-list">
+        <li>Consequentialism</li>
+        <li>Utilitarianism</li>
+        <li>Egoism</li>
+        <li>Common Good ethics</li>
+        <li>Kantian deontology</li>
+        <li>W.D. Ross's prima facie duties</li>
+        <li>Rights-based theories</li>
+        <li>Codes of professional ethics</li>
+      </ul>
+    </div>
+
+    <div class="category-card">
+      <div class="card-question">Primary Question</div>
+      <h3>Who Should I Be?</h3>
+      <p>These theories focus on character, identity, and the habits of moral life. They ask: what kind of person does this situation call me to be? Their primary unit of analysis is the <em>agent</em> &mdash; and the virtues, dispositions, and moral development that shape how a person moves through the world.</p>
+      <ul class="theory-list">
+        <li>Teleological ethics</li>
+        <li>Kohlberg's stages of moral development</li>
+        <li>Care ethics (Gilligan)</li>
+      </ul>
+    </div>
+
+    <div class="category-card">
+      <div class="card-question">Primary Question</div>
+      <h3>Both &mdash; Simultaneously</h3>
+      <p>Some traditions refuse the division. They hold that what we do and who we are cannot be separated &mdash; that our actions form our character, and our character shapes our actions. For these theories, ethics is not a problem to be solved but a way of life to be cultivated.</p>
+      <ul class="theory-list">
+        <li>Virtue ethics (Aristotle)</li>
+        <li>Natural law theory</li>
+        <li>Eastern traditions: karma, dharma, conscience</li>
+        <li>Many religious ethical frameworks</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="pull-quote">
+    "The categories do not tell us which theory is right. They tell us what each theory is looking at &mdash; and what it is, by design, likely to overlook."
+  </div>
+
+  <p>A careful ethical reasoner does not simply pick a category and ignore the others. In practice, the most difficult moral situations are difficult precisely because they press us from multiple directions at once &mdash; demanding that we think about both the right action and the kind of person we are becoming by taking it.</p>
+
+  <!-- PART TWO: THREE FONTS -->
+  <div class="section-label">&#9670; Part Two</div>
+  <h2>The Three Fonts of the Ethical Landscape</h2>
+
+  <p>Every moral situation &mdash; regardless of which ethical theory you bring to it &mdash; contains three distinct dimensions that careful reasoning must examine. These are sometimes called the <em>three fonts of the moral act</em>: the intentions behind an action, the nature of the act itself, and the consequences that follow from it.</p>
+
+  <p>Different ethical theories assign different weights to these three dimensions. But none of them can be safely ignored. A moral analysis that examines only one font will almost always miss something important.</p>
+
+  <div class="fonts-grid">
+
+    <div class="font-card">
+      <div class="font-number">I</div>
+      <h3>Intentions</h3>
+      <p>What did the agent intend? What principles, values, or motives governed the decision? Were the intentions transparent, or is there reason to suspect concealment or self-deception?</p>
+      <p>Theories that emphasize intentions &mdash; particularly Kantian deontology &mdash; hold that the moral worth of an action depends not on what it produces but on the will that drives it. A good intention does not guarantee a good outcome, but it is never morally irrelevant.</p>
+      <p class="font-question">What were they trying to accomplish &mdash; and why?</p>
+    </div>
+
+    <div class="font-card">
+      <div class="font-number">II</div>
+      <h3>The Act Itself</h3>
+      <p>Setting aside intentions and outcomes, is there something about this action that is, in itself, good or wrong? Some acts carry moral weight independent of the context in which they occur.</p>
+      <p>The concept of <em>formal norms</em> captures this idea: when we call something "murder" rather than "killing," we are not merely describing an event &mdash; we are already rendering a moral verdict. The label itself encodes a judgment about the nature of the act.</p>
+      <p class="font-question">Is there something about this act that is good or wrong in itself?</p>
+    </div>
+
+    <div class="font-card">
+      <div class="font-number">III</div>
+      <h3>Consequences</h3>
+      <p>What actually happened? Who was benefited, and who was harmed? In what proportion? Could the harm have been foreseen, or was it genuinely unforeseeable?</p>
+      <p>Consequentialist theories &mdash; particularly utilitarianism &mdash; treat this font as primary: the moral value of an action is determined by its outcomes. But even theories that do not make consequences primary cannot ignore them entirely. Consequences are the reality in which our intentions and actions land.</p>
+      <p class="font-question">In the end, what actually happened &mdash; and to whom?</p>
+    </div>
+
+  </div>
+
+  <!-- Case Illustration -->
+  <div class="case-illustration">
+    <h3>&#9670; Applying the Three Fonts: A Brief Illustration</h3>
+    <p>In 2021, a pharmaceutical company continued marketing a medication it knew carried undisclosed cardiac risks, reasoning that the drug's benefits to the majority of patients outweighed the risks to a small subset. Executives described their intentions as patient-centered. The drug remained on the market for two years before regulatory intervention.</p>
+    <div class="font-analysis">
+      <div class="font-analysis-item">
+        <div class="fa-label">Intentions</div>
+        <p>Claimed patient benefit; actual motivations included protecting market share ahead of a competitor's launch. Transparency was absent.</p>
+      </div>
+      <div class="font-analysis-item">
+        <div class="fa-label">The Act Itself</div>
+        <p>Withholding known safety information from patients and regulators. A form of deception regardless of stated intentions.</p>
+      </div>
+      <div class="font-analysis-item">
+        <div class="fa-label">Consequences</div>
+        <p>Documented cardiac events in a statistically significant patient population. Harm was foreseeable and was, in fact, foreseen internally.</p>
+      </div>
+    </div>
+    <p style="margin-top:1.2rem; font-size:0.95rem; color:#5a4a2a;">Notice that no single font resolves the case on its own. The stated intentions seem benign; the act in itself is deceptive; the consequences are harmful and foreseeable. A full moral analysis requires all three lenses &mdash; and must account for the tensions between them.</p>
+  </div>
+
+  <h2>Why These Two Frameworks Matter Together</h2>
+
+  <p>The theory categories and the three fonts work together in a specific way. The categories tell you which <em>tradition</em> of reasoning you are drawing on and what it prioritizes. The three fonts tell you which <em>dimensions of the situation</em> you need to examine, regardless of which tradition you use.</p>
+
+  <p>A utilitarian will weight the consequences font most heavily. A Kantian will weight intentions and the act itself. A virtue ethicist will ask what the act and its consequences reveal about the character of the agent. But all of them &mdash; if they are reasoning carefully &mdash; must account for all three fonts, even if they ultimately rank them differently.</p>
+
+  <p>The student who learns to ask, simultaneously, <em>what did they intend, what did they do, and what happened</em> &mdash; and who can hold those three questions in tension without collapsing them into one &mdash; has acquired the most transferable skill that ethical reasoning offers.</p>
+
+  <!-- Companion page link -->
+  <a href="moral-pitfalls.html" class="companion-link">
+    <div>
+      <div class="cl-label">&#9670; Continue to Companion Page</div>
+      <div class="cl-title">Moral Pitfalls: Five Ways Ethical Reasoning Goes Wrong</div>
+      <div class="cl-desc">Absolutism, relativism, rationalism, intentionalism, and determinism &mdash; with contemporary illustrations.</div>
+    </div>
+    <div class="cl-arrow">&rarr;</div>
+  </a>
+
+  <div class="page-tools">
+    <button class="copy-btn" onclick="copyPageHTML()">Copy Page HTML for CMS</button>
+    <span class="copy-confirm" id="copyConfirm">&#10003; Copied to clipboard!</span>
+    <a href="index.html" class="back-link">&larr; Return to Moral Latitude</a>
+  </div>
+
+</main>
+
+<footer>
+  Moral Latitude &nbsp;|&nbsp; Freely available for educational use &nbsp;|&nbsp;
+  Content may be freely adapted for non-commercial educational purposes with attribution.
+</footer>
+
+<script>
+  function copyPageHTML() {
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    navigator.clipboard.writeText(html).then(() => {
+      const c = document.getElementById('copyConfirm');
+      c.style.display = 'inline';
+      setTimeout(() => { c.style.display = 'none'; }, 3000);
+    }).catch(() => { alert('Copy failed — please select all and copy manually.'); });
+  }
+</script>
+</body>
+</html>
