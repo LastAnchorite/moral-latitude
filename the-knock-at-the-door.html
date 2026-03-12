@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Knock at the Door | Moral Latitude</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #f5f0e8; background-image: repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px), repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px); color: #2c2416; font-family: 'EB Garamond', Georgia, serif; font-size: 1.15rem; line-height: 1.85; min-height: 100vh; }
+    nav { text-align: center; padding: 0.75rem 2rem; background-color: rgba(140,110,60,0.12); border-bottom: 1px solid rgba(140,110,60,0.28); font-size: 0.9rem; letter-spacing: 0.07em; text-transform: uppercase; }
+    nav a { color: #5a3e10; text-decoration: none; margin: 0 1.1rem; transition: color 0.2s; }
+    nav a:hover { color: #b8860b; }
+    nav a.active { font-weight: bold; border-bottom: 2px solid #b8860b; }
+    .page-header { background-color: #2c2416; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px); padding: 3rem 2rem 2.5rem; text-align: center; }
+    .breadcrumb { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,134,11,0.65); margin-bottom: 1rem; }
+    .breadcrumb a { color: rgba(184,134,11,0.65); text-decoration: none; }
+    .breadcrumb a:hover { color: #b8860b; }
+    .page-header h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #f0e8d0; max-width: 700px; margin: 0 auto 0.7rem; }
+    .header-meta { font-style: italic; font-size: 0.95rem; color: rgba(220,200,155,0.7); }
+    .dilemma-tag { display: inline-block; margin-top: 0.6rem; padding: 0.25rem 0.9rem; border: 1px solid rgba(184,134,11,0.45); border-radius: 2px; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,134,11,0.75); }
+    main { max-width: 800px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+    .section-label { font-family: 'Libre Baskerville', serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.5rem; }
+    h2 { font-family: 'Libre Baskerville', serif; font-size: 1.4rem; font-weight: 700; color: #3a2a0e; margin: 2.8rem 0 0.9rem; padding-bottom: 0.35rem; border-bottom: 1px solid rgba(140,110,60,0.3); }
+    h2.first { margin-top: 0; }
+    p { margin-bottom: 1.2rem; }
+    .origin-note { background-color: rgba(184,134,11,0.07); border: 1px solid rgba(184,134,11,0.25); border-radius: 3px; padding: 1.2rem 1.6rem; margin-bottom: 2.5rem; font-size: 0.97rem; color: #5a4020; }
+    .case-box { background-color: rgba(44,36,22,0.04); border: 1px solid rgba(140,110,60,0.3); border-left: 4px solid #b8860b; border-radius: 3px; padding: 1.8rem 2rem; margin-bottom: 2.5rem; }
+    .case-box p { margin-bottom: 1rem; }
+    .case-box p:last-child { margin-bottom: 0; }
+    .central-question { text-align: center; padding: 2rem; margin: 2.5rem 0; border-top: 1px solid rgba(140,110,60,0.25); border-bottom: 1px solid rgba(140,110,60,0.25); }
+    .central-question p { font-style: italic; font-size: 1.25rem; color: #3a2a0e; line-height: 1.7; margin: 0 auto; max-width: 640px; }
+    .kant-box { border: 1px solid rgba(140,110,60,0.3); border-radius: 3px; padding: 1.6rem 2rem; margin: 2rem 0; background-color: rgba(245,240,232,0.5); }
+    .kant-label { font-family: 'Libre Baskerville', serif; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: #9a8060; margin-bottom: 0.8rem; }
+    .kant-box blockquote { font-style: italic; font-size: 1.08rem; color: #4a3510; line-height: 1.75; border-left: 3px solid rgba(184,134,11,0.4); padding-left: 1.2rem; margin-bottom: 0.8rem; }
+    .attribution { font-size: 0.85rem; color: #9a8060; text-align: right; }
+    .stakeholders { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.1rem; margin: 1.5rem 0 2.5rem; }
+    .stakeholder { border: 1px solid rgba(140,110,60,0.25); border-radius: 3px; padding: 1.2rem 1.3rem; background-color: rgba(245,240,232,0.5); }
+    .stakeholder h3 { font-family: 'Libre Baskerville', serif; font-size: 0.95rem; font-weight: 700; color: #3a2a0e; margin-bottom: 0.5rem; }
+    .stakeholder p { font-size: 0.92rem; color: #5a4a2a; line-height: 1.6; margin: 0; }
+    .questions-list { counter-reset: question-counter; list-style: none; margin: 1.2rem 0 2rem; }
+    .questions-list li { counter-increment: question-counter; position: relative; padding: 1.2rem 1.4rem 1.2rem 3.4rem; margin-bottom: 1rem; border: 1px solid rgba(140,110,60,0.22); border-radius: 3px; background-color: rgba(245,240,232,0.4); font-size: 1.05rem; line-height: 1.75; }
+    .questions-list li::before { content: counter(question-counter); position: absolute; left: 1rem; top: 1.2rem; font-family: 'Libre Baskerville', serif; font-size: 0.85rem; font-weight: 700; color: #b8860b; }
+    .questions-list li em { display: block; font-size: 0.88rem; color: #7a6035; margin-top: 0.4rem; font-style: italic; }
+    .complication { background-color: rgba(184,134,11,0.07); border: 1px solid rgba(184,134,11,0.3); border-radius: 3px; padding: 1.5rem 1.8rem; margin: 2rem 0; }
+    .complication h3 { font-family: 'Libre Baskerville', serif; font-size: 1rem; font-weight: 700; color: #5a3e10; margin-bottom: 0.7rem; }
+    .lens-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin: 1.5rem 0 2.5rem; }
+    .lens-card { border: 1px solid rgba(140,110,60,0.28); border-radius: 3px; padding: 1.4rem 1.5rem; background-color: rgba(245,240,232,0.45); }
+    .lens-name { font-family: 'Libre Baskerville', serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.6rem; }
+    .lens-card p { font-size: 0.95rem; color: #4a3a1a; line-height: 1.65; margin: 0; }
+    .writing-prompt { margin-top: 3rem; padding: 1.8rem 2rem; border: 1px solid rgba(140,110,60,0.3); border-top: 3px solid #5a3e10; border-radius: 3px; background-color: rgba(245,240,232,0.5); }
+    .writing-prompt h2 { border-bottom: none; margin-top: 0; margin-bottom: 0.8rem; }
+    .prompt-options { margin-top: 1.2rem; padding-left: 0; list-style: none; }
+    .prompt-options li { padding: 0.9rem 1.2rem 0.9rem 2.8rem; margin-bottom: 0.8rem; border: 1px solid rgba(140,110,60,0.2); border-radius: 3px; background-color: rgba(245,240,232,0.5); font-size: 1rem; line-height: 1.7; position: relative; }
+    .prompt-options li::before { content: "✦"; position: absolute; left: 0.9rem; color: rgba(184,134,11,0.6); font-size: 0.8rem; top: 1rem; }
+    .page-tools { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(140,110,60,0.2); display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .copy-btn { padding: 0.5rem 1.2rem; background-color: #5a3e10; color: #f5f0e8; font-family: 'EB Garamond', serif; font-size: 0.95rem; border: none; border-radius: 3px; cursor: pointer; transition: background-color 0.2s; }
+    .copy-btn:hover { background-color: #b8860b; }
+    .copy-confirm { display: none; color: #5a7a3a; font-style: italic; font-size: 0.9rem; }
+    .back-link { font-size: 0.95rem; color: #7a6035; text-decoration: none; font-style: italic; }
+    .back-link:hover { color: #b8860b; }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(140,110,60,0.25); font-size: 0.85rem; color: #9a8060; font-style: italic; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="foundations.html">Ethical Frameworks</a>
+  <a href="algorithm-at-the-wheel.html" class="active">Dilemmas</a>
+  <a href="about.html#contribute">Contribute</a>
+</nav>
+<div class="page-header">
+  <div class="breadcrumb"><a href="index.html">Moral Latitude</a> &nbsp;&rsaquo;&nbsp; <a href="algorithm-at-the-wheel.html">Dilemmas</a> &nbsp;&rsaquo;&nbsp; The Knock at the Door</div>
+  <h1>The Knock at the Door</h1>
+  <div class="header-meta">An applied ethics dilemma &mdash; truth, duty, uncertainty, and the limits of absolute principle</div>
+  <div class="dilemma-tag">Theory-Agnostic &nbsp;&middot;&nbsp; Applied Dilemma &nbsp;&middot;&nbsp; Companion to the Inquiring Murderer</div>
+</div>
+<main>
+  <div class="origin-note"><strong>A note on this dilemma's origins:</strong> This case is an updated version of what philosophers call the <em>Inquiring Murderer</em> &mdash; a thought experiment that traces directly to Immanuel Kant's 1797 essay <em>On a Supposed Right to Lie from Philanthropy</em>. Kant argued that the duty to tell the truth admits no exceptions, even to a murderer asking the location of his intended victim. That position has been used ever since as a test case for the limits of absolute moral principles. The version presented here updates and complicates the scenario.</div>
+  <div class="section-label">&#9670; The Case</div>
+  <div class="case-box">
+    <p>It is a Thursday evening in late autumn. You are alone at home when a sharp, urgent knock rattles your front door. You open it to find a woman &mdash; mid-thirties, coat torn at the shoulder, breathing hard. She gives her name as Elena. She tells you she has left her husband after years of escalating abuse. Tonight he threatened her life. She has turned off her phone and left no trail. She asks, with an urgency that is difficult to doubt, if she can come inside.</p>
+    <p>You let her in. She thanks you, moves quickly to the back of the house, and pulls the door of your hall closet shut behind her. The house is quiet. You stand in your entryway, pulse still elevated, trying to think.</p>
+    <p>Less than two minutes later, there is another knock. Slower this time. Deliberate.</p>
+    <p>You open the door. A man stands on your step. He is large, composed, and entirely calm. There is no axe, no visible weapon, nothing outwardly threatening about his manner. He introduces himself as Daniel, Elena's husband. He says he is worried about her. He holds up his phone to show you a text exchange &mdash; messages that could be read, depending on your interpretation, as suggesting she may harm herself.</p>
+    <p>Then he produces a document. A custody agreement, recently issued, granting him primary custody of their eight-year-old daughter. He says Elena took the child when she left this evening. He has legal rights. He asks, calmly and directly, whether you have seen a woman matching Elena's description.</p>
+    <p>From behind the closet door, you hear nothing. Elena has not told you whether the child is with her. You do not know if the document is genuine. You do not know &mdash; you cannot know &mdash; whether Daniel is a man trying to harm his wife, a frightened father trying to find his daughter, or both at once.</p>
+    <p>He is waiting for your answer.</p>
+  </div>
+  <div class="central-question">
+    <p>When telling the truth may enable serious harm, and lying may violate a fundamental moral duty &mdash; and when you cannot be certain which outcome your answer will produce &mdash; what do you owe the person at your door?</p>
+  </div>
+  <div class="kant-box">
+    <div class="kant-label">&#9670; Kant's Original Position</div>
+    <blockquote>"To be truthful in all declarations is therefore a sacred and unconditionally commanding law of reason that admits of no expediency whatsoever."</blockquote>
+    <p style="font-size:0.95rem;color:#5a4a2a;line-height:1.65;margin-bottom:0.6rem;">Kant's argument was not merely that lying is usually wrong. It was that lying is categorically impermissible &mdash; that a maxim permitting deception cannot be universalized without destroying the institution of truth-telling on which rational communication depends. If you lie and Elena has already slipped out the back, your lie achieves nothing &mdash; and you have still violated your duty. Worse, in Kant's view, if your lie leads to a worse outcome, the moral responsibility is now yours, not the murderer's.</p>
+    <div class="attribution">&mdash; Immanuel Kant, <em>On a Supposed Right to Lie from Philanthropy</em>, 1797</div>
+  </div>
+  <h2 class="first">What Is at Stake, and for Whom?</h2>
+  <p>The immediacy of this dilemma makes it easy to focus on the two people most visibly present. But the moral landscape is wider than the entryway.</p>
+  <div class="stakeholders">
+    <div class="stakeholder"><h3>Elena</h3><p>She placed her trust in you on the basis of her account of her own danger. Her fear &mdash; if genuine &mdash; is not abstract. Her life may depend on your next sentence.</p></div>
+    <div class="stakeholder"><h3>Daniel</h3><p>He may be a man using calm as a weapon. He may be a genuinely frightened father. He may be both. His legal claim, if real, cannot simply be dismissed. But legal entitlement and moral right are not the same thing.</p></div>
+    <div class="stakeholder"><h3>The Child</h3><p>An eight-year-old whose location and safety you do not know. She has a stake in this outcome entirely independent of either parent's claim, and she has no voice in your entryway.</p></div>
+    <div class="stakeholder"><h3>You</h3><p>You are now implicated regardless of what you say. You let Elena in. Whatever you say next is a choice with moral weight. There is no neutral answer available to you. Silence is also an answer.</p></div>
+    <div class="stakeholder"><h3>The Broader Principle</h3><p>How you reason through this case reflects something about what kind of moral agent you are &mdash; whether your commitments to truth, to protection, and to due process can coexist when they cannot.</p></div>
+    <div class="stakeholder"><h3>Institutions and Trust</h3><p>The legal system, domestic violence services, and norms of honest communication all have a stake here. What precedent does your decision set for anyone who might find themselves in the same entryway?</p></div>
+  </div>
+  <h2>Questions for Inquiry</h2>
+  <p>These questions move from the immediate to the structural. None has a single correct answer.</p>
+  <ol class="questions-list">
+    <li>Kant held that you must not lie &mdash; even here. Construct the strongest possible defense of his position. What would have to be true about the nature of moral duty for his conclusion to follow?<em>Try to argue for Kant's view charitably before criticizing it. What is lost if we simply dismiss it?</em></li>
+    <li>Most people's instinct is to lie without hesitation. Can you articulate, in principled terms, why lying is morally permissible here? What principle are you appealing to &mdash; and does it generalize in ways you are comfortable with?<em>If lying is permissible when the stakes are high enough, who decides how high is high enough?</em></li>
+    <li>You cannot know whether Daniel intends harm, whether his document is genuine, or whether the child is in the closet. How should a moral agent reason when the relevant facts are unknowable in the moment?<em>Consider the difference between acting on probability, the worst-case scenario, and what you can verify.</em></li>
+    <li>Suppose Elena had told you the child was not with her, and that Daniel had never physically harmed her, but that she feared he might. Would that change your answer? What if the child were in the closet? At what point does additional information change the moral calculus?<em>This question is designed to surface which facts you are treating as morally decisive.</em></li>
+    <li>There is a third option: step outside, close the door, and ask Daniel to wait while you call the police. Is it more honest than lying and more protective than truth-telling? Or does it simply redistribute your moral discomfort without discharging your responsibility?<em>Is refusing to choose between two options itself a morally significant choice?</em></li>
+    <li>The original Inquiring Murderer had an axe. Daniel has a custody document. Does the ambiguity of Daniel's threat make this case harder or easier? What does your answer reveal about whether moral permission to lie depends on the certainty of harm, or something else entirely?<em>Does uncertainty about intent increase or decrease your moral responsibility for the outcome?</em></li>
+    <li>Kant argued that if you lie and something goes wrong &mdash; your lie sends Daniel in the wrong direction toward a worse outcome &mdash; the moral responsibility is yours, not his. Is there a meaningful moral difference between responsibility for consequences you intended and consequences your lie set in motion?<em>This question bears directly on how we understand intentions, actions, and outcomes in moral reasoning.</em></li>
+  </ol>
+  <div class="complication">
+    <h3>A Complication Worth Sitting With</h3>
+    <p>Domestic violence research consistently shows that the period when a victim attempts to leave is statistically the most dangerous &mdash; more homicides occur in the days and weeks following separation than at any other point. Researchers also note that abusers are frequently skilled at presenting as calm and legally credentialed in exactly the contexts where it serves them.</p>
+    <p>But the legal system also documents cases of parental abduction &mdash; where a parent has removed a child under the cover of a safety narrative. Both patterns are real. Anyone who finds this case easy has probably not looked at it carefully enough.</p>
+  </div>
+  <h2>Through Different Lenses</h2>
+  <p>The frameworks below do not resolve the case. Each illuminates something the others leave in shadow.</p>
+  <div class="lens-cards">
+    <div class="lens-card"><div class="lens-name">Duties and Rights</div><p>Kant's framework generates the most pressure here. The duty to tell the truth is unconditional &mdash; but so, arguably, is the duty not to be complicit in harm. W.D. Ross's theory of prima facie duties offers one way forward: some duties can be overridden when they conflict with weightier ones, though none disappear entirely.</p></div>
+    <div class="lens-card"><div class="lens-name">Consequences and Welfare</div><p>A consequentialist framework asks which answer produces the best expected outcome. The calculus is genuinely uncertain: lying may save Elena or obstruct a legitimate custody claim; truth may uphold the law or facilitate violence. The framework is only as good as your probability estimates &mdash; and those are not available to you.</p></div>
+    <div class="lens-card"><div class="lens-name">Character and Integrity</div><p>A virtue ethics framework asks not what you should do but what a person of good character would do &mdash; and who you are becoming by the choice you make. It asks whether courage, practical wisdom, and compassion point in the same direction here, or different ones.</p></div>
+    <div class="lens-card"><div class="lens-name">Care and Relationship</div><p>A care ethics framework attends to the relationships of vulnerability already present. Elena came to you. That act of trust creates a relational obligation that an abstract principle of truth-telling does not automatically override.</p></div>
+    <div class="lens-card"><div class="lens-name">Fairness and Agreement</div><p>A contractualist framework asks what principles could be justified to everyone affected. Could a general rule permitting protective deception be endorsed from behind a veil of ignorance about which role you would occupy?</p></div>
+    <div class="lens-card"><div class="lens-name">Structural and Systemic</div><p>A broader lens notes that this dilemma arises partly because the systems designed to protect people in Elena's position were not available, not trusted, or had already failed her. What would a just system have made possible before the knock at the door?</p></div>
+  </div>
+  <div class="writing-prompt">
+    <h2>For Discussion or Written Reflection</h2>
+    <p>The following prompts are suitable for undergraduate or graduate seminars, or as written assignments.</p>
+    <ul class="prompt-options">
+      <li>Kant insisted that the duty to tell the truth is unconditional. Construct the most charitable version of his argument as it applies to this specific case. Then explain where, if anywhere, his reasoning breaks down.</li>
+      <li>The updated version introduces legal ambiguity &mdash; a custody document, a child whose location is unknown &mdash; that the original Inquiring Murderer does not contain. Does this ambiguity strengthen or weaken the case for lying? Defend your answer with reference to at least one ethical framework.</li>
+      <li>Some philosophers argue the right answer is not to lie but to refuse to answer. Evaluate this position. Does it discharge your moral responsibility? Is there a meaningful moral difference between a refusal and a lie in this context?</li>
+      <li>This case and "The Algorithm at the Wheel" both involve decisions under genuine uncertainty where ethical frameworks do not converge. What does comparing the two reveal about the nature of moral dilemmas &mdash; and about the limits of ethical theory as a guide to action?</li>
+    </ul>
+  </div>
+  <div class="page-tools">
+    <button class="copy-btn" onclick="copyPageHTML()">Copy Page HTML for CMS</button>
+    <span class="copy-confirm" id="copyConfirm">&#10003; Copied to clipboard!</span>
+    <a href="index.html" class="back-link">&larr; Return to Moral Latitude</a>
+  </div>
+</main>
+<footer>Moral Latitude &nbsp;|&nbsp; Freely available for educational use &nbsp;|&nbsp; Content may be freely adapted for non-commercial educational purposes with attribution.</footer>
+<script>
+  function copyPageHTML() {
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    navigator.clipboard.writeText(html).then(() => {
+      const c = document.getElementById('copyConfirm');
+      c.style.display = 'inline';
+      setTimeout(() => { c.style.display = 'none'; }, 3000);
+    }).catch(() => { alert('Copy failed — please select all and copy manually.'); });
+  }
+</script>
+</body>
+</html>

@@ -6,331 +6,67 @@
   <title>Moral Latitude</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background-color: #f5f0e8;
-      color: #2c2416;
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 1.15rem;
-      line-height: 1.85;
-      min-height: 100vh;
-    }
-
-    /* ── NAV ── */
-    nav {
-      text-align: center;
-      padding: 0.75rem 2rem;
-      background-color: rgba(140,110,60,0.12);
-      border-bottom: 1px solid rgba(140,110,60,0.28);
-      font-size: 0.9rem;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-    }
+    body { background-color: #f5f0e8; color: #2c2416; font-family: 'EB Garamond', Georgia, serif; font-size: 1.15rem; line-height: 1.85; min-height: 100vh; }
+    nav { text-align: center; padding: 0.75rem 2rem; background-color: rgba(140,110,60,0.12); border-bottom: 1px solid rgba(140,110,60,0.28); font-size: 0.9rem; letter-spacing: 0.07em; text-transform: uppercase; }
     nav a { color: #5a3e10; text-decoration: none; margin: 0 1.1rem; transition: color 0.2s; }
     nav a:hover { color: #b8860b; }
     nav a.active { font-weight: bold; border-bottom: 2px solid #b8860b; }
-
-    /* ── HERO ── */
-    .hero {
-      position: relative;
-      overflow: hidden;
-      background-color: #2c2416;
-      padding: 4rem 2rem 3.5rem;
-      text-align: center;
-      /* Map grid overlay */
-      background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(180,160,100,0.12) 39px, rgba(180,160,100,0.12) 40px),
-        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(180,160,100,0.12) 39px, rgba(180,160,100,0.12) 40px);
-    }
-
-    /* Latitude arc lines */
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -60%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 180%;
-      height: 180%;
-      border-radius: 50%;
-      border: 1px solid rgba(184,134,11,0.18);
-      pointer-events: none;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: -30%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120%;
-      height: 120%;
-      border-radius: 50%;
-      border: 1px solid rgba(184,134,11,0.12);
-      pointer-events: none;
-    }
-
-    /* ── COMPASS ROSE ── */
-    .compass {
-      position: relative;
-      width: 110px;
-      height: 110px;
-      margin: 0 auto 1.6rem;
-    }
-
-    .compass-ring {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      border: 1.5px solid rgba(184,134,11,0.55);
-    }
-
-    .compass-ring-inner {
-      position: absolute;
-      inset: 12px;
-      border-radius: 50%;
-      border: 1px solid rgba(184,134,11,0.3);
-    }
-
-    .compass-point {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 0;
-      height: 0;
-      transform-origin: center bottom;
-    }
-
-    /* Cardinal points — large diamonds */
+    .hero { position: relative; overflow: hidden; background-color: #2c2416; padding: 4rem 2rem 3.5rem; text-align: center; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(180,160,100,0.12) 39px, rgba(180,160,100,0.12) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(180,160,100,0.12) 39px, rgba(180,160,100,0.12) 40px); }
+    .hero::before { content: ''; position: absolute; top: -60%; left: 50%; transform: translateX(-50%); width: 180%; height: 180%; border-radius: 50%; border: 1px solid rgba(184,134,11,0.18); pointer-events: none; }
+    .hero::after { content: ''; position: absolute; top: -30%; left: 50%; transform: translateX(-50%); width: 120%; height: 120%; border-radius: 50%; border: 1px solid rgba(184,134,11,0.12); pointer-events: none; }
+    .compass { position: relative; width: 110px; height: 110px; margin: 0 auto 1.6rem; }
+    .compass-ring { position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid rgba(184,134,11,0.55); }
+    .compass-ring-inner { position: absolute; inset: 12px; border-radius: 50%; border: 1px solid rgba(184,134,11,0.3); }
+    .compass-point { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-origin: center bottom; }
     .cp-n  { transform: translate(-50%, -100%) rotate(0deg);   border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 46px solid rgba(184,134,11,0.85); }
     .cp-s  { transform: translate(-50%, 0%)    rotate(180deg); border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 46px solid rgba(184,134,11,0.55); }
     .cp-e  { transform: translate(0%, -50%)    rotate(90deg);  border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 46px solid rgba(184,134,11,0.65); }
     .cp-w  { transform: translate(-100%, -50%) rotate(270deg); border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 46px solid rgba(184,134,11,0.65); }
-
-    /* Intercardinal points — small diamonds */
     .cp-ne { transform: translate(-50%, -100%) rotate(45deg);  border-left: 4px solid transparent; border-right: 4px solid transparent; border-bottom: 28px solid rgba(184,134,11,0.4); }
     .cp-se { transform: translate(-50%, -100%) rotate(135deg); border-left: 4px solid transparent; border-right: 4px solid transparent; border-bottom: 28px solid rgba(184,134,11,0.4); }
     .cp-sw { transform: translate(-50%, -100%) rotate(225deg); border-left: 4px solid transparent; border-right: 4px solid transparent; border-bottom: 28px solid rgba(184,134,11,0.4); }
     .cp-nw { transform: translate(-50%, -100%) rotate(315deg); border-left: 4px solid transparent; border-right: 4px solid transparent; border-bottom: 28px solid rgba(184,134,11,0.4); }
-
-    .compass-center {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background-color: rgba(184,134,11,0.9);
-    }
-
-    .compass-label {
-      position: absolute;
-      font-family: 'Libre Baskerville', serif;
-      font-size: 0.62rem;
-      font-weight: 700;
-      color: rgba(184,134,11,0.9);
-      letter-spacing: 0.05em;
-    }
-    .cl-n { top: 2px;  left: 50%; transform: translateX(-50%); }
+    .compass-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; border-radius: 50%; background-color: rgba(184,134,11,0.9); }
+    .compass-label { position: absolute; font-family: 'Libre Baskerville', serif; font-size: 0.62rem; font-weight: 700; color: rgba(184,134,11,0.9); letter-spacing: 0.05em; }
+    .cl-n { top: 2px; left: 50%; transform: translateX(-50%); }
     .cl-s { bottom: 2px; left: 50%; transform: translateX(-50%); }
     .cl-e { right: 4px; top: 50%; transform: translateY(-50%); }
-    .cl-w { left: 4px;  top: 50%; transform: translateY(-50%); }
-
-    /* ── HERO TEXT ── */
-    .hero h1 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 700;
-      color: #f0e8d0;
-      letter-spacing: 0.05em;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
-      position: relative;
-    }
-
-    .hero .tagline {
-      font-style: italic;
-      font-size: 1.1rem;
-      color: rgba(220,200,155,0.85);
-      margin-top: 0.5rem;
-      position: relative;
-    }
-
-    .hero .coordinates {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(184,134,11,0.65);
-      margin-top: 1.2rem;
-      position: relative;
-    }
-
-    /* ── MAIN CONTENT ── */
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 3rem 2rem 5rem;
-    }
-
-    /* ── FEATURED CASE ── */
-    .featured-label {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #b8860b;
-      margin-bottom: 0.6rem;
-    }
-
-    .featured-case {
-      border: 1px solid rgba(140,110,60,0.35);
-      border-top: 3px solid #b8860b;
-      border-radius: 3px;
-      padding: 1.8rem 2rem;
-      margin-bottom: 3.5rem;
-      background-color: rgba(245,240,232,0.5);
-      position: relative;
-    }
-
-    .featured-case h2 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 1.5rem;
-      color: #3a2a0e;
-      margin-bottom: 0.8rem;
-      font-weight: 700;
-    }
-
+    .cl-w { left: 4px; top: 50%; transform: translateY(-50%); }
+    .hero h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 700; color: #f0e8d0; letter-spacing: 0.05em; text-shadow: 0 2px 12px rgba(0,0,0,0.4); position: relative; }
+    .hero .tagline { font-style: italic; font-size: 1.1rem; color: rgba(220,200,155,0.85); margin-top: 0.5rem; position: relative; }
+    .hero .coordinates { font-family: 'Libre Baskerville', serif; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(184,134,11,0.65); margin-top: 1.2rem; position: relative; }
+    main { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+    .featured-label { font-family: 'Libre Baskerville', serif; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.6rem; }
+    .featured-case { border: 1px solid rgba(140,110,60,0.35); border-top: 3px solid #b8860b; border-radius: 3px; padding: 1.8rem 2rem; margin-bottom: 2rem; background-color: rgba(245,240,232,0.5); }
+    .featured-case h2 { font-family: 'Libre Baskerville', serif; font-size: 1.5rem; color: #3a2a0e; margin-bottom: 0.8rem; font-weight: 700; }
     .featured-case p { margin-bottom: 1rem; }
-
-    .featured-case .dilemma-question {
-      font-style: italic;
-      font-size: 1.15rem;
-      color: #4a3510;
-      border-left: 3px solid rgba(184,134,11,0.5);
-      padding-left: 1rem;
-      margin: 1.2rem 0;
-    }
-
-    .btn-explore {
-      display: inline-block;
-      padding: 0.5rem 1.3rem;
-      background-color: #5a3e10;
-      color: #f5f0e8;
-      font-family: 'EB Garamond', serif;
-      font-size: 1rem;
-      border-radius: 3px;
-      text-decoration: none;
-      letter-spacing: 0.03em;
-      transition: background-color 0.2s;
-    }
+    .featured-case .dilemma-question { font-style: italic; font-size: 1.15rem; color: #4a3510; border-left: 3px solid rgba(184,134,11,0.5); padding-left: 1rem; margin: 1.2rem 0; }
+    .btn-explore { display: inline-block; padding: 0.5rem 1.3rem; background-color: #5a3e10; color: #f5f0e8; font-family: 'EB Garamond', serif; font-size: 1rem; border-radius: 3px; text-decoration: none; letter-spacing: 0.03em; transition: background-color 0.2s; }
     .btn-explore:hover { background-color: #b8860b; }
-
-    /* ── SECTION TILES ── */
-    .sections-label {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #9a8060;
-      margin-bottom: 1.2rem;
-      padding-bottom: 0.4rem;
-      border-bottom: 1px solid rgba(140,110,60,0.25);
-    }
-
-    .tiles {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.4rem;
-      margin-bottom: 3rem;
-    }
-
-    .tile {
-      border: 1px solid rgba(140,110,60,0.28);
-      border-radius: 3px;
-      padding: 1.5rem 1.6rem;
-      background-color: rgba(245,240,232,0.4);
-      transition: border-color 0.2s, background-color 0.2s;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-
-    .tile:hover {
-      border-color: rgba(184,134,11,0.55);
-      background-color: rgba(245,240,232,0.75);
-    }
-
-    .tile-icon {
-      font-size: 1.6rem;
-      margin-bottom: 0.5rem;
-      color: rgba(140,110,60,0.7);
-    }
-
-    .tile h3 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #3a2a0e;
-      margin-bottom: 0.4rem;
-    }
-
-    .tile p {
-      font-size: 0.95rem;
-      color: #5a4a2a;
-      line-height: 1.6;
-      margin-bottom: 0;
-    }
-
-    .tile .coming-soon {
-      display: inline-block;
-      margin-top: 0.6rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #9a8060;
-      font-style: italic;
-    }
-
-    /* ── COPY BUTTON ── */
-    .copy-btn {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.5rem 1.2rem;
-      background-color: #5a3e10;
-      color: #f5f0e8;
-      font-family: 'EB Garamond', serif;
-      font-size: 0.95rem;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
+    .sections-label { font-family: 'Libre Baskerville', serif; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: #9a8060; margin-bottom: 1.2rem; padding-bottom: 0.4rem; border-bottom: 1px solid rgba(140,110,60,0.25); }
+    .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.4rem; margin-bottom: 3rem; }
+    .tile { border: 1px solid rgba(140,110,60,0.28); border-radius: 3px; padding: 1.5rem 1.6rem; background-color: rgba(245,240,232,0.4); transition: border-color 0.2s, background-color 0.2s; text-decoration: none; color: inherit; display: block; }
+    .tile:hover { border-color: rgba(184,134,11,0.55); background-color: rgba(245,240,232,0.75); }
+    .tile-icon { font-size: 1.6rem; margin-bottom: 0.5rem; color: rgba(140,110,60,0.7); }
+    .tile h3 { font-family: 'Libre Baskerville', serif; font-size: 1.05rem; font-weight: 700; color: #3a2a0e; margin-bottom: 0.4rem; }
+    .tile p { font-size: 0.95rem; color: #5a4a2a; line-height: 1.6; margin-bottom: 0; }
+    .tile .coming-soon { display: inline-block; margin-top: 0.6rem; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: #9a8060; font-style: italic; }
+    .copy-btn { display: inline-block; margin-top: 1rem; padding: 0.5rem 1.2rem; background-color: #5a3e10; color: #f5f0e8; font-family: 'EB Garamond', serif; font-size: 0.95rem; border: none; border-radius: 3px; cursor: pointer; transition: background-color 0.2s; }
     .copy-btn:hover { background-color: #b8860b; }
     .copy-confirm { display: none; margin-left: 1rem; color: #5a7a3a; font-style: italic; font-size: 0.9rem; }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      border-top: 1px solid rgba(140,110,60,0.25);
-      font-size: 0.85rem;
-      color: #9a8060;
-      font-style: italic;
-    }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(140,110,60,0.25); font-size: 0.85rem; color: #9a8060; font-style: italic; }
   </style>
 </head>
 <body>
-
 <nav>
-  <a href="#" class="active">Home</a>
+  <a href="index.html" class="active">Home</a>
   <a href="about.html">About</a>
-  <a href="#">Ethical Frameworks</a>
-  <a href="#">Dilemmas</a>
-  <a href="#">Contribute</a>
+  <a href="foundations.html">Ethical Frameworks</a>
+  <a href="algorithm-at-the-wheel.html">Dilemmas</a>
+  <a href="about.html#contribute">Contribute</a>
 </nav>
-
-<!-- ── HERO ── -->
 <div class="hero">
-
   <div class="compass" aria-hidden="true">
     <div class="compass-ring"></div>
     <div class="compass-ring-inner"></div>
@@ -348,69 +84,55 @@
     <span class="compass-label cl-e">E</span>
     <span class="compass-label cl-w">W</span>
   </div>
-
   <h1>Moral Latitude</h1>
   <div class="tagline">Navigating ethics through inquiry, complexity, and open minds</div>
-  <div class="coordinates">38° 52′ N &nbsp;·&nbsp; A Resource for College &amp; University Ethics Instruction &nbsp;·&nbsp; 77° 00′ W</div>
-
+  <div class="coordinates">38&deg; 52&prime; N &nbsp;&middot;&nbsp; A Resource for College &amp; University Ethics Instruction &nbsp;&middot;&nbsp; 77&deg; 00&prime; W</div>
 </div>
-
-<!-- ── MAIN ── -->
 <main>
-
-  <!-- Featured Case -->
   <div class="featured-label">&#9670; Featured Dilemma</div>
   <div class="featured-case">
     <h2>The Algorithm at the Wheel</h2>
-    <p>An autonomous vehicle is traveling at highway speed when its sensors detect an unavoidable collision. It must choose in milliseconds: continue straight and strike a group of pedestrians who have entered the road unlawfully, or swerve and endanger its passenger. No human hand is on the wheel. The decision has already been made — by the engineers who wrote the code.</p>
-    <div class="dilemma-question">Who bears moral responsibility for the outcome — the vehicle, the engineers, the manufacturer, the regulators who permitted it, or the pedestrians? And on what grounds do we decide?</div>
+    <p>An autonomous vehicle is traveling at highway speed when its sensors detect an unavoidable collision. It must choose in milliseconds: continue straight and strike a group of pedestrians, or swerve and endanger its passenger. No human hand is on the wheel. The decision has already been made &mdash; by the engineers who wrote the code.</p>
+    <div class="dilemma-question">Who bears moral responsibility for the outcome &mdash; the vehicle, the engineers, the manufacturer, the regulators who permitted it, or the pedestrians? And on what grounds do we decide?</div>
     <p>This is the trolley problem at 70 miles per hour, stripped of its philosophical abstraction and embedded in a legal, commercial, and technological world that Philippa Foot never imagined. The stakes are no longer hypothetical.</p>
-    <a href="#" class="btn-explore">Explore this dilemma &rarr;</a>
+    <a href="algorithm-at-the-wheel.html" class="btn-explore">Explore this dilemma &rarr;</a>
   </div>
 
-  <!-- Section Tiles -->
+  <div class="featured-label">&#9670; Also in the Collection</div>
+  <div class="featured-case">
+    <h2>The Knock at the Door</h2>
+    <p>A frightened woman asks you to shelter her from a man she says wants to harm her. Minutes later, that man is at your door &mdash; calm, legal document in hand, asking if you have seen her. He may be a predator using composure as a weapon. He may be a father with legitimate rights. You cannot know which.</p>
+    <div class="dilemma-question">Kant insisted you must not lie &mdash; even here. Most people's instinct is to lie without hesitation. Can you articulate, in principled terms, why &mdash; and does that principle hold?</div>
+    <a href="the-knock-at-the-door.html" class="btn-explore">Explore this dilemma &rarr;</a>
+  </div>
+
   <div class="sections-label">&#9670; Explore the Site</div>
   <div class="tiles">
-
-    <a href="#" class="tile">
+    <a href="foundations.html" class="tile">
       <div class="tile-icon">&#9670;</div>
-      <h3>Ethical Frameworks</h3>
-      <p>Utilitarianism, Kantian deontology, virtue ethics, care ethics, and more — introduced as navigational instruments, not dogmas.</p>
-      <span class="coming-soon">Pages in development</span>
+      <h3>Foundations of Moral Reasoning</h3>
+      <p>How ethical theories are organized, and the three dimensions every moral situation asks us to examine.</p>
     </a>
-
-    <a href="#" class="tile">
-      <div class="tile-icon">&#8982;</div>
-      <h3>Classic Dilemmas</h3>
-      <p>The trolley problem, Heinz's dilemma, the violinist — familiar cases updated with contemporary complexity and competing stakes.</p>
-      <span class="coming-soon">Pages in development</span>
-    </a>
-
-    <a href="#" class="tile">
+    <a href="moral-pitfalls.html" class="tile">
       <div class="tile-icon">&#9685;</div>
-      <h3>New Territory</h3>
-      <p>Original dilemmas drawn from AI ethics, medicine, business, structural injustice, and collective action. Cases where the old maps don't quite fit.</p>
-      <span class="coming-soon">Pages in development</span>
+      <h3>Moral Pitfalls</h3>
+      <p>Five ways ethical reasoning goes wrong &mdash; and what each failure gets partially right.</p>
     </a>
-
+    <a href="algorithm-at-the-wheel.html" class="tile">
+      <div class="tile-icon">&#8982;</div>
+      <h3>Dilemmas</h3>
+      <p>Theory-agnostic cases where competing principles lead to genuinely different conclusions. No single framework wins.</p>
+    </a>
     <a href="about.html" class="tile">
       <div class="tile-icon">&#9788;</div>
       <h3>About This Site</h3>
       <p>What Moral Latitude is, why it exists, who it is for, and how you can contribute to the project.</p>
     </a>
-
   </div>
-
   <button class="copy-btn" onclick="copyPageHTML()">Copy Page HTML for CMS</button>
   <span class="copy-confirm" id="copyConfirm">&#10003; Copied to clipboard!</span>
-
 </main>
-
-<footer>
-  Moral Latitude &nbsp;|&nbsp; Freely available for educational use &nbsp;|&nbsp;
-  Content may be freely adapted for non-commercial educational purposes with attribution.
-</footer>
-
+<footer>Moral Latitude &nbsp;|&nbsp; Freely available for educational use &nbsp;|&nbsp; Content may be freely adapted for non-commercial educational purposes with attribution.</footer>
 <script>
   function copyPageHTML() {
     const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
@@ -418,11 +140,8 @@
       const c = document.getElementById('copyConfirm');
       c.style.display = 'inline';
       setTimeout(() => { c.style.display = 'none'; }, 3000);
-    }).catch(() => {
-      alert('Copy failed — please select all and copy manually (Ctrl+A / Cmd+A, then Ctrl+C / Cmd+C).');
-    });
+    }).catch(() => { alert('Copy failed — please select all and copy manually.'); });
   }
 </script>
-
 </body>
 </html>
