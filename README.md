@@ -24,8 +24,12 @@ The site is designed for undergraduate and graduate instruction but belongs to a
 |------|------|-------------|
 | Home | `index.html` | Landing page with featured dilemma teasers |
 | About | `about.html` | Purpose, philosophy, and contribution invitation |
+| Ethical Frameworks | `frameworks.html` | Landing page for the frameworks section |
+| Dilemmas | `dilemmas.html` | Landing page for the dilemmas section, with two categories |
 | Foundations of Moral Reasoning | `foundations.html` | Theory categories and the three fonts of moral landscape |
 | Moral Pitfalls | `moral-pitfalls.html` | Five characteristic failures of ethical reasoning |
+| Principled Moral Reasoning | `principled-moral-reasoning.html` | Deontology: Kant, human dignity, natural law, relational responsibility; designer babies and AI as applied cases |
+| Consequentialism | `consequentialism.html` | Egoism, agency, utilitarianism, and the common good; Prisoner's Dilemma and executive compensation as applied cases |
 | The Algorithm at the Wheel | `algorithm-at-the-wheel.html` | Autonomous vehicle dilemma — technology, responsibility, and the moral weight of code |
 | The Knock at the Door | `the-knock-at-the-door.html` | Updated Inquiring Murderer — truth, duty, uncertainty, and the limits of absolute principle |
 | The Chatbot in the Room | `the-chatbot-in-the-room.html` | Evidence-based case study drawn from the CCDH/CNN *Killer Apps* report (March 2026) — AI safety, corporate responsibility, and preventable harm |
