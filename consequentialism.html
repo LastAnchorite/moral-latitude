@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consequentialism | Moral Latitude</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #f5f0e8; background-image: repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px), repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px); color: #2c2416; font-family: 'EB Garamond', Georgia, serif; font-size: 1.15rem; line-height: 1.85; min-height: 100vh; }
+    nav { text-align: center; padding: 0.75rem 2rem; background-color: rgba(140,110,60,0.12); border-bottom: 1px solid rgba(140,110,60,0.28); font-size: 0.9rem; letter-spacing: 0.07em; text-transform: uppercase; }
+    nav a { color: #5a3e10; text-decoration: none; margin: 0 1.1rem; transition: color 0.2s; }
+    nav a:hover { color: #b8860b; }
+    nav a.active { font-weight: bold; border-bottom: 2px solid #b8860b; }
+    .page-header { background-color: #2c2416; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px); padding: 3rem 2rem 2.5rem; text-align: center; }
+    .breadcrumb { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,134,11,0.65); margin-bottom: 1rem; }
+    .breadcrumb a { color: rgba(184,134,11,0.65); text-decoration: none; }
+    .breadcrumb a:hover { color: #b8860b; }
+    .page-header h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #f0e8d0; max-width: 700px; margin: 0 auto 0.7rem; }
+    .header-meta { font-style: italic; font-size: 0.95rem; color: rgba(220,200,155,0.7); }
+    .dilemma-tag { display: inline-block; margin-top: 0.8rem; padding: 0.25rem 0.9rem; border: 1px solid rgba(184,134,11,0.45); border-radius: 2px; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,134,11,0.75); }
+    main { max-width: 800px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+    .section-label { font-family: 'Libre Baskerville', serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.5rem; }
+    h2 { font-family: 'Libre Baskerville', serif; font-size: 1.4rem; font-weight: 700; color: #3a2a0e; margin: 2.8rem 0 0.9rem; padding-bottom: 0.35rem; border-bottom: 1px solid rgba(140,110,60,0.3); }
+    h2.first { margin-top: 0; }
+    h3 { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 700; color: #3a2a0e; margin: 1.8rem 0 0.6rem; }
+    p { margin-bottom: 1.2rem; }
+    .intro-box { background-color: rgba(44,36,22,0.04); border: 1px solid rgba(140,110,60,0.3); border-left: 4px solid #b8860b; border-radius: 3px; padding: 1.8rem 2rem; margin-bottom: 2.5rem; }
+    .intro-box p { margin-bottom: 1rem; }
+    .intro-box p:last-child { margin-bottom: 0; }
+    .theory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; margin: 1.5rem 0 2.5rem; }
+    .theory-card { border: 1px solid rgba(140,110,60,0.28); border-radius: 3px; padding: 1.2rem 1.3rem; background-color: rgba(245,240,232,0.5); }
+    .theory-card.major { border-top: 3px solid #b8860b; }
+    .theory-card .theory-name { font-family: 'Libre Baskerville', serif; font-size: 0.85rem; font-weight: 700; color: #3a2a0e; margin-bottom: 0.35rem; }
+    .theory-card .theory-focus { font-size: 0.82rem; color: #5a3e10; font-style: italic; margin-bottom: 0.5rem; }
+    .theory-card p { font-size: 0.88rem; color: #5a4a2a; line-height: 1.6; margin: 0; }
+    .sub-section { margin: 2rem 0; padding: 1.8rem 2rem; border: 1px solid rgba(140,110,60,0.25); border-radius: 3px; background-color: rgba(245,240,232,0.35); }
+    .sub-section h3 { margin-top: 0; }
+    .sub-section.brief { background-color: rgba(245,240,232,0.2); }
+    .brief-label { display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: #9a8060; border: 1px solid rgba(140,110,60,0.3); border-radius: 2px; padding: 0.1rem 0.5rem; margin-left: 0.6rem; vertical-align: middle; font-family: 'Libre Baskerville', serif; }
+    .pull-quote { margin: 2rem 0; padding: 1.2rem 1.8rem; border-left: 4px solid rgba(184,134,11,0.55); background-color: rgba(245,240,232,0.5); font-style: italic; font-size: 1.1rem; color: #4a3510; line-height: 1.75; }
+    .illustration-box { border: 1px solid rgba(140,110,60,0.3); border-top: 3px solid #5a3e10; border-radius: 3px; padding: 1.8rem 2rem; margin: 2rem 0; background-color: rgba(44,36,22,0.03); }
+    .illustration-label { font-family: 'Libre Baskerville', serif; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: #5a3e10; margin-bottom: 0.8rem; }
+    .illustration-box h3 { margin-top: 0; color: #3a2a0e; }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+    .comparison-table th { font-family: 'Libre Baskerville', serif; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: #5a3e10; background-color: rgba(140,110,60,0.1); padding: 0.7rem 1rem; text-align: left; border-bottom: 2px solid rgba(140,110,60,0.3); }
+    .comparison-table td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(140,110,60,0.15); vertical-align: top; font-size: 0.95rem; line-height: 1.65; }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table tr:nth-child(even) td { background-color: rgba(245,240,232,0.4); }
+    .complication { background-color: rgba(184,134,11,0.07); border: 1px solid rgba(184,134,11,0.3); border-radius: 3px; padding: 1.5rem 1.8rem; margin: 2rem 0; }
+    .complication h3 { font-family: 'Libre Baskerville', serif; font-size: 1rem; font-weight: 700; color: #5a3e10; margin-top: 0; margin-bottom: 0.7rem; }
+    .applied-case { border: 1px solid rgba(90,62,16,0.4); border-top: 3px solid #5a3e10; border-radius: 3px; padding: 1.8rem 2rem; margin: 3rem 0; background-color: rgba(44,36,22,0.03); }
+    .applied-label { font-family: 'Libre Baskerville', serif; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: #5a3e10; margin-bottom: 0.8rem; }
+    .applied-case h3 { font-family: 'Libre Baskerville', serif; font-size: 1.2rem; font-weight: 700; color: #3a2a0e; margin-top: 0; margin-bottom: 0.8rem; }
+    .writing-prompt { margin-top: 3rem; padding: 1.8rem 2rem; border: 1px solid rgba(140,110,60,0.3); border-top: 3px solid #5a3e10; border-radius: 3px; background-color: rgba(245,240,232,0.5); }
+    .writing-prompt h2 { border-bottom: none; margin-top: 0; margin-bottom: 0.8rem; }
+    .prompt-options { margin-top: 1.2rem; padding-left: 0; list-style: none; }
+    .prompt-options li { padding: 0.9rem 1.2rem 0.9rem 2.8rem; margin-bottom: 0.8rem; border: 1px solid rgba(140,110,60,0.2); border-radius: 3px; background-color: rgba(245,240,232,0.5); font-size: 1rem; line-height: 1.7; position: relative; }
+    .prompt-options li::before { content: "\2726"; position: absolute; left: 0.9rem; color: rgba(184,134,11,0.6); font-size: 0.8rem; top: 1rem; }
+    .page-tools { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(140,110,60,0.2); display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .copy-btn { padding: 0.5rem 1.2rem; background-color: #5a3e10; color: #f5f0e8; font-family: 'EB Garamond', serif; font-size: 0.95rem; border: none; border-radius: 3px; cursor: pointer; transition: background-color 0.2s; }
+    .copy-btn:hover { background-color: #b8860b; }
+    .copy-confirm { display: none; color: #5a7a3a; font-style: italic; font-size: 0.9rem; }
+    .back-link { font-size: 0.95rem; color: #7a6035; text-decoration: none; font-style: italic; }
+    .back-link:hover { color: #b8860b; }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(140,110,60,0.25); font-size: 0.85rem; color: #9a8060; font-style: italic; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="frameworks.html" class="active">Ethical Frameworks</a>
+  <a href="dilemmas.html">Dilemmas</a>
+  <a href="about.html#contribute">Contribute</a>
+</nav>
+<div class="page-header">
+  <div class="breadcrumb"><a href="index.html">Moral Latitude</a> &nbsp;&rsaquo;&nbsp; <a href="frameworks.html">Ethical Frameworks</a> &nbsp;&rsaquo;&nbsp; Consequentialism</div>
+  <h1>Consequentialism</h1>
+  <div class="header-meta">Evaluating the morality of actions by their results &mdash; a family of theories united by what they look at, and divided by whose results count</div>
+  <div class="dilemma-tag">Ethical Framework &nbsp;&middot;&nbsp; Theory Page</div>
+</div>
+<main>
+
+  <div class="section-label">&#9670; Overview</div>
+  <div class="intro-box">
+    <p>Consequentialism is sometimes called the framework of practical moral reasoning, because the most important consideration when determining the morality of any action is evaluating its real or anticipated consequences. What will actually happen as a result of what I do? Who will benefit, and who will be harmed? By how much, and for how long? Consequentialism takes these questions seriously as the primary &mdash; sometimes the only &mdash; moral questions worth asking.</p>
+    <p>One useful way to understand consequentialist reasoning is as a form of comparison shopping. Instead of shopping for products, you are shopping for outcomes: you have several options before you, and you are comparing them by asking which one will produce the best results. Option one leads here; option two leads there; option three leads somewhere else entirely. Which destination is best? That is the consequentialist question.</p>
+    <p>Consequentialism is not a single theory but a family of related perspectives, each united by this focus on outcomes and distinguished by asking a crucial secondary question: <em>best for whom?</em> The answer to that question determines which branch of the family you are working with.</p>
+  </div>
+
+  <h2 class="first">A Family of Perspectives</h2>
+  <p>Four main perspectives fall under the consequentialist umbrella. They differ not in their insistence that outcomes matter, but in the scope of whose outcomes are counted when the moral calculation is made.</p>
+
+  <div class="theory-grid">
+    <div class="theory-card">
+      <div class="theory-name">Egoism</div>
+      <div class="theory-focus">Greatest good for the individual or identity group</div>
+      <p>Describes self-interested behavior. Not strictly an ethical theory but an observation about motivation. Becomes a moral failure only when one&rsquo;s own interests are pursued at the direct expense of others.</p>
+    </div>
+    <div class="theory-card">
+      <div class="theory-name">Agency</div>
+      <div class="theory-focus">Greatest good for one&rsquo;s client or benefactor</div>
+      <p>An agent acts on behalf of a second party and is legally and ethically bound to pursue that party&rsquo;s interests. Temporary, governed by fiduciary duty, and enforceable by law.</p>
+    </div>
+    <div class="theory-card major">
+      <div class="theory-name">Utilitarianism</div>
+      <div class="theory-focus">Greatest good for the greatest number</div>
+      <p>The most fully developed consequentialist moral theory. Demands that we account for everyone affected by a decision and maximize the overall balance of good over harm.</p>
+    </div>
+    <div class="theory-card major">
+      <div class="theory-name">The Common Good</div>
+      <div class="theory-focus">Greatest good for the community as a whole</div>
+      <p>Emphasizes the irreducibly communal nature of human flourishing. Differs from utilitarianism in treating society as a genuine unity rather than an aggregate of individuals.</p>
+    </div>
+  </div>
+
+  <h2>Egoism <span class="brief-label">Brief Treatment</span></h2>
+  <div class="sub-section brief">
+    <p>Egoism is the observation that much of what people do, most of the time, is motivated by self-interest &mdash; the desire to advance the good of oneself or one&rsquo;s identity group. It is important to note three things the term does <em>not</em> mean.</p>
+    <p>First, egoism is not simply another word for selfishness. An egoist may behave very generously &mdash; donating to charities, volunteering time, cultivating a public reputation for good works &mdash; as long as these activities ultimately reflect back on the egoist&rsquo;s own good. A CEO who invests in community arts programs following a corporate scandal is behaving egoistically even while appearing selfless.</p>
+    <p>Second, egoism is not the same as hedonism. Egoists will sometimes accept significant sacrifice &mdash; years of expensive education, physical hardship, deferred gratification &mdash; in order to achieve a longer-term good. The college student who takes on debt and forgoes income in order to improve their future earning potential is behaving egoistically, not hedonistically.</p>
+    <p>Third, calling behavior egoistic does not automatically condemn it morally. Most of what people do in daily life &mdash; buying groceries, choosing a career, planning for retirement &mdash; is self-interested, and there is nothing wrong with that. Egoism becomes a moral failure when it requires harming others or choosing one&rsquo;s own lesser interests over the significantly higher interests of those around us. It is in these moments of genuine conflict between self and other that egoism reveals its moral character.</p>
+  </div>
+
+  <h2>Agency <span class="brief-label">Brief Treatment</span></h2>
+  <div class="sub-section brief">
+    <p>An agent is someone who acts on behalf of another &mdash; a real estate agent, an insurance agent, a financial advisor, a lawyer acting for a client. Agency is a temporary relationship, typically governed by law, in which the agent is obligated to pursue the interests of the person they represent rather than their own.</p>
+    <p>Agents are often pursuing egoistic rewards of their own &mdash; commissions, fees, professional reputation &mdash; but the critical point is that within the relationship itself, their primary obligation runs to the client. This obligation has a formal legal name: fiduciary duty. An agent who demonstrably acted in their own interests at their client&rsquo;s expense has violated that duty and can face legal consequences, including financial penalties and imprisonment in serious cases.</p>
+    <p>Agency matters for business ethics because many professional roles are essentially fiduciary in character, even when they are not always understood that way. A physician acts as agent for a patient. A financial advisor acts as agent for a client. A corporate board acts as agent for shareholders. In each case, the moral and legal question is the same: whose interests are actually being served?</p>
+  </div>
+
+  <h2>Utilitarianism</h2>
+  <p>Utilitarianism is the consequentialist perspective most fully developed as a moral theory. It holds that the right action in any situation is the one that produces the greatest possible balance of good over evil for everyone affected. Not the greatest good for oneself, not the greatest good for a client, but the greatest good for all.</p>
+
+  <h3>Not Majoritarianism</h3>
+  <p>A common misreading of utilitarianism is to treat it as a form of majoritarianism: simply find the option that benefits the most people, and that is the utilitarian answer. This is wrong in an important way. Utilitarianism does not merely count heads &mdash; it requires that we attend to the <em>quality</em> as well as the <em>quantity</em> of the good and harm being produced.</p>
+  <p>This distinction matters enormously in business ethics. If a company produces modest profit for a large number of shareholders while causing serious harm to a small number of people &mdash; workers exposed to toxic conditions, communities displaced by industrial pollution &mdash; a utilitarian cannot simply note that more people benefited than were harmed. The severity of the harm counts, not just the number of people experiencing it. A large number of people gaining a modest financial benefit does not automatically outweigh a small number of people losing their health, their livelihoods, or their lives.</p>
+
+  <h3>The Hedonic Calculus</h3>
+  <p>Utilitarianism attempts to handle this complexity through what is called a hedonic calculus &mdash; a systematic effort to weigh and compare the good and harm produced by different options across all affected parties. Think of it as a rigorous version of the comparison shopping metaphor: each option is evaluated for how much good and how much harm it produces for each group it affects, and those evaluations are aggregated to arrive at an overall assessment.</p>
+  <p>In a business context, a utilitarian analysis might examine how each available course of action affects the owners of a company, its employees, its customers, its suppliers, the surrounding community, and the natural environment. Each group&rsquo;s interests are considered, each potential good and harm is weighed, and the option that produces the best overall result is identified as the morally preferred choice.</p>
+  <p>Utilitarianism emerged during the Enlightenment and reflects the intellectual aspirations of that era. Just as experimental science was attempting to explain the natural world through systematic observation and measurement, utilitarian thinkers such as Jeremy Bentham (1748&ndash;1832) and John Stuart Mill (1806&ndash;1873) sought to put moral reasoning on an equally rigorous footing &mdash; replacing intuition and tradition with a principled method for comparing outcomes.</p>
+
+  <h3>Act and Rule Utilitarianism</h3>
+  <p><em>Act utilitarianism</em> holds that every individual action must be evaluated on its own terms: what will the consequences of this specific act, in this specific situation, be for all those affected? This is the full hedonic calculus applied case by case.</p>
+  <p>Over time, however, utilitarians noticed that certain actions &mdash; murder, theft, deception &mdash; produced negative outcomes so reliably and so severely that the full calculus always came to the same conclusion. This observation gave rise to <em>rule utilitarianism</em>: the idea that certain actions can be prohibited by rules of thumb that have proven themselves through repeated application. Rather than running the full calculation every time someone considers lying or stealing, the rule utilitarian simply notes that deception generally produces bad outcomes and treats the prohibition as a standing rule. Rule utilitarianism is a kind of principled shorthand, conserving moral reasoning for genuinely ambiguous cases.</p>
+
+  <div class="complication">
+    <h3>A Genuine Difficulty</h3>
+    <p>Utilitarianism&rsquo;s most serious challenge is the subjectivity lurking beneath its apparent objectivity. Assigning numerical values to different people&rsquo;s experiences of good and harm &mdash; the core operation of the hedonic calculus &mdash; is not as scientific as it appears. Who decides how much weight to give to financial gain versus physical suffering? On what basis do we compare harms experienced by different people in different circumstances? The appearance of precision in the calculus can obscure what is still, at bottom, a set of contested value judgments. This does not invalidate utilitarian reasoning, but it should make us cautious about claiming its conclusions are objective in any strong sense.</p>
+  </div>
+
+  <h2>The Common Good</h2>
+  <p>The common good is the consequentialist perspective with the deepest roots in pre-modern philosophy, associated especially with Aristotle and the long tradition of moral reasoning that followed from his work. It shares utilitarianism&rsquo;s concern for the good of all, but begins from fundamentally different assumptions about what human beings are and how they relate to each other.</p>
+
+  <h3>Individual versus Communal: A Foundational Difference</h3>
+  <p>Utilitarianism, like most modern ethical theories, begins with the individual. Society is understood as an aggregation of individuals, each with their own interests, and the moral task is to calculate the sum of those individual goods and harms. This reflects an Enlightenment picture of the person as a kind of monad &mdash; essentially self-sufficient, related to others primarily through mutual self-interest and formal agreement.</p>
+  <p>The common good begins from the opposite premise. Human beings are not individuals who subsequently choose to enter society; they are social by nature, constituted by their relationships, and intelligible only in the context of the communities that shaped them. Individuals do not precede community &mdash; they emerge from it. This is not merely a different theory; it is a different vision of what a person is.</p>
+
+  <div class="illustration-box">
+    <div class="illustration-label">&#9670; An Illustration</div>
+    <h3>Caitlin Clark and the Web of Community</h3>
+    <p>Through an individualistic lens, Caitlin Clark is a transcendent athletic talent whose records, skills, and accomplishments are essentially her own. She broke scoring records, transformed women&rsquo;s basketball, and earned extraordinary compensation &mdash; rewards that, from this perspective, belong to her because she earned them through her individual gifts and effort.</p>
+    <p>The communitarian lens of the common good offers a different picture without diminishing what Clark achieved. It draws attention to the vast social architecture that made her achievements possible: the family and coaches who developed her skills; the schools and athletic programs that provided structure and competition; the Title IX legislation that required institutions to invest in women&rsquo;s sports; the NCAA and WNBA as organized structures without which professional basketball would not exist; the fans whose attention and spending created the commercial ecosystem in which her talent became valuable; the media that amplified her story; the generations of women athletes who built the credibility and audience that Clark inherited.</p>
+    <p>This perspective takes nothing away from Clark. It does not minimize her effort or deny her exceptional talent. It simply insists on giving credit where credit is due &mdash; and credit, on the common good account, is always distributed across a web of relationships far wider than the individual who happens to stand at the center of it.</p>
+    <p>The same principle holds for any significant individual achievement in business, science, or public life. No successful enterprise is truly self-made. Success always occurs within a context of social relationships, institutions, and inherited goods that the successful person did not create and often does not acknowledge.</p>
+  </div>
+
+  <h3>The Whole and Its Parts</h3>
+  <p>For the common good tradition, the community is not reducible to the sum of its members any more than a living organism is reducible to its component parts. A human body is more than an accumulation of cells and organs &mdash; the parts must relate in a specific way, and they derive their meaning and function from their place in the whole. Society works analogously: it is constituted by the relationships between its members, and those relationships produce goods &mdash; justice, peace, solidarity, shared culture &mdash; that no individual could produce or enjoy in isolation.</p>
+  <p>This means that the common good is not simply a very large private good, or the aggregate of all private goods. It is a qualitatively different kind of good: richer, more complete, and more fundamental than any individual good, because individual goods depend on the common good for their existence. A flourishing person in a failing society is an unstable condition; the good of individuals is rooted in and depends upon the good of the community that sustains them.</p>
+
+  <h3>Utilitarianism and the Common Good: Key Distinctions</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Question</th>
+        <th>Utilitarianism</th>
+        <th>The Common Good</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>What is society?</td>
+        <td>An aggregation of individuals with separate interests</td>
+        <td>A web of constitutive relationships that produces shared goods</td>
+      </tr>
+      <tr>
+        <td>How is good measured?</td>
+        <td>Calculated numerically through a hedonic calculus</td>
+        <td>Understood through moral judgment; not reduced to a formula</td>
+      </tr>
+      <tr>
+        <td>What is the moral goal?</td>
+        <td>Maximize aggregate welfare across all individuals</td>
+        <td>Foster the conditions in which all members of a community can flourish</td>
+      </tr>
+      <tr>
+        <td>Can immoral means justify good ends?</td>
+        <td>In principle, yes &mdash; if the calculus favors it</td>
+        <td>No &mdash; the moral goods of community cannot be achieved through immoral means</td>
+      </tr>
+      <tr>
+        <td>Historical roots</td>
+        <td>Enlightenment; modeled on experimental science</td>
+        <td>Pre-Enlightenment; rooted in classical philosophy and communitarian traditions</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Cooperation and the Common Good</h3>
+  <p>One of the most important practical insights of the common good tradition is that cooperative behavior tends to produce better outcomes for everyone than competitive self-interest &mdash; a claim that has been tested, somewhat surprisingly, by game theory.</p>
+
+  <div class="illustration-box">
+    <div class="illustration-label">&#9670; Theory Illustration</div>
+    <h3>The Prisoner&rsquo;s Dilemma</h3>
+    <p>Two people are arrested for a crime they committed together. Held in separate cells with no opportunity to communicate, each is offered the same deal: testify against the other and go free, while the other receives a heavy sentence. If both stay silent, both receive a light sentence. If both betray each other, both receive a moderate sentence.</p>
+    <p>Pure self-interest &mdash; the egoist calculation &mdash; recommends betrayal. Whatever the other person does, you are individually better off betraying them: if they stay silent, you go free; if they betray you, you at least avoid the heaviest sentence. The logic of self-interest drives both prisoners toward mutual betrayal, producing the moderate sentence for both.</p>
+    <p>But the cooperative option &mdash; mutual silence &mdash; produces a better outcome for both. By prioritizing the shared good over individual advantage, both prisoners end up better off than they would have through self-interested calculation.</p>
+    <p>This is not merely a philosophical thought experiment. Game-theoretic simulations run over many iterations consistently find that cooperative strategies outperform self-interested ones in the long run. The business world offers its own examples: cigarette manufacturers once competed through expensive advertising campaigns that increased costs for everyone and benefited no one. When government regulation imposed mutual restraint, advertising budgets fell and industry profits rose. The cooperative option &mdash; the common good &mdash; turned out to be better for each competitor than the competitive one.</p>
+    <p>The common good tradition argues that this pattern is not accidental. A society of people who genuinely cooperate toward shared ends tends to produce more good for each of its members than a society of individuals competing for private advantage. The good of the part depends, in the end, on the good of the whole.</p>
+  </div>
+
+  <h3>Challenges and Reservations</h3>
+  <p>The common good is not without its difficulties. Three problems recur in any serious engagement with the concept.</p>
+  <p>The first is <strong>complexity and scale</strong>. In a global economy, the consequences of any business decision ripple across supply chains, communities, and ecosystems in ways that are genuinely difficult to predict. The common good offers moral direction without the illusory precision of a formula &mdash; which is honest, but can make it a vague guide in specific situations.</p>
+  <p>The second is <strong>scarcity and competition</strong>. In markets defined by competition for finite resources, persuading all parties to act cooperatively toward a shared good can seem impractical or naive. The common good may describe what would be better for everyone, while leaving open the question of how to get everyone to act accordingly.</p>
+  <p>The third, and most serious, is the problem of <strong>definition and power</strong>. Who decides what the common good is? In societies defined by genuine pluralism &mdash; diverse communities with different values, histories, and interests &mdash; the risk is that a dominant group&rsquo;s vision of the good gets dressed up as universal and imposed on everyone else. History offers no shortage of examples. Invoking the common good without an inclusive, consultative process for defining it risks producing the tyranny of the majority &mdash; or, more often, the tyranny of the powerful.</p>
+
+  <div class="applied-case">
+    <div class="applied-label">&#9670; Applied Case</div>
+    <h3>Executive Compensation and the Financial Crisis</h3>
+    <p>In the years leading up to and immediately following the financial crisis of 2008&ndash;09, a striking pattern emerged in American corporate compensation. The largest financial institutions &mdash; Bear Stearns, Lehman Brothers, Merrill Lynch, Citigroup, AIG &mdash; paid out billions of dollars in executive compensation and bonuses during the very period in which their decisions were generating catastrophic losses for investors, employees, and ultimately taxpayers.</p>
+    <p>Bear Stearns paid $11.4 billion in executive compensation in the three years preceding the crisis; its shareholders received approximately $1.4 billion when the company was sold. Lehman Brothers paid executives $21.6 billion over the same period; its shareholders received nothing when the company declared bankruptcy. AIG paid $165 million in executive bonuses in March 2009 &mdash; while receiving a $170 billion taxpayer bailout after losing $61.7 billion in the previous year.</p>
+    <p>By 2000, the ratio of average CEO compensation to average worker pay at Fortune 500 companies had reached 525 to 1, up from 42 to 1 in 1980. At the same time, comparable ratios in Canada stood at 20 to 1 and in Japan at 11 to 1.</p>
+    <p>Standard market theories &mdash; marginal revenue production, tournament theory, opportunity cost &mdash; struggle to explain these patterns. A CEO whose decisions destroy shareholder value should, under marginal revenue theory, be compensated less, not more. Tournament theory would predict that compensation scales correlate with the relative size of national economies; they do not. What the data suggest instead is that executive compensation in large American corporations became partially decoupled from market forces through a closed system in which executives sat on each other&rsquo;s boards and set each other&rsquo;s pay.</p>
+    <p>The consequentialist frameworks examined in this page offer different ways of analyzing what happened and what it means. An egoist analysis observes that the executives in question acted rationally in their own interests &mdash; and that this is precisely when egoism becomes a moral failure: when the pursuit of one&rsquo;s own good directly undermines the good of others. A utilitarian analysis asks whether the aggregate good produced by these compensation structures &mdash; the incentives they created, the talent they allegedly attracted &mdash; outweighed the aggregate harm: the financial losses, the unemployment, the erosion of public trust, the tax burden shifted to citizens. A common-good analysis asks a different question: what kind of corporate culture, what kind of economy, what kind of society do these practices produce &mdash; and is that the society we would choose?</p>
+  </div>
+
+  <div class="writing-prompt">
+    <h2>For Discussion or Written Reflection</h2>
+    <ul class="prompt-options">
+      <li>Utilitarianism is sometimes described as a scientific approach to ethics &mdash; objective, measurable, and precise. Evaluate this claim. What makes it plausible, and where does the appearance of precision break down? Does the difficulty of measurement undermine utilitarian reasoning, or merely complicate it?</li>
+      <li>The common good holds that the good of individuals is rooted in the good of the community. Using the Caitlin Clark illustration or an example of your own choosing, evaluate this claim. Does the communitarian account diminish individual achievement &mdash; or clarify it?</li>
+      <li>The Prisoner&rsquo;s Dilemma suggests that cooperative behavior produces better outcomes for all parties than self-interested competition. Identify a real-world business situation &mdash; beyond the cigarette advertising example &mdash; where this logic either does or does not hold. What determines whether cooperation or competition produces better results?</li>
+      <li>Apply both utilitarianism and the common good to the executive compensation case. Where do the two frameworks agree? Where do they diverge? What does each framework see that the other misses?</li>
+      <li>The common good tradition warns that invoking a shared good without a genuinely inclusive process for defining it risks serving the interests of the powerful under a universal banner. Identify a contemporary example &mdash; in business, politics, or public policy &mdash; where you believe this risk is present. How would you distinguish a genuine appeal to the common good from a self-interested one dressed up in communal language?</li>
+    </ul>
+  </div>
+
+  <div class="page-tools">
+    <button class="copy-btn" onclick="copyPageHTML()">Copy Page HTML for CMS</button>
+    <span class="copy-confirm" id="copyConfirm">&#10003; Copied to clipboard!</span>
+    <a href="frameworks.html" class="back-link">&larr; Return to Ethical Frameworks</a>
+  </div>
+</main>
+<footer>Moral Latitude &nbsp;|&nbsp; Freely available for educational use &nbsp;|&nbsp; Content may be freely adapted for non-commercial educational purposes with attribution.</footer>
+<script>
+  function copyPageHTML() {
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    navigator.clipboard.writeText(html).then(() => {
+      const c = document.getElementById('copyConfirm');
+      c.style.display = 'inline';
+      setTimeout(() => { c.style.display = 'none'; }, 3000);
+    }).catch(() => { alert('Copy failed \u2014 please select all and copy manually.'); });
+  }
+</script>
+</body>
+</html>
