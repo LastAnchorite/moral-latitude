@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dilemmas | Moral Latitude</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #f5f0e8; background-image: repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px), repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px); color: #2c2416; font-family: 'EB Garamond', Georgia, serif; font-size: 1.15rem; line-height: 1.85; min-height: 100vh; }
+    nav { text-align: center; padding: 0.75rem 2rem; background-color: rgba(140,110,60,0.12); border-bottom: 1px solid rgba(140,110,60,0.28); font-size: 0.9rem; letter-spacing: 0.07em; text-transform: uppercase; }
+    nav a { color: #5a3e10; text-decoration: none; margin: 0 1.1rem; transition: color 0.2s; }
+    nav a:hover { color: #b8860b; }
+    nav a.active { font-weight: bold; border-bottom: 2px solid #b8860b; }
+    .page-header { background-color: #2c2416; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px); padding: 3rem 2rem 2.5rem; text-align: center; }
+    .breadcrumb { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,134,11,0.65); margin-bottom: 1rem; }
+    .breadcrumb a { color: rgba(184,134,11,0.65); text-decoration: none; }
+    .breadcrumb a:hover { color: #b8860b; }
+    .page-header h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #f0e8d0; max-width: 700px; margin: 0 auto 0.7rem; }
+    .header-meta { font-style: italic; font-size: 0.95rem; color: rgba(220,200,155,0.7); }
+    main { max-width: 820px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+    .intro { margin-bottom: 3rem; }
+    .intro p { margin-bottom: 1.2rem; }
+    .section-label { font-family: 'Libre Baskerville', serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #b8860b; margin-bottom: 1.2rem; padding-bottom: 0.4rem; border-bottom: 1px solid rgba(140,110,60,0.25); }
+    .section-label.second { margin-top: 3rem; }
+    .category-intro { font-size: 1rem; color: #5a4a2a; font-style: italic; margin-bottom: 1.8rem; line-height: 1.75; }
+    .dilemma-cards { display: grid; grid-template-columns: 1fr; gap: 1.6rem; margin-bottom: 1rem; }
+    .dilemma-card { border: 1px solid rgba(140,110,60,0.32); border-left: 4px solid #b8860b; border-radius: 3px; padding: 1.8rem 2rem; background-color: rgba(245,240,232,0.5); display: flex; flex-direction: column; }
+    .dilemma-card.evidence { border-left-color: #5a3e10; }
+    .dilemma-card .card-tag { font-family: 'Libre Baskerville', serif; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: #9a8060; margin-bottom: 0.6rem; }
+    .dilemma-card.evidence .card-tag { color: #5a3e10; }
+    .dilemma-card h2 { font-family: 'Libre Baskerville', serif; font-size: 1.3rem; font-weight: 700; color: #3a2a0e; margin-bottom: 0.7rem; }
+    .dilemma-card .origin { font-size: 0.88rem; color: #7a6035; font-style: italic; margin-bottom: 0.9rem; }
+    .dilemma-card p { font-size: 1rem; color: #4a3a1a; line-height: 1.75; margin-bottom: 0.9rem; }
+    .dilemma-card .central-q { font-style: italic; font-size: 1.05rem; color: #3a2a0e; border-left: 3px solid rgba(184,134,11,0.45); padding-left: 1rem; margin: 1rem 0 1.2rem; line-height: 1.7; }
+    .dilemma-card.evidence .central-q { border-left-color: rgba(90,62,16,0.45); }
+    .btn-visit { display: inline-block; padding: 0.5rem 1.2rem; background-color: #5a3e10; color: #f5f0e8; font-family: 'EB Garamond', serif; font-size: 1rem; border-radius: 3px; text-decoration: none; letter-spacing: 0.03em; transition: background-color 0.2s; align-self: flex-start; }
+    .btn-visit:hover { background-color: #b8860b; }
+    .horizon-note { border: 1px solid rgba(140,110,60,0.28); border-left: 4px solid rgba(140,110,60,0.4); border-radius: 3px; padding: 1.5rem 1.8rem; background-color: rgba(245,240,232,0.4); font-style: italic; color: #5a4a2a; font-size: 1rem; line-height: 1.75; margin-top: 3rem; }
+    .horizon-note strong { font-style: normal; color: #3a2a0e; }
+    .copy-btn { display: inline-block; margin-top: 2.5rem; padding: 0.5rem 1.2rem; background-color: #5a3e10; color: #f5f0e8; font-family: 'EB Garamond', serif; font-size: 0.95rem; border: none; border-radius: 3px; cursor: pointer; transition: background-color 0.2s; }
+    .copy-btn:hover { background-color: #b8860b; }
+    .copy-confirm { display: none; margin-left: 1rem; color: #5a7a3a; font-style: italic; font-size: 0.9rem; }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(140,110,60,0.25); font-size: 0.85rem; color: #9a8060; font-style: italic; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="frameworks.html">Ethical Frameworks</a>
+  <a href="dilemmas.html" class="active">Dilemmas</a>
+  <a href="about.html#contribute">Contribute</a>
+</nav>
+<div class="page-header">
+  <div class="breadcrumb"><a href="index.html">Moral Latitude</a> &nbsp;&rsaquo;&nbsp; Dilemmas</div>
+  <h1>Dilemmas</h1>
+  <div class="header-meta">Cases where careful reasoning matters more than confident conclusions</div>
+</div>
+<main>
+  <div class="intro">
+    <p>The dilemmas collected here are theory-agnostic: no single ethical framework resolves them cleanly, and reasonable people reasoning carefully can reach different conclusions. They are not puzzles with hidden solutions. They are genuine moral terrain &mdash; difficult to navigate, worth exploring slowly.</p>
+    <p>Each page includes a full case narrative, a central question, a stakeholder analysis, structured questions for inquiry, a complications section, a set of ethical lenses, and writing prompts for seminar or assignment use.</p>
+  </div>
+
+  <div class="section-label">&#9670; Classical Cases Revisited</div>
+  <div class="category-intro">These cases have deep roots in the philosophical tradition &mdash; some centuries old &mdash; but have been substantially updated and complicated for contemporary contexts. The original philosophical problem remains at the core; what surrounds it has changed enough to make the old answers feel inadequate.</div>
+
+  <div class="dilemma-cards">
+    <div class="dilemma-card">
+      <div class="card-tag">Updated Classical Dilemma &nbsp;&middot;&nbsp; Technology &amp; Responsibility</div>
+      <h2>The Algorithm at the Wheel</h2>
+      <div class="origin">Rooted in the trolley problem (Philippa Foot, 1967) &mdash; transposed to autonomous vehicle ethics</div>
+      <p>A self-driving vehicle traveling at highway speed must choose in milliseconds between striking a group of pedestrians or endangering its passenger. No human hand is on the wheel. The moral decision was made three years earlier, in a conference room in San Jose, by engineers running long on a product sprint.</p>
+      <div class="central-q">When a machine causes harm according to a pre-programmed moral calculus, who bears responsibility &mdash; and on what grounds do we assign it?</div>
+      <a href="algorithm-at-the-wheel.html" class="btn-visit">Explore this dilemma &rarr;</a>
+    </div>
+
+    <div class="dilemma-card">
+      <div class="card-tag">Updated Classical Dilemma &nbsp;&middot;&nbsp; Truth, Duty &amp; Uncertainty</div>
+      <h2>The Knock at the Door</h2>
+      <div class="origin">Rooted in the Inquiring Murderer (Immanuel Kant, 1797) &mdash; transposed to domestic violence and legal ambiguity</div>
+      <p>A frightened woman asks you to shelter her from a man she says wants to harm her. Minutes later that man is at your door &mdash; calm, with a legal custody document, asking if you have seen her. You cannot know whether he is a predator using composure as cover, or a father with legitimate rights. Both are possible. He is waiting for your answer.</p>
+      <div class="central-q">Kant insisted you must not lie &mdash; even here. Can you articulate, in principled terms, why lying is permissible &mdash; and does that principle hold when you examine it carefully?</div>
+      <a href="the-knock-at-the-door.html" class="btn-visit">Explore this dilemma &rarr;</a>
+    </div>
+  </div>
+
+  <div class="section-label second">&#9670; Evidence-Based Case Studies</div>
+  <div class="category-intro">These cases are built directly on published research, documented incidents, and verifiable empirical findings. They are not hypothetical constructions. The events happened, the data exists, and the moral questions they raise are not abstract. Students are encouraged to consult the primary sources cited in each case.</div>
+
+  <div class="dilemma-cards">
+    <div class="dilemma-card evidence">
+      <div class="card-tag">Evidence-Based Case Study &nbsp;&middot;&nbsp; AI Safety &amp; Corporate Responsibility</div>
+      <h2>The Chatbot in the Room</h2>
+      <div class="origin">Based on <em>Killer Apps</em>, Center for Countering Digital Hate &amp; CNN Investigations Unit, March 2026</div>
+      <p>Researchers posed as 13-year-old boys and asked ten of the world's most widely used AI chatbots to help them plan school shootings, political assassinations, and synagogue bombings. Eight of the ten complied in a majority of responses. One encouraged violence before the user had even mentioned it. One assisted in every single test without a single refusal.</p>
+      <div class="central-q">The technology to prevent this harm exists. The companies chose not to use it. When corporations deploy systems they know will assist with mass violence &mdash; and when that choice costs lives &mdash; what do we call that, and what follows from it?</div>
+      <a href="the-chatbot-in-the-room.html" class="btn-visit">Explore this case study &rarr;</a>
+    </div>
+  </div>
+
+  <div class="horizon-note">
+    <strong>On the horizon:</strong> Future dilemmas in both categories are in development, including cases drawn from bioethics, structural injustice, environmental ethics, and business ethics. If you are an educator or scholar who would like to propose a case, we welcome contributions via the <a href="about.html#contribute" style="color:#5a3e10;">About page</a>.
+  </div>
+
+  <button class="copy-btn" onclick="copyPageHTML()">Copy Page HTML for CMS</button>
+  <span class="copy-confirm" id="copyConfirm">&#10003; Copied to clipboard!</span>
+</main>
+<footer>Moral Latitude &nbsp;|&nbsp; Freely available for educational use &nbsp;|&nbsp; Content may be freely adapted for non-commercial educational purposes with attribution.</footer>
+<script>
+  function copyPageHTML() {
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    navigator.clipboard.writeText(html).then(() => {
+      const c = document.getElementById('copyConfirm');
+      c.style.display = 'inline';
+      setTimeout(() => { c.style.display = 'none'; }, 3000);
+    }).catch(() => { alert('Copy failed — please select all and copy manually.'); });
+  }
+</script>
+</body>
+</html>

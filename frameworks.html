@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ethical Frameworks | Moral Latitude</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #f5f0e8; background-image: repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px), repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px); color: #2c2416; font-family: 'EB Garamond', Georgia, serif; font-size: 1.15rem; line-height: 1.85; min-height: 100vh; }
+    nav { text-align: center; padding: 0.75rem 2rem; background-color: rgba(140,110,60,0.12); border-bottom: 1px solid rgba(140,110,60,0.28); font-size: 0.9rem; letter-spacing: 0.07em; text-transform: uppercase; }
+    nav a { color: #5a3e10; text-decoration: none; margin: 0 1.1rem; transition: color 0.2s; }
+    nav a:hover { color: #b8860b; }
+    nav a.active { font-weight: bold; border-bottom: 2px solid #b8860b; }
+    .page-header { background-color: #2c2416; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px); padding: 3rem 2rem 2.5rem; text-align: center; }
+    .breadcrumb { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,134,11,0.65); margin-bottom: 1rem; }
+    .breadcrumb a { color: rgba(184,134,11,0.65); text-decoration: none; }
+    .breadcrumb a:hover { color: #b8860b; }
+    .page-header h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #f0e8d0; max-width: 700px; margin: 0 auto 0.7rem; }
+    .header-meta { font-style: italic; font-size: 0.95rem; color: rgba(220,200,155,0.7); }
+    main { max-width: 820px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+    .intro { margin-bottom: 3rem; }
+    .intro p { margin-bottom: 1.2rem; }
+    .section-label { font-family: 'Libre Baskerville', serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #b8860b; margin-bottom: 1.2rem; padding-bottom: 0.4rem; border-bottom: 1px solid rgba(140,110,60,0.25); }
+    .framework-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.8rem; margin-bottom: 3.5rem; }
+    .framework-card { border: 1px solid rgba(140,110,60,0.32); border-top: 3px solid #b8860b; border-radius: 3px; padding: 2rem 2.2rem; background-color: rgba(245,240,232,0.5); display: flex; flex-direction: column; }
+    .framework-card .card-icon { font-size: 1.8rem; color: rgba(140,110,60,0.6); margin-bottom: 0.8rem; }
+    .framework-card h2 { font-family: 'Libre Baskerville', serif; font-size: 1.3rem; font-weight: 700; color: #3a2a0e; margin-bottom: 0.8rem; }
+    .framework-card p { font-size: 1rem; color: #4a3a1a; line-height: 1.75; margin-bottom: 1rem; flex-grow: 1; }
+    .framework-card .card-details { font-size: 0.88rem; color: #7a6035; font-style: italic; margin-bottom: 1.4rem; }
+    .btn-visit { display: inline-block; padding: 0.5rem 1.2rem; background-color: #5a3e10; color: #f5f0e8; font-family: 'EB Garamond', serif; font-size: 1rem; border-radius: 3px; text-decoration: none; letter-spacing: 0.03em; transition: background-color 0.2s; align-self: flex-start; }
+    .btn-visit:hover { background-color: #b8860b; }
+    .horizon-note { border: 1px solid rgba(140,110,60,0.28); border-left: 4px solid rgba(140,110,60,0.4); border-radius: 3px; padding: 1.5rem 1.8rem; background-color: rgba(245,240,232,0.4); font-style: italic; color: #5a4a2a; font-size: 1rem; line-height: 1.75; }
+    .horizon-note strong { font-style: normal; color: #3a2a0e; }
+    .copy-btn { display: inline-block; margin-top: 2.5rem; padding: 0.5rem 1.2rem; background-color: #5a3e10; color: #f5f0e8; font-family: 'EB Garamond', serif; font-size: 0.95rem; border: none; border-radius: 3px; cursor: pointer; transition: background-color 0.2s; }
+    .copy-btn:hover { background-color: #b8860b; }
+    .copy-confirm { display: none; margin-left: 1rem; color: #5a7a3a; font-style: italic; font-size: 0.9rem; }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(140,110,60,0.25); font-size: 0.85rem; color: #9a8060; font-style: italic; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="frameworks.html" class="active">Ethical Frameworks</a>
+  <a href="dilemmas.html">Dilemmas</a>
+  <a href="about.html#contribute">Contribute</a>
+</nav>
+<div class="page-header">
+  <div class="breadcrumb"><a href="index.html">Moral Latitude</a> &nbsp;&rsaquo;&nbsp; Ethical Frameworks</div>
+  <h1>Ethical Frameworks</h1>
+  <div class="header-meta">The instruments of moral navigation &mdash; their uses, their limits, and the ways they can fail us</div>
+</div>
+<main>
+  <div class="intro">
+    <p>Before GPS, navigators crossed uncharted oceans using instruments &mdash; the sextant, the compass, the protractor &mdash; that could tell them where they were and help them reason about where to go, without ever dictating the destination. The tools were aids to judgment, not replacements for it.</p>
+    <p>That is what ethical frameworks are. Utilitarianism, Kantian deontology, virtue ethics, care ethics, contractualism &mdash; these are not algorithms. They are navigational instruments: powerful, genuinely useful, and limited. No single framework has all the answers. The pages in this section introduce them as such, and ask you to consider not only what each framework illuminates, but what it leaves in shadow.</p>
+  </div>
+
+  <div class="section-label">&#9670; Pages in This Section</div>
+  <div class="framework-cards">
+    <div class="framework-card">
+      <div class="card-icon">&#9670;</div>
+      <h2>Foundations of Moral Reasoning</h2>
+      <p>An introduction to how ethical theories are organized and what distinguishes them from one another. Presents the three dimensions &mdash; intentions, the act itself, and consequences &mdash; that every moral situation asks us to examine, illustrated through a single case applied across all three.</p>
+      <div class="card-details">Theory &nbsp;&middot;&nbsp; Consequentialism &nbsp;&middot;&nbsp; Deontology &nbsp;&middot;&nbsp; Virtue Ethics &nbsp;&middot;&nbsp; The Three Fonts of Moral Landscape</div>
+      <a href="foundations.html" class="btn-visit">Read this page &rarr;</a>
+    </div>
+    <div class="framework-card">
+      <div class="card-icon">&#9685;</div>
+      <h2>Moral Pitfalls</h2>
+      <p>Five characteristic ways ethical reasoning goes wrong &mdash; not through ignorance or bad faith, but through the over-application of a genuine insight. Each pitfall is presented with what it gets right alongside what it gets wrong, and illustrated through a contemporary case.</p>
+      <div class="card-details">Absolutism &nbsp;&middot;&nbsp; Relativism &nbsp;&middot;&nbsp; Rationalism &nbsp;&middot;&nbsp; Intentionalism &nbsp;&middot;&nbsp; Determinism</div>
+      <a href="moral-pitfalls.html" class="btn-visit">Read this page &rarr;</a>
+    </div>
+  </div>
+
+  <div class="horizon-note">
+    <strong>On the horizon:</strong> Future pages in this section will introduce individual ethical traditions in depth &mdash; utilitarian calculation, Kantian duty, virtue and character, care and relationship, contractualist fairness &mdash; each using purpose-built cases to illuminate the internal logic of that tradition. If you are an educator or scholar who would like to contribute a framework page, we would be glad to hear from you via the <a href="about.html#contribute" style="color:#5a3e10;">About page</a>.
+  </div>
+
+  <button class="copy-btn" onclick="copyPageHTML()">Copy Page HTML for CMS</button>
+  <span class="copy-confirm" id="copyConfirm">&#10003; Copied to clipboard!</span>
+</main>
+<footer>Moral Latitude &nbsp;|&nbsp; Freely available for educational use &nbsp;|&nbsp; Content may be freely adapted for non-commercial educational purposes with attribution.</footer>
+<script>
+  function copyPageHTML() {
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    navigator.clipboard.writeText(html).then(() => {
+      const c = document.getElementById('copyConfirm');
+      c.style.display = 'inline';
+      setTimeout(() => { c.style.display = 'none'; }, 3000);
+    }).catch(() => { alert('Copy failed — please select all and copy manually.'); });
+  }
+</script>
+</body>
+</html>
