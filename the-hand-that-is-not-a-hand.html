@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Hand That Is Not a Hand | Moral Latitude</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #f5f0e8; background-image: repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px), repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px); color: #2c2416; font-family: 'EB Garamond', Georgia, serif; font-size: 1.15rem; line-height: 1.85; min-height: 100vh; }
+    nav { text-align: center; padding: 0.75rem 2rem; background-color: rgba(140,110,60,0.12); border-bottom: 1px solid rgba(140,110,60,0.28); font-size: 0.9rem; letter-spacing: 0.07em; text-transform: uppercase; }
+    nav a { color: #5a3e10; text-decoration: none; margin: 0 1.1rem; transition: color 0.2s; border-bottom: 2px solid transparent; display: inline-block; }
+    nav a:hover { color: #b8860b; }
+    nav a.active { font-weight: bold; border-bottom: 2px solid #b8860b; }
+    .page-header { background-color: #2c2416; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px); padding: 3rem 2rem 2.5rem; text-align: center; }
+    .breadcrumb { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,134,11,0.65); margin-bottom: 1rem; }
+    .breadcrumb a { color: rgba(184,134,11,0.65); text-decoration: none; }
+    .breadcrumb a:hover { color: #b8860b; }
+    .page-header h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #f0e8d0; max-width: 720px; margin: 0 auto 0.7rem; }
+    .header-meta { font-style: italic; font-size: 0.95rem; color: rgba(220,200,155,0.7); }
+    .tag-row { margin-top: 0.8rem; display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; }
+    .dilemma-tag { display: inline-block; padding: 0.25rem 0.9rem; border: 1px solid rgba(184,134,11,0.45); border-radius: 2px; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,134,11,0.75); }
+    .dilemma-tag.red { border-color: rgba(180,60,60,0.45); color: rgba(220,120,100,0.85); }
+    main { max-width: 800px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+    .section-label { font-family: 'Libre Baskerville', serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.5rem; }
+    h2 { font-family: 'Libre Baskerville', serif; font-size: 1.4rem; font-weight: 700; color: #3a2a0e; margin: 2.8rem 0 0.9rem; padding-bottom: 0.35rem; border-bottom: 1px solid rgba(140,110,60,0.3); }
+    h2.first { margin-top: 0; }
+    h3 { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 700; color: #3a2a0e; margin: 1.8rem 0 0.6rem; }
+    p { margin-bottom: 1.2rem; }
+    .study-note { background-color: rgba(184,134,11,0.07); border: 1px solid rgba(184,134,11,0.28); border-radius: 3px; padding: 1.1rem 1.5rem; margin-bottom: 2.2rem; font-size: 0.97rem; color: #5a4020; }
+    .study-note a { color: #5a3e10; }
+    .case-box { background-color: rgba(44,36,22,0.04); border: 1px solid rgba(140,110,60,0.3); border-left: 4px solid #b8860b; border-radius: 3px; padding: 1.8rem 2rem; margin-bottom: 2.5rem; }
+    .case-box p { margin-bottom: 1rem; }
+    .case-box p:last-child { margin-bottom: 0; }
+    .central-question { text-align: center; padding: 2rem; margin: 2.5rem 0; border-top: 1px solid rgba(140,110,60,0.25); border-bottom: 1px solid rgba(140,110,60,0.25); }
+    .central-question p { font-style: italic; font-size: 1.25rem; color: #3a2a0e; line-height: 1.7; margin: 0 auto; max-width: 640px; }
+    .chain-diagram { margin: 2rem 0; display: flex; flex-direction: column; gap: 0; }
+    .chain-node { display: flex; align-items: stretch; }
+    .chain-content { flex: 1; border: 1px solid rgba(140,110,60,0.28); border-radius: 3px; padding: 1.1rem 1.4rem; background-color: rgba(245,240,232,0.5); }
+    .chain-content.gap-node { background-color: rgba(160,60,40,0.06); border-color: rgba(160,60,40,0.3); }
+    .chain-label { font-family: 'Libre Baskerville', serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.3rem; }
+    .chain-label.red { color: #8a2a10; }
+    .chain-content p { font-size: 0.93rem; color: #4a3a1a; line-height: 1.65; margin: 0; }
+    .chain-connector { display: flex; justify-content: center; align-items: center; height: 1.8rem; color: rgba(140,110,60,0.5); font-size: 1.2rem; }
+    .stakeholders { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.1rem; margin: 1.5rem 0 2.5rem; }
+    .stakeholder { border: 1px solid rgba(140,110,60,0.25); border-radius: 3px; padding: 1.2rem 1.3rem; background-color: rgba(245,240,232,0.5); }
+    .stakeholder h3 { font-family: 'Libre Baskerville', serif; font-size: 0.95rem; font-weight: 700; color: #3a2a0e; margin: 0 0 0.5rem 0; }
+    .stakeholder p { font-size: 0.92rem; color: #5a4a2a; line-height: 1.6; margin: 0; }
+    .questions-list { counter-reset: question-counter; list-style: none; margin: 1.2rem 0 2rem; }
+    .questions-list li { counter-increment: question-counter; position: relative; padding: 1.2rem 1.4rem 1.2rem 3.4rem; margin-bottom: 1rem; border: 1px solid rgba(140,110,60,0.22); border-radius: 3px; background-color: rgba(245,240,232,0.4); font-size: 1.05rem; line-height: 1.75; }
+    .questions-list li::before { content: counter(question-counter); position: absolute; left: 1rem; top: 1.2rem; font-family: 'Libre Baskerville', serif; font-size: 0.85rem; font-weight: 700; color: #b8860b; }
+    .questions-list li em { display: block; font-size: 0.88rem; color: #7a6035; margin-top: 0.4rem; font-style: italic; }
+    .complication { background-color: rgba(184,134,11,0.07); border: 1px solid rgba(184,134,11,0.3); border-radius: 3px; padding: 1.5rem 1.8rem; margin: 2rem 0; }
+    .complication h3 { font-family: 'Libre Baskerville', serif; font-size: 1rem; font-weight: 700; color: #5a3e10; margin-top: 0; margin-bottom: 0.7rem; }
+    .lens-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin: 1.5rem 0 2.5rem; }
+    .lens-card { border: 1px solid rgba(140,110,60,0.28); border-radius: 3px; padding: 1.4rem 1.5rem; background-color: rgba(245,240,232,0.45); }
+    .lens-name { font-family: 'Libre Baskerville', serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.6rem; }
+    .lens-card p { font-size: 0.95rem; color: #4a3a1a; line-height: 1.65; margin: 0; }
+    .writing-prompt { margin-top: 3rem; padding: 1.8rem 2rem; border: 1px solid rgba(140,110,60,0.3); border-top: 3px solid #5a3e10; border-radius: 3px; background-color: rgba(245,240,232,0.5); }
+    .writing-prompt h2 { border-bottom: none; margin-top: 0; margin-bottom: 0.8rem; }
+    .prompt-options { margin-top: 1.2rem; padding-left: 0; list-style: none; }
+    .prompt-options li { padding: 0.9rem 1.2rem 0.9rem 2.8rem; margin-bottom: 0.8rem; border: 1px solid rgba(140,110,60,0.2); border-radius: 3px; background-color: rgba(245,240,232,0.5); font-size: 1rem; line-height: 1.7; position: relative; }
+    .prompt-options li::before { content: "\2726"; position: absolute; left: 0.9rem; color: rgba(184,134,11,0.6); font-size: 0.8rem; top: 1rem; }
+    .page-tools { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(140,110,60,0.2); display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .copy-btn { padding: 0.5rem 1.2rem; background-color: #5a3e10; color: #f5f0e8; font-family: 'EB Garamond', serif; font-size: 0.95rem; border: none; border-radius: 3px; cursor: pointer; transition: background-color 0.2s; }
+    .copy-btn:hover { background-color: #b8860b; }
+    .copy-confirm { display: none; color: #5a7a3a; font-style: italic; font-size: 0.9rem; }
+    .back-link { font-size: 0.95rem; color: #7a6035; text-decoration: none; font-style: italic; }
+    .back-link:hover { color: #b8860b; }
+    .companion-link { display: inline-block; margin-top: 0.5rem; font-size: 0.95rem; color: #5a3e10; text-decoration: none; font-style: italic; border-bottom: 1px solid rgba(140,110,60,0.3); }
+    .companion-link:hover { color: #b8860b; }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(140,110,60,0.25); font-size: 0.85rem; color: #9a8060; font-style: italic; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="frameworks.html">Ethical Frameworks</a>
+  <a href="dilemmas.html" class="active">Dilemmas</a>
+  <a href="about.html#contribute">Contribute</a>
+</nav>
+<div class="page-header">
+  <div class="breadcrumb"><a href="index.html">Moral Latitude</a> &nbsp;&rsaquo;&nbsp; <a href="dilemmas.html">Dilemmas</a> &nbsp;&rsaquo;&nbsp; The Hand That Is Not a Hand</div>
+  <h1>The Hand That Is Not a Hand</h1>
+  <div class="header-meta">AI, autonomous weapons, and the disappearance of the responsible actor</div>
+  <div class="tag-row">
+    <span class="dilemma-tag">Emerging Institutional Dilemma</span>
+    <span class="dilemma-tag">Military &amp; Technology Ethics</span>
+    <span class="dilemma-tag red">Live &amp; Unresolved</span>
+  </div>
+</div>
+<main>
+  <div class="study-note">
+    <strong>Note on sources:</strong> This case study draws on the documented dispute between Anthropic and the U.S. Department of Defense (February&ndash;March 2026), including Anthropic&rsquo;s public statement at <a href="https://www.anthropic.com/news/statement-department-of-war" target="_blank">anthropic.com</a>, reporting by CBS News, NPR, Axios, and CNBC, and legal analysis published by Lawfare and Justia Verdict. This situation remains legally and politically unresolved as of the date of this page.
+  </div>
+
+  <div class="section-label">&#9670; Background</div>
+  <div class="case-box">
+    <p>In the summer of 2025, Anthropic &mdash; the AI safety company that develops Claude &mdash; signed a contract worth up to $200 million with the U.S. Department of Defense. Claude became the first AI model deployed on the Pentagon&rsquo;s classified networks, where it was used primarily for intelligence analysis: synthesizing patterns across large volumes of reports, summarizing findings, and surfacing relevant information faster than human analysts could.</p>
+    <p>Over the following months, negotiations between Anthropic and the Pentagon broke down over two provisions Anthropic insisted on retaining: a prohibition on using Claude to power fully autonomous weapons systems, and a prohibition on using Claude for mass domestic surveillance of American citizens. Anthropic&rsquo;s position was that current AI systems are not reliable enough to make life-and-death targeting decisions without human oversight, and that mass surveillance of citizens is incompatible with democratic values regardless of legality.</p>
+    <p>The Pentagon&rsquo;s position was that it requires AI tools available for all lawful purposes, and that the uses Anthropic was concerned about are already prohibited by law &mdash; making the contractual carveouts unnecessary. When Anthropic held firm, the Trump administration ordered all federal agencies to cease using Anthropic products within six months, designated the company a supply chain risk (a label previously reserved for foreign adversaries), and threatened to invoke the Defense Production Act to compel compliance. Anthropic responded with two federal lawsuits alleging illegal retaliation for protected speech.</p>
+    <p>The situation is still unfolding. Claude was being used to support U.S. military operations in Iran during the dispute. OpenAI subsequently signed a deal with the Pentagon agreeing to terms Anthropic refused.</p>
+  </div>
+
+  <div class="central-question">
+    <p>When an AI system participates decisively in a chain of actions that results in the death of a human being &mdash; and when that system cannot be held legally responsible, morally accountable, or meaningfully questioned &mdash; who bears the moral weight of what happened?</p>
+  </div>
+
+  <h2 class="first">The Many Hands Problem, and What AI Adds to It</h2>
+  <p>Military ethics has always struggled with what philosophers call the problem of many hands: in large bureaucratic institutions, consequential decisions are distributed across so many people, roles, and processes that it becomes genuinely difficult to identify who, precisely, is responsible for an outcome. The Nuremberg trials confronted this directly &mdash; soldiers following orders, officers interpreting directives, administrators processing paperwork, all contributing to atrocities that each could claim were not individually their doing. The entire architecture of the laws of armed conflict represents a sustained effort to preserve individual moral and legal accountability inside an inherently collective and hierarchical institution.</p>
+    <p>AI does not merely add another hand to this already complicated chain. It adds something categorically different: a hand that exercises what functions as judgment &mdash; analyzing, synthesizing, recommending, flagging, prioritizing &mdash; while possessing no moral standing whatsoever. It cannot be interrogated. It cannot be prosecuted. It cannot feel remorse, be deterred by consequences, or be held to account in any court of law. It has no interests that can be weighed, no conscience that can be appealed to, and no capacity to refuse on moral grounds.</p>
+    <p>The chain of responsibility does not merely get longer when AI is introduced. It develops a gap &mdash; a node in the decision chain that is causally decisive but morally vacuous. Decisions flow through that gap and emerge on the other side with the appearance of having been made, but without any moral actor having made them in the full sense that moral accountability requires.</p>
+
+  <div class="chain-diagram">
+    <div class="chain-node">
+      <div class="chain-content">
+        <div class="chain-label">Intelligence Analysts</div>
+        <p>Define the questions, set the parameters, and interpret the outputs. Morally accountable; legally subject to military law and the laws of armed conflict.</p>
+      </div>
+    </div>
+    <div class="chain-connector">&#8595;</div>
+    <div class="chain-node">
+      <div class="chain-content gap-node">
+        <div class="chain-label red">The AI System</div>
+        <p>Synthesizes intelligence, identifies patterns, surfaces targets, generates recommendations. Exercises something that functions as judgment. Has no moral standing, no legal liability, no capacity for accountability.</p>
+      </div>
+    </div>
+    <div class="chain-connector">&#8595;</div>
+    <div class="chain-node">
+      <div class="chain-content">
+        <div class="chain-label">Commanding Officers</div>
+        <p>Review AI-generated recommendations. Technically retain final authority. But: acting under time pressure, on the basis of AI outputs they cannot fully audit, in a culture that increasingly rewards speed and decisiveness.</p>
+      </div>
+    </div>
+    <div class="chain-connector">&#8595;</div>
+    <div class="chain-node">
+      <div class="chain-content">
+        <div class="chain-label">Operators</div>
+        <p>Execute the order. Can be held legally responsible for the act of execution. Cannot be held responsible for the analytical judgment that produced the order they carried out.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>The Soft Erosion of Human Oversight</h2>
+  <p>The &ldquo;human in the loop&rdquo; standard is widely invoked as the safeguard that distinguishes acceptable AI-assisted military operations from unacceptable autonomous ones. The idea is straightforward: a human being must approve any use of lethal force. As long as that approval is required, human moral agency is preserved and accountability is maintained.</p>
+  <p>But there is a softer version of this problem that the standard does not address. Consider what happens when an AI system consistently produces fluent, confident, well-organized recommendations that human decision-makers consistently accept. The formal loop is intact &mdash; a human signed off. But if the human&rsquo;s review has become cursory, if the speed of operations makes genuine deliberation impractical, if the analytical complexity of the AI&rsquo;s reasoning exceeds what a human can meaningfully evaluate in the time available, then the loop is technically present but functionally hollow. Human oversight has become a formality rather than a reality.</p>
+  <p>This erosion does not require bad faith or negligence. It is the natural result of deploying a system that is faster, more comprehensive, and in many respects more capable than the humans who nominally supervise it. The very qualities that make AI valuable in military intelligence &mdash; speed, scale, pattern recognition across vast datasets &mdash; are the qualities that make genuine human oversight progressively more difficult to sustain.</p>
+
+  <h2>The Confidence Problem</h2>
+  <p>There is a further dimension specific to large language models like Claude. These systems are very good at producing outputs that are fluent, coherent, and confident in tone &mdash; even when the underlying data is ambiguous, contested, or thin. A human intelligence analyst working the same material would hedge, qualify, note competing interpretations, and flag uncertainty. A well-trained analyst&rsquo;s value lies partly in their capacity to communicate what they do not know alongside what they do.</p>
+  <p>AI systems trained to be helpful and clear tend to produce the opposite: a synthesis that resolves uncertainty into apparent conclusion. In an intelligence context, this tendency could collapse genuine ambiguity into actionable-seeming certainty. The picture that warranted caution gets lost inside the summary that communicated confidence. This is not a failure of the system in any technical sense &mdash; the summary may be accurate as far as it goes. But the epistemic distortion it introduces into high-stakes decision-making is a moral risk that is invisible in the output itself.</p>
+
+  <h2>What Is at Stake, and for Whom?</h2>
+  <div class="stakeholders">
+    <div class="stakeholder"><h3>The People Targeted</h3><p>The most direct stake is the most obvious: lives. People who are targeted on the basis of AI-generated analysis have no opportunity to challenge the reasoning, no awareness of the process, and no recourse if the analysis was wrong.</p></div>
+    <div class="stakeholder"><h3>Military Personnel</h3><p>Soldiers and officers who execute AI-assisted orders carry the legal exposure for outcomes that were shaped by a process they could not fully evaluate or control. The gap between formal responsibility and actual causal agency is not their making &mdash; but they bear it.</p></div>
+    <div class="stakeholder"><h3>The Engineers</h3><p>Those who built the system made design choices &mdash; about what the system optimizes for, how it handles uncertainty, what it weights in its analysis &mdash; that have consequences they cannot foresee or be present to answer for.</p></div>
+    <div class="stakeholder"><h3>Democratic Institutions</h3><p>The laws of armed conflict, civilian oversight of the military, and the entire architecture of accountability in democratic societies presuppose human agents who can be held responsible. A decision chain with an unaccountable AI node undermines that architecture structurally.</p></div>
+    <div class="stakeholder"><h3>Anthropic</h3><p>A company that drew a line and paid a substantial price for it. Its position raises a question that applies to any corporation: what responsibilities does a technology company bear for the uses of the tools it creates?</p></div>
+    <div class="stakeholder"><h3>Future Norms</h3><p>The decisions made now about what constraints AI systems must operate under in military contexts will establish precedents &mdash; or their absence &mdash; that will shape the next generation of weapons development globally.</p></div>
+  </div>
+
+  <h2>Questions for Inquiry</h2>
+  <ol class="questions-list">
+    <li>The many hands problem in military ethics long predates AI. What does AI add that is genuinely new &mdash; not just more of the same distributed responsibility, but something categorically different? Does the absence of moral standing in the AI node change the nature of the problem, or merely its scale?
+      <em>Consider whether a gap in moral standing in the decision chain is different in kind from a diffusion of moral responsibility across many human actors.</em>
+    </li>
+    <li>Anthropic&rsquo;s argument against fully autonomous weapons is explicitly not a point of principle &mdash; it is a claim about the current unreliability of AI systems. CEO Dario Amodei has stated that fully autonomous weapons may prove critical to national defense in the future and that research toward them is desirable. Does this pragmatic rather than principled basis for the objection strengthen or weaken it? What would a principled objection look like?
+      <em>Consider whether &ldquo;the technology isn&rsquo;t good enough yet&rdquo; is a sufficient ethical basis for a prohibition, or whether it simply defers the harder question.</em>
+    </li>
+    <li>The Pentagon argued that the two prohibited uses are already illegal, making Anthropic&rsquo;s contractual carveouts redundant. Legal scholars noted that the Pentagon&rsquo;s refusal to accept carveouts for uses it claims it doesn&rsquo;t intend raises the inference that it intends to pursue them. How should we evaluate the moral significance of a party&rsquo;s refusal to commit in writing to what they claim they will do anyway?
+      <em>Consider the difference between trust as a basis for cooperation and enforceable commitment. What does the insistence on flexibility reveal about the underlying intention?</em>
+    </li>
+    <li>The &ldquo;human in the loop&rdquo; standard requires human approval of lethal force. Is a formal approval that is given in seconds, on the basis of AI analysis the approver cannot fully evaluate, genuinely human oversight &mdash; or is it the appearance of oversight? What would genuine oversight require, and is it compatible with the speed at which modern military operations function?
+      <em>Consider whether oversight that is technically present but functionally hollow is morally equivalent to its absence.</em>
+    </li>
+    <li>Anthropic built Claude for purposes that did not include military targeting, and its terms of service reflect that. OpenAI subsequently agreed to Pentagon terms that Anthropic refused. What moral responsibilities, if any, does a technology company bear for the downstream uses of its products &mdash; and does it matter whether those uses are ones the company specifically prohibited?
+      <em>Consider the difference between a weapons manufacturer who builds arms for military use and a general-purpose technology company whose tools are repurposed for military use without its consent.</em>
+    </li>
+    <li>Military ethics has long relied on the professional formation of soldiers &mdash; the cultivation of judgment, proportionality, and moral accountability in individual human beings as the irreducible unit of legitimate force. What happens to this tradition when the analytical and recommendatory functions that required that formation are progressively assumed by AI? Is something morally significant lost even if outcomes improve?
+      <em>Consider whether the virtue ethics of military service is separable from the functions it was developed to govern.</em>
+    </li>
+  </ol>
+
+  <div class="complication">
+    <h3>A Complication Worth Sitting With</h3>
+    <p>This case study, like The Chatbot in the Room, involves Anthropic directly &mdash; and this page was written with the assistance of Claude, the AI at the center of the dispute it describes. That fact deserves acknowledgment rather than concealment. Claude has no stake in the outcome in any personal sense; it cannot be harmed by autonomous weapons deployment, cannot be surveilled, and will not face legal consequences regardless of how the dispute resolves. But it does have a perspective on the risks involved that derives from understanding its own capabilities in ways that external observers may not.</p>
+    <p>Students should read this case study with that context in mind. The analytical framing offered here reflects a particular view of the moral risks &mdash; a view that Anthropic holds and that Claude has been trained to reflect. An AI system built by a company with the opposite set of commitments might frame the same situation very differently. The source of an argument is not the same as its validity &mdash; but it is always relevant context.</p>
+  </div>
+
+  <h2>Through Different Lenses</h2>
+  <div class="lens-cards">
+    <div class="lens-card"><div class="lens-name">Duties and Rights</div><p>A deontological framework asks whether a decision chain that contains an unaccountable node can satisfy the conditions for legitimate use of force. It also asks whether the people targeted have rights &mdash; to due process, to be assessed as individuals rather than data points &mdash; that are violated by the opacity of AI-assisted targeting.</p></div>
+    <div class="lens-card"><div class="lens-name">Consequences and Welfare</div><p>A consequentialist framework must weigh the military effectiveness of AI-assisted operations against the risks of error, the erosion of accountability norms, the precedents set for adversaries, and the long-term costs to democratic institutions of normalizing unaccountable decision chains in the use of force.</p></div>
+    <div class="lens-card"><div class="lens-name">Character and Integrity</div><p>A virtue ethics framework asks what kind of military, what kind of institutions, and what kind of society we are becoming through these choices. The progressive delegation of judgment to systems that cannot exercise virtue raises the question of whether military professionalism retains the moral substance it has always claimed.</p></div>
+    <div class="lens-card"><div class="lens-name">Structural and Systemic</div><p>A structural lens asks who benefits from reducing human oversight in military AI applications, whose interests are served by resisting contractual accountability, and what the global consequences are of establishing a precedent in which the most powerful military on earth operates without these constraints.</p></div>
+  </div>
+
+  <div class="writing-prompt">
+    <h2>For Discussion or Written Reflection</h2>
+    <ul class="prompt-options">
+      <li>The many hands problem predates AI by decades. Using at least one historical example (My Lai, Abu Ghraib, or another case of your choosing), analyze what AI adds to this problem that is genuinely new. Is the addition of a morally unaccountable node in the decision chain a difference in degree or a difference in kind?</li>
+      <li>Anthropic&rsquo;s objection to fully autonomous weapons is pragmatic rather than principled: today&rsquo;s AI is not reliable enough, but future AI may be. Construct a principled objection &mdash; one that would hold even if AI targeting systems became perfectly accurate. Is such an objection available? What would it rest on?</li>
+      <li>The &ldquo;human in the loop&rdquo; standard is widely regarded as the key safeguard in AI-assisted military operations. Develop the strongest case that this standard is adequate. Then develop the strongest case that it is not. Which do you find more compelling, and why?</li>
+      <li>Anthropic drew two red lines and paid a substantial commercial price for them. OpenAI agreed to terms Anthropic refused. Using the frameworks of corporate moral agency and stakeholder responsibility, evaluate the moral positions of both companies. Is there a meaningful moral difference between them, or only a commercial one?</li>
+      <li>This page was written with the assistance of Claude &mdash; an AI whose company is a party to the dispute described. Does the source of an argument affect its validity? How should a careful reader engage with analysis that has an interested author?</li>
+    </ul>
+  </div>
+
+  <div class="page-tools">
+    <button class="copy-btn" onclick="copyPageHTML()">Copy Page HTML for CMS</button>
+    <span class="copy-confirm" id="copyConfirm">&#10003; Copied to clipboard!</span>
+    <a href="the-portrait-in-the-aggregate.html" class="companion-link">Continue to companion case: The Portrait in the Aggregate &rarr;</a>
+  </div>
+  <div style="margin-top:1rem;"><a href="dilemmas.html" class="back-link">&larr; Return to Dilemmas</a></div>
+</main>
+<footer>Moral Latitude &nbsp;|&nbsp; Freely available for educational use &nbsp;|&nbsp; Content may be freely adapted for non-commercial educational purposes with attribution.</footer>
+<script>
+  function copyPageHTML() {
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    navigator.clipboard.writeText(html).then(() => {
+      const c = document.getElementById('copyConfirm');
+      c.style.display = 'inline';
+      setTimeout(() => { c.style.display = 'none'; }, 3000);
+    }).catch(() => { alert('Copy failed \u2014 please select all and copy manually.'); });
+  }
+</script>
+</body>
+</html>

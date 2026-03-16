@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Portrait in the Aggregate | Moral Latitude</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #f5f0e8; background-image: repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px), repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px); color: #2c2416; font-family: 'EB Garamond', Georgia, serif; font-size: 1.15rem; line-height: 1.85; min-height: 100vh; }
+    nav { text-align: center; padding: 0.75rem 2rem; background-color: rgba(140,110,60,0.12); border-bottom: 1px solid rgba(140,110,60,0.28); font-size: 0.9rem; letter-spacing: 0.07em; text-transform: uppercase; }
+    nav a { color: #5a3e10; text-decoration: none; margin: 0 1.1rem; transition: color 0.2s; border-bottom: 2px solid transparent; display: inline-block; }
+    nav a:hover { color: #b8860b; }
+    nav a.active { font-weight: bold; border-bottom: 2px solid #b8860b; }
+    .page-header { background-color: #2c2416; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px); padding: 3rem 2rem 2.5rem; text-align: center; }
+    .breadcrumb { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,134,11,0.65); margin-bottom: 1rem; }
+    .breadcrumb a { color: rgba(184,134,11,0.65); text-decoration: none; }
+    .breadcrumb a:hover { color: #b8860b; }
+    .page-header h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #f0e8d0; max-width: 720px; margin: 0 auto 0.7rem; }
+    .header-meta { font-style: italic; font-size: 0.95rem; color: rgba(220,200,155,0.7); }
+    .tag-row { margin-top: 0.8rem; display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; }
+    .dilemma-tag { display: inline-block; padding: 0.25rem 0.9rem; border: 1px solid rgba(184,134,11,0.45); border-radius: 2px; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,134,11,0.75); }
+    .dilemma-tag.red { border-color: rgba(180,60,60,0.45); color: rgba(220,120,100,0.85); }
+    main { max-width: 800px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+    .section-label { font-family: 'Libre Baskerville', serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.5rem; }
+    h2 { font-family: 'Libre Baskerville', serif; font-size: 1.4rem; font-weight: 700; color: #3a2a0e; margin: 2.8rem 0 0.9rem; padding-bottom: 0.35rem; border-bottom: 1px solid rgba(140,110,60,0.3); }
+    h2.first { margin-top: 0; }
+    h3 { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 700; color: #3a2a0e; margin: 1.8rem 0 0.6rem; }
+    p { margin-bottom: 1.2rem; }
+    .study-note { background-color: rgba(184,134,11,0.07); border: 1px solid rgba(184,134,11,0.28); border-radius: 3px; padding: 1.1rem 1.5rem; margin-bottom: 2.2rem; font-size: 0.97rem; color: #5a4020; }
+    .study-note a { color: #5a3e10; }
+    .case-box { background-color: rgba(44,36,22,0.04); border: 1px solid rgba(140,110,60,0.3); border-left: 4px solid #b8860b; border-radius: 3px; padding: 1.8rem 2rem; margin-bottom: 2.5rem; }
+    .case-box p { margin-bottom: 1rem; }
+    .case-box p:last-child { margin-bottom: 0; }
+    .central-question { text-align: center; padding: 2rem; margin: 2.5rem 0; border-top: 1px solid rgba(140,110,60,0.25); border-bottom: 1px solid rgba(140,110,60,0.25); }
+    .central-question p { font-style: italic; font-size: 1.25rem; color: #3a2a0e; line-height: 1.7; margin: 0 auto; max-width: 640px; }
+    .data-mosaic { margin: 2rem 0 2.5rem; }
+    .mosaic-intro { font-size: 0.95rem; color: #5a4a2a; font-style: italic; margin-bottom: 1rem; }
+    .mosaic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 0.7rem; }
+    .mosaic-tile { border: 1px solid rgba(140,110,60,0.22); border-radius: 3px; padding: 0.8rem 1rem; background-color: rgba(245,240,232,0.4); font-size: 0.88rem; color: #5a4a2a; line-height: 1.55; }
+    .mosaic-tile .tile-label { font-family: 'Libre Baskerville', serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9a8060; margin-bottom: 0.25rem; }
+    .mosaic-plus { display: flex; justify-content: center; align-items: center; padding: 0.6rem; font-size: 1.4rem; color: rgba(140,110,60,0.4); }
+    .mosaic-result { border: 1px solid rgba(90,62,16,0.4); border-left: 4px solid #5a3e10; border-radius: 3px; padding: 1.1rem 1.4rem; background-color: rgba(44,36,22,0.04); margin-top: 0.5rem; }
+    .mosaic-result .result-label { font-family: 'Libre Baskerville', serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5a3e10; margin-bottom: 0.3rem; }
+    .mosaic-result p { font-size: 0.93rem; color: #3a2a0e; margin: 0; line-height: 1.65; }
+    .nissenbaum-box { border: 1px solid rgba(140,110,60,0.3); border-radius: 3px; padding: 1.6rem 2rem; margin: 2rem 0; background-color: rgba(245,240,232,0.5); }
+    .nissenbaum-label { font-family: 'Libre Baskerville', serif; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: #9a8060; margin-bottom: 0.7rem; }
+    .nissenbaum-box h3 { margin-top: 0; }
+    .stakeholders { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.1rem; margin: 1.5rem 0 2.5rem; }
+    .stakeholder { border: 1px solid rgba(140,110,60,0.25); border-radius: 3px; padding: 1.2rem 1.3rem; background-color: rgba(245,240,232,0.5); }
+    .stakeholder h3 { font-family: 'Libre Baskerville', serif; font-size: 0.95rem; font-weight: 700; color: #3a2a0e; margin: 0 0 0.5rem 0; }
+    .stakeholder p { font-size: 0.92rem; color: #5a4a2a; line-height: 1.6; margin: 0; }
+    .questions-list { counter-reset: question-counter; list-style: none; margin: 1.2rem 0 2rem; }
+    .questions-list li { counter-increment: question-counter; position: relative; padding: 1.2rem 1.4rem 1.2rem 3.4rem; margin-bottom: 1rem; border: 1px solid rgba(140,110,60,0.22); border-radius: 3px; background-color: rgba(245,240,232,0.4); font-size: 1.05rem; line-height: 1.75; }
+    .questions-list li::before { content: counter(question-counter); position: absolute; left: 1rem; top: 1.2rem; font-family: 'Libre Baskerville', serif; font-size: 0.85rem; font-weight: 700; color: #b8860b; }
+    .questions-list li em { display: block; font-size: 0.88rem; color: #7a6035; margin-top: 0.4rem; font-style: italic; }
+    .complication { background-color: rgba(184,134,11,0.07); border: 1px solid rgba(184,134,11,0.3); border-radius: 3px; padding: 1.5rem 1.8rem; margin: 2rem 0; }
+    .complication h3 { font-family: 'Libre Baskerville', serif; font-size: 1rem; font-weight: 700; color: #5a3e10; margin-top: 0; margin-bottom: 0.7rem; }
+    .lens-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin: 1.5rem 0 2.5rem; }
+    .lens-card { border: 1px solid rgba(140,110,60,0.28); border-radius: 3px; padding: 1.4rem 1.5rem; background-color: rgba(245,240,232,0.45); }
+    .lens-name { font-family: 'Libre Baskerville', serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.6rem; }
+    .lens-card p { font-size: 0.95rem; color: #4a3a1a; line-height: 1.65; margin: 0; }
+    .writing-prompt { margin-top: 3rem; padding: 1.8rem 2rem; border: 1px solid rgba(140,110,60,0.3); border-top: 3px solid #5a3e10; border-radius: 3px; background-color: rgba(245,240,232,0.5); }
+    .writing-prompt h2 { border-bottom: none; margin-top: 0; margin-bottom: 0.8rem; }
+    .prompt-options { margin-top: 1.2rem; padding-left: 0; list-style: none; }
+    .prompt-options li { padding: 0.9rem 1.2rem 0.9rem 2.8rem; margin-bottom: 0.8rem; border: 1px solid rgba(140,110,60,0.2); border-radius: 3px; background-color: rgba(245,240,232,0.5); font-size: 1rem; line-height: 1.7; position: relative; }
+    .prompt-options li::before { content: "\2726"; position: absolute; left: 0.9rem; color: rgba(184,134,11,0.6); font-size: 0.8rem; top: 1rem; }
+    .page-tools { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(140,110,60,0.2); display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .copy-btn { padding: 0.5rem 1.2rem; background-color: #5a3e10; color: #f5f0e8; font-family: 'EB Garamond', serif; font-size: 0.95rem; border: none; border-radius: 3px; cursor: pointer; transition: background-color 0.2s; }
+    .copy-btn:hover { background-color: #b8860b; }
+    .copy-confirm { display: none; color: #5a7a3a; font-style: italic; font-size: 0.9rem; }
+    .back-link { font-size: 0.95rem; color: #7a6035; text-decoration: none; font-style: italic; }
+    .back-link:hover { color: #b8860b; }
+    .companion-link { display: inline-block; margin-top: 0.5rem; font-size: 0.95rem; color: #5a3e10; text-decoration: none; font-style: italic; border-bottom: 1px solid rgba(140,110,60,0.3); }
+    .companion-link:hover { color: #b8860b; }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(140,110,60,0.25); font-size: 0.85rem; color: #9a8060; font-style: italic; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="frameworks.html">Ethical Frameworks</a>
+  <a href="dilemmas.html" class="active">Dilemmas</a>
+  <a href="about.html#contribute">Contribute</a>
+</nav>
+<div class="page-header">
+  <div class="breadcrumb"><a href="index.html">Moral Latitude</a> &nbsp;&rsaquo;&nbsp; <a href="dilemmas.html">Dilemmas</a> &nbsp;&rsaquo;&nbsp; The Portrait in the Aggregate</div>
+  <h1>The Portrait in the Aggregate</h1>
+  <div class="header-meta">AI, mass surveillance, and the privacy violation that happens one innocent data point at a time</div>
+  <div class="tag-row">
+    <span class="dilemma-tag">Emerging Institutional Dilemma</span>
+    <span class="dilemma-tag">Privacy &amp; Civil Liberties</span>
+    <span class="dilemma-tag red">Live &amp; Unresolved</span>
+  </div>
+</div>
+<main>
+  <div class="study-note">
+    <strong>Note on sources and context:</strong> This case study draws on the Anthropic/Pentagon dispute (February&ndash;March 2026), Anthropic&rsquo;s public statement at <a href="https://www.anthropic.com/news/statement-department-of-war" target="_blank">anthropic.com</a>, and the philosophical framework of contextual integrity developed by Helen Nissenbaum in <em>Privacy in Context: Technology, Policy, and the Integrity of Social Life</em> (Stanford University Press, 2010). It is a companion to <a href="the-hand-that-is-not-a-hand.html">The Hand That Is Not a Hand</a>, which examines the autonomous weapons dimension of the same dispute.
+  </div>
+
+  <div class="section-label">&#9670; A Thought Experiment to Begin</div>
+  <div class="case-box">
+    <p>Consider an ordinary person. Not a criminal. Not a political dissident. Not a person under investigation for any articulable reason. Someone who goes to work, pays taxes, attends a place of worship, has opinions about politics, and lives a life that is, by any reasonable measure, entirely unremarkable from a law enforcement perspective.</p>
+    <p>Now consider what exists about this person in publicly available, legally accessible data. Their location history &mdash; inferred from their phone&rsquo;s GPS and purchased from a data broker who aggregated it from a navigation app. Their browsing history &mdash; purchased from an internet service provider or reconstructed from ad-tracking data. Their purchase records &mdash; from retail loyalty programs and credit card transactions. Their social connections &mdash; inferred from call metadata, email headers, and social platform interactions, none of which required a warrant to obtain. Their health patterns &mdash; inferrable from pharmacy records, fitness app data, and insurance claims. Their political views &mdash; reconstructable from the publications they read, the events they attended, the donations they made, and the petitions they signed.</p>
+    <p>No single one of these data points is secret. Most were shared voluntarily, if without full awareness of the consequences. Each was obtained through channels that are, in the current legal framework, entirely legitimate. And yet &mdash; assembled by an AI system capable of finding patterns, drawing inferences, and constructing coherent profiles across disparate datasets &mdash; they yield something that feels profoundly like a violation: a comprehensive picture of who this person is, what they believe, who they associate with, and how they live their life, assembled without their knowledge and available to the state on demand.</p>
+    <p>At what point, if any, did something go wrong? And whose responsibility is it?</p>
+  </div>
+
+  <div class="central-question">
+    <p>When every piece of data about a person was obtained legitimately, but their assembly produces something no person would have consented to &mdash; a comprehensive portrait of their inner and outer life &mdash; has a privacy violation occurred? And if so, how do we think about it?</p>
+  </div>
+
+  <h2 class="first">The Mosaic in Practice</h2>
+  <p>The thought experiment above is not hypothetical. It describes capabilities that exist now. Intelligence analysts have a name for this pattern: the mosaic effect &mdash; the phenomenon by which individually innocuous pieces of information combine to reveal something the subject would regard as deeply private. AI dramatically accelerates the assembly of the mosaic and extends it from specific persons of interest to entire populations.</p>
+
+  <div class="data-mosaic">
+    <div class="mosaic-intro">Each tile below represents a legally obtained, individually unremarkable data source. Consider what they produce together.</div>
+    <div class="mosaic-grid">
+      <div class="mosaic-tile"><div class="tile-label">Location Data</div>Daily movement patterns, including home, workplace, places of worship, medical facilities, political meetings</div>
+      <div class="mosaic-tile"><div class="tile-label">Browsing History</div>Publications read, topics researched, products considered, political content consumed</div>
+      <div class="mosaic-tile"><div class="tile-label">Purchase Records</div>Dietary patterns, medication purchases, books bought, donations made</div>
+      <div class="mosaic-tile"><div class="tile-label">Call &amp; Message Metadata</div>Who you communicate with, how often, at what times &mdash; not the content, just the pattern</div>
+      <div class="mosaic-tile"><div class="tile-label">Social Connections</div>Who you know, how you are related to others of interest, your position in social networks</div>
+      <div class="mosaic-tile"><div class="tile-label">Public Records</div>Property ownership, court filings, business registrations, professional licenses</div>
+    </div>
+    <div class="mosaic-plus">+</div>
+    <div class="mosaic-result">
+      <div class="result-label">&#9670; The Aggregate</div>
+      <p>A comprehensive behavioral profile: where you go, what you believe, who you love, what you fear, what you&rsquo;re planning, and what you might do next. Assembled automatically, at scale, without your knowledge, and without a warrant having been obtained for any of it.</p>
+    </div>
+  </div>
+
+  <h2>What AI Adds: Scale, Speed, and the End of Practical Obscurity</h2>
+  <p>The collection and analysis of information about citizens by governments is not new. Surveillance has existed as long as states have. What has historically limited it is not law alone, but practical constraint: the sheer labor involved in gathering, correlating, and analyzing information about many people simultaneously. This practical limitation &mdash; sometimes called practical obscurity &mdash; meant that even when individual data points were accessible, the comprehensive portrait they could assemble was not. The cost of producing it was prohibitive except in cases where the investment was clearly warranted.</p>
+  <p>AI eliminates practical obscurity. What once required a team of analysts working for weeks can now be accomplished in seconds for any individual in a dataset &mdash; and the dataset can contain everyone. The moral transformation this represents is not merely a change in degree. It is a change in kind. A world in which comprehensive surveillance of any citizen is possible at negligible cost is a fundamentally different kind of world from one in which it requires substantial investment and therefore functions as a de facto deterrent against arbitrary use.</p>
+  <p>Anthropic named this explicitly in its public statement: under current law, the government can purchase detailed records of Americans&rsquo; movements, browsing history, and social associations from commercial sources without obtaining a warrant. Powerful AI makes it possible to assemble this scattered data into a comprehensive picture of any person&rsquo;s life automatically and at massive scale. The law has not yet caught up with what the technology makes possible.</p>
+
+  <div class="nissenbaum-box">
+    <div class="nissenbaum-label">&#9670; A Philosophical Framework</div>
+    <h3>Contextual Integrity and the Privacy of Aggregation</h3>
+    <p>The standard legal framework for privacy asks whether information was secret, and whether it was disclosed without consent. By this standard, the assembly of a comprehensive profile from publicly available data raises no privacy concern: none of the data was secret, and each piece was disclosed under terms the subject agreed to.</p>
+    <p>Philosopher Helen Nissenbaum offers a more useful framework: <em>contextual integrity</em>. Her argument is that privacy is not primarily about secrecy &mdash; it is about appropriate information flows. Information flows appropriately when they match the norms of the context in which the information was originally shared. Information flows inappropriately when it is used in ways that violate those contextual norms, even if no secret is disclosed and no explicit agreement is broken.</p>
+    <p>When you share your location with a navigation app, you are sharing it in a specific context &mdash; to receive directions &mdash; under norms that do not include government surveillance. When that data is purchased by an intelligence agency and combined with your browsing history, purchase records, and social connections to construct a behavioral profile, something has happened that violates the contextual integrity of every one of those original disclosures, even though each was individually legitimate. The violation is not in any single data point. It is in the use to which the aggregate is put.</p>
+    <p>This framework captures what the secrecy-based account misses: the moral wrong in AI-powered mass surveillance is not that secrets were stolen. It is that a comprehensive picture of a person&rsquo;s life was assembled &mdash; one they never consented to create, never intended to make available, and whose existence fundamentally alters their relationship to the state &mdash; from pieces of information that were each shared in entirely different contexts for entirely different purposes.</p>
+  </div>
+
+  <h2>The Chilling Effect and the Character of a Free Society</h2>
+  <p>Mass surveillance does not only harm those who are surveilled. It harms everyone who knows it is possible. The chilling effect &mdash; the inhibition of lawful behavior, political expression, religious practice, and personal association that results from awareness of being watched &mdash; does not require that anything go wrong for any particular person. It operates as a structural condition on everyone&rsquo;s freedom.</p>
+  <p>A person who knows that their attendance at a political meeting, their choice of reading material, their religious practice, and their social connections are all being continuously recorded and available for analysis by the state is not the same kind of free person as one who lives without that knowledge. The difference is not captured by whether the surveillance leads to any particular harm. It is a difference in the character of the society itself &mdash; in what kind of freedom is available to its members.</p>
+  <p>This is why the debate about mass surveillance cannot be resolved by pointing to safeguards, oversight mechanisms, or the good intentions of current administrators. The moral concern is not only what this administration will do with the capability. It is what the existence of the capability does to the condition of freedom for everyone, now and in the future, under any administration.</p>
+
+  <div class="complication">
+    <h3>A Complication Worth Sitting With</h3>
+    <p>The strongest response to this case study is consequentialist: what if mass surveillance, properly constrained and overseen, actually makes people safer? What if the patterns it can detect prevent terrorist attacks, protect vulnerable populations, or identify threats that would otherwise go unnoticed? If the benefits are real and substantial, does the privacy cost become acceptable &mdash; especially if the data was obtained legally and the analysis is subject to meaningful oversight?</p>
+    <p>This is a serious argument, not a bad-faith one. It deserves a serious response rather than dismissal. The deontological response is that some rights are not subject to cost-benefit analysis &mdash; that the freedom to live without comprehensive state surveillance of one&rsquo;s inner and outer life is not a preference to be weighed against security outcomes but a condition of personhood and political liberty that cannot be traded away even for genuine benefits. The liberal political tradition has generally held that the burden of proof falls on those who would restrict fundamental freedoms, not on those who would preserve them.</p>
+    <p>But the consequentialist challenge does not disappear. Students should work through both positions with the seriousness they deserve, rather than assuming the answer is obvious in either direction.</p>
+  </div>
+
+  <h2>What Is at Stake, and for Whom?</h2>
+  <div class="stakeholders">
+    <div class="stakeholder"><h3>Ordinary Citizens</h3><p>Everyone whose data exists in commercial and public databases &mdash; which is to say, effectively everyone. The person targeted by this system does not need to have done anything wrong to have their comprehensive profile assembled and available.</p></div>
+    <div class="stakeholder"><h3>Activists and Dissidents</h3><p>Those whose political activities, religious practices, or associations bring them into the orbit of state interest face a qualitatively different risk than ordinary citizens &mdash; one that the history of government surveillance suggests is neither hypothetical nor remote.</p></div>
+    <div class="stakeholder"><h3>Journalists and Lawyers</h3><p>Professions whose effective functioning depends on confidential communication and source protection face particular threats from a surveillance architecture that can reconstruct those connections from metadata without ever accessing content.</p></div>
+    <div class="stakeholder"><h3>Data Brokers and Technology Companies</h3><p>The commercial ecosystem that makes this surveillance possible &mdash; collecting, aggregating, and selling personal data &mdash; exists because it is profitable, not because it was designed as a surveillance infrastructure. But the infrastructure it creates is one.</p></div>
+    <div class="stakeholder"><h3>Future Administrations</h3><p>Surveillance capabilities built under one administration are inherited by the next. The question of what today&rsquo;s government will do with these tools cannot be separated from the question of what any future government might do with them.</p></div>
+    <div class="stakeholder"><h3>Democratic Norms</h3><p>The relationship between state and citizen that defines liberal democracy assumes a zone of private life &mdash; thought, association, belief &mdash; that the state does not enter without specific justification. Mass surveillance eliminates that zone structurally.</p></div>
+  </div>
+
+  <h2>Questions for Inquiry</h2>
+  <ol class="questions-list">
+    <li>The data in our thought experiment was obtained legally, shared voluntarily (if without full awareness), and no single disclosure was a violation of any law or agreement. Has a privacy violation occurred? If so, at what point &mdash; and what triggered it?
+      <em>Consider whether the contextual integrity framework changes your answer compared to a secrecy-based account of privacy.</em>
+    </li>
+    <li>Practical obscurity &mdash; the de facto privacy that results from the sheer cost of comprehensive surveillance &mdash; was never a right, never written into any law, and was always vulnerable to sufficient investment. Does its elimination by AI represent a new moral problem, or merely the removal of a practical limitation that was never morally significant in itself?
+      <em>Consider whether protections that exist only because they are expensive to defeat are morally meaningful, or whether what matters is the principle rather than the practical constraint.</em>
+    </li>
+    <li>Anthropic argued that mass surveillance of Americans violates fundamental rights, even where it is currently legal, because the law has not yet caught up with what AI makes possible. Is this a coherent position &mdash; that something can be legal and nonetheless a rights violation? What theory of rights does it presuppose?
+      <em>Consider the relationship between legal rights, moral rights, and natural rights in the traditions covered in the Principled Moral Reasoning framework page.</em>
+    </li>
+    <li>The chilling effect describes how mass surveillance restricts freedom not by punishing anyone directly but by changing the conditions under which everyone acts. Is an unfreedom that operates through self-censorship rather than external compulsion a genuine harm &mdash; or does the absence of direct coercion mean that no rights have been violated?
+      <em>Consider whether freedom requires not just the absence of legal prohibition but also the absence of conditions that make the exercise of freedom practically costly.</em>
+    </li>
+    <li>A consequentialist argument for mass surveillance holds that the safety benefits may outweigh the privacy costs, especially if robust oversight is in place. Construct the strongest version of this argument. Then construct the strongest deontological response. What would each position have to concede to take the other seriously?
+      <em>Consider whether there is a version of this tradeoff that both frameworks could accept, or whether the disagreement is ultimately irresolvable within the terms of either framework alone.</em>
+    </li>
+    <li>The Pentagon argued that the uses Anthropic prohibited are already illegal, making the contractual carveouts unnecessary. Legal scholars noted that the refusal to accept those carveouts raises the inference that the prohibited uses are intended. Evaluate the ethics of a party that claims it does not intend to do something but refuses to commit to not doing it.
+      <em>Consider what a refusal to make a commitment that costs nothing reveals about the nature of the underlying intention.</em>
+    </li>
+  </ol>
+
+  <h2>Through Different Lenses</h2>
+  <div class="lens-cards">
+    <div class="lens-card"><div class="lens-name">Duties and Rights</div><p>A deontological framework asks whether persons have a right to a zone of private life that the state may not enter without specific justification &mdash; and whether that right is violated by comprehensive surveillance even in the absence of direct harm to any individual. It also asks whether using citizens&rsquo; data to profile them without their knowledge treats them as ends or merely as means.</p></div>
+    <div class="lens-card"><div class="lens-name">Consequences and Welfare</div><p>A consequentialist framework must weigh genuine security benefits against the real costs of chilling effects on political expression, religious practice, and civil society &mdash; costs that are diffuse, hard to measure, and accrue to everyone rather than being concentrated in identifiable victims.</p></div>
+    <div class="lens-card"><div class="lens-name">Care and Relationship</div><p>A care ethics framework attends to the asymmetry of power between state and citizen in surveillance relationships, and to the particular vulnerability of those &mdash; activists, journalists, immigrants, religious minorities &mdash; whose relationships with state power are already characterized by precarity rather than trust.</p></div>
+    <div class="lens-card"><div class="lens-name">Structural and Systemic</div><p>A structural lens asks how commercial data collection came to create the infrastructure for state surveillance as a byproduct of consumer capitalism, and who bears the costs of a system that was built to serve commercial interests but whose externalities fall on everyone.</p></div>
+  </div>
+
+  <div class="writing-prompt">
+    <h2>For Discussion or Written Reflection</h2>
+    <ul class="prompt-options">
+      <li>Apply Nissenbaum&rsquo;s contextual integrity framework to the thought experiment at the opening of this case. At what specific point does the information flow become inappropriate? Does her framework give a more or a less satisfying account of what goes wrong than a secrecy-based account of privacy? Explain your reasoning.</li>
+      <li>Practical obscurity &mdash; the privacy that results from the cost of comprehensive surveillance &mdash; protected people before AI made it cheap. Argue either that its loss is a genuinely new moral problem, or that it was never morally significant in itself. Be specific about what theory of privacy your argument relies on.</li>
+      <li>The chilling effect restricts freedom without coercion. A person who avoids a political meeting because they know their attendance will be recorded has not been prevented from going &mdash; they have chosen not to. Does this distinction between compelled and self-censored behavior matter morally? What theory of freedom does your answer reflect?</li>
+      <li>Design a set of oversight mechanisms you believe would make AI-powered government data aggregation morally acceptable. Be specific. Then evaluate whether your mechanisms are politically realistic, and what their absence would mean for your moral assessment.</li>
+      <li>This case and its companion, <a href="the-hand-that-is-not-a-hand.html" style="color:#5a3e10;">The Hand That Is Not a Hand</a>, both arise from a single institutional dispute. What does comparing the two cases reveal about the different ways AI can threaten human dignity &mdash; through the erosion of accountability in the use of force, and through the erosion of the private self?</li>
+    </ul>
+  </div>
+
+  <div class="page-tools">
+    <button class="copy-btn" onclick="copyPageHTML()">Copy Page HTML for CMS</button>
+    <span class="copy-confirm" id="copyConfirm">&#10003; Copied to clipboard!</span>
+    <a href="the-hand-that-is-not-a-hand.html" class="companion-link">&larr; Companion case: The Hand That Is Not a Hand</a>
+  </div>
+  <div style="margin-top:1rem;"><a href="dilemmas.html" class="back-link">&larr; Return to Dilemmas</a></div>
+</main>
+<footer>Moral Latitude &nbsp;|&nbsp; Freely available for educational use &nbsp;|&nbsp; Content may be freely adapted for non-commercial educational purposes with attribution.</footer>
+<script>
+  function copyPageHTML() {
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    navigator.clipboard.writeText(html).then(() => {
+      const c = document.getElementById('copyConfirm');
+      c.style.display = 'inline';
+      setTimeout(() => { c.style.display = 'none'; }, 3000);
+    }).catch(() => { alert('Copy failed \u2014 please select all and copy manually.'); });
+  }
+</script>
+</body>
+</html>
