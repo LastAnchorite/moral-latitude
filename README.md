@@ -29,6 +29,7 @@ The site is designed for undergraduate and graduate instruction but belongs to a
 | Foundations of Moral Reasoning | `foundations.html` | Theory categories and the three fonts of moral landscape |
 | Moral Pitfalls | `moral-pitfalls.html` | Five characteristic failures of ethical reasoning |
 | Principled Moral Reasoning | `principled-moral-reasoning.html` | Deontology: Kant, human dignity, natural law, relational responsibility; designer babies and AI as applied cases |
+| Conscience | `conscience.html` | Three dimensions of conscience; Hauerwas, Ricœur, Nussbaum, Noddings on narrative formation; digital conscience; whistleblowing as applied case |
 | Teleology | `teleology.html` | The ethics of ends; distinguishes teleology from consequentialism; religious and secular teleologies; environmental ethics as applied case |
 | Virtue Ethics | `virtue-ethics.html` | Aristotle, Confucian, Islamic, Buddhist, and Ubuntu traditions; MacIntyre on practices; Enron and medical ethics as applied cases |
 | Consequentialism | `consequentialism.html` | Egoism, agency, utilitarianism, and the common good; Prisoner's Dilemma and executive compensation as applied cases |
