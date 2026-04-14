@@ -34,6 +34,7 @@ The site is designed for undergraduate and graduate instruction but belongs to a
 | Teleology | `teleology.html` | The ethics of ends; distinguishes teleology from consequentialism; religious and secular teleologies; environmental ethics as applied case |
 | Virtue Ethics | `virtue-ethics.html` | Aristotle, Confucian, Islamic, Buddhist, and Ubuntu traditions; MacIntyre on practices; Enron and medical ethics as applied cases |
 | Consequentialism | `consequentialism.html` | Egoism, agency, utilitarianism, and the common good; Prisoner's Dilemma and executive compensation as applied cases |
+| Justice | `justice.html` | Distributive, contributive, commutative, and restorative justice; six competing principles; Rawls's original position and maximin rule; Nozick's libertarian challenge; capabilities approach; structural injustice; retributive and restorative justice; Ubuntu, Islamic, Confucian, and Buddhist traditions; algorithmic sentencing as applied case |
 | The Algorithm at the Wheel | `algorithm-at-the-wheel.html` | Autonomous vehicle dilemma — technology, responsibility, and the moral weight of code |
 | The Knock at the Door | `the-knock-at-the-door.html` | Updated Inquiring Murderer — truth, duty, uncertainty, and the limits of absolute principle |
 | The Chatbot in the Room | `the-chatbot-in-the-room.html` | Evidence-based case study drawn from the CCDH/CNN *Killer Apps* report (March 2026) — AI safety, corporate responsibility, and preventable harm |

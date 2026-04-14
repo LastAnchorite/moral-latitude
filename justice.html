@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Justice | Moral Latitude</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #f5f0e8; background-image: repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px), repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(180,160,110,0.13) 59px, rgba(180,160,110,0.13) 60px); color: #2c2416; font-family: 'EB Garamond', Georgia, serif; font-size: 1.15rem; line-height: 1.85; min-height: 100vh; }
+    nav { text-align: center; padding: 0.75rem 2rem; background-color: rgba(140,110,60,0.12); border-bottom: 1px solid rgba(140,110,60,0.28); font-size: 0.9rem; letter-spacing: 0.07em; text-transform: uppercase; }
+    nav a { color: #5a3e10; text-decoration: none; margin: 0 1.1rem; transition: color 0.2s; border-bottom: 2px solid transparent; display: inline-block; }
+    nav a:hover { color: #b8860b; }
+    nav a.active { font-weight: bold; border-bottom: 2px solid #b8860b; }
+    .page-header { background-color: #2c2416; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(180,160,100,0.1) 39px, rgba(180,160,100,0.1) 40px); padding: 3rem 2rem 2.5rem; text-align: center; }
+    .breadcrumb { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,134,11,0.65); margin-bottom: 1rem; }
+    .breadcrumb a { color: rgba(184,134,11,0.65); text-decoration: none; }
+    .breadcrumb a:hover { color: #b8860b; }
+    .page-header h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #f0e8d0; max-width: 700px; margin: 0 auto 0.7rem; }
+    .header-meta { font-style: italic; font-size: 0.95rem; color: rgba(220,200,155,0.7); }
+    .dilemma-tag { display: inline-block; margin-top: 0.8rem; padding: 0.25rem 0.9rem; border: 1px solid rgba(184,134,11,0.45); border-radius: 2px; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(184,134,11,0.75); }
+    main { max-width: 800px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+    .section-label { font-family: 'Libre Baskerville', serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.5rem; }
+    h2 { font-family: 'Libre Baskerville', serif; font-size: 1.4rem; font-weight: 700; color: #3a2a0e; margin: 2.8rem 0 0.9rem; padding-bottom: 0.35rem; border-bottom: 1px solid rgba(140,110,60,0.3); }
+    h2.first { margin-top: 0; }
+    h3 { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 700; color: #3a2a0e; margin: 1.8rem 0 0.6rem; }
+    p { margin-bottom: 1.2rem; }
+    .intro-box { background-color: rgba(44,36,22,0.04); border: 1px solid rgba(140,110,60,0.3); border-left: 4px solid #b8860b; border-radius: 3px; padding: 1.8rem 2rem; margin-bottom: 2.5rem; }
+    .intro-box p { margin-bottom: 1rem; }
+    .intro-box p:last-child { margin-bottom: 0; }
+
+    /* Triangle of Justice */
+    .triangle-container { margin: 2rem 0 2.5rem; }
+    .triangle-visual { display: flex; flex-direction: column; align-items: center; margin-bottom: 1.5rem; }
+    .triangle-apex { text-align: center; margin-bottom: 0; }
+    .triangle-apex .node { display: inline-block; padding: 0.6rem 1.4rem; background-color: #2c2416; color: #f0e8d0; font-family: 'Libre Baskerville', serif; font-size: 0.85rem; font-weight: 700; border-radius: 3px; letter-spacing: 0.04em; }
+    .triangle-arrows { display: flex; justify-content: center; gap: 3rem; margin: 0.4rem 0; font-size: 0.8rem; color: #b8860b; letter-spacing: 0.1em; text-transform: uppercase; }
+    .triangle-arrow-label { text-align: center; font-size: 0.75rem; color: #7a6035; font-style: italic; }
+    .triangle-base { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 0.4rem; width: 100%; }
+    .triangle-base-node { padding: 0.8rem 1.2rem; background-color: rgba(44,36,22,0.05); border: 1px solid rgba(140,110,60,0.3); border-radius: 3px; text-align: center; font-family: 'Libre Baskerville', serif; font-size: 0.85rem; font-weight: 700; color: #3a2a0e; }
+    .triangle-center-label { text-align: center; padding: 0.6rem; font-size: 0.82rem; font-style: italic; color: #7a6035; }
+    .triangle-base-connector { text-align: center; font-size: 0.75rem; color: #b8860b; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.3rem; }
+
+    .justice-types { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+    .justice-type-card { border: 1px solid rgba(140,110,60,0.28); border-top: 3px solid #b8860b; border-radius: 3px; padding: 1.3rem 1.4rem; background-color: rgba(245,240,232,0.5); }
+    .justice-type-name { font-family: 'Libre Baskerville', serif; font-size: 0.95rem; font-weight: 700; color: #3a2a0e; margin-bottom: 0.2rem; }
+    .justice-type-card p { font-size: 0.92rem; color: #4a3a1a; line-height: 1.65; margin: 0; }
+
+    /* Theories grid */
+    .theories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+    .theory-card { border: 1px solid rgba(140,110,60,0.25); border-radius: 3px; padding: 1.1rem 1.3rem; background-color: rgba(245,240,232,0.45); }
+    .theory-name { font-family: 'Libre Baskerville', serif; font-size: 0.9rem; font-weight: 700; color: #3a2a0e; margin-bottom: 0.3rem; }
+    .theory-card p { font-size: 0.88rem; color: #4a3a1a; line-height: 1.6; margin: 0; }
+
+    /* Rawls box */
+    .rawls-box { border: 1px solid rgba(140,110,60,0.3); border-top: 3px solid #5a3e10; border-radius: 3px; padding: 1.8rem 2rem; margin: 2.5rem 0; background-color: rgba(44,36,22,0.03); }
+    .rawls-label { font-family: 'Libre Baskerville', serif; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: #5a3e10; margin-bottom: 0.8rem; }
+    .rawls-box h3 { margin-top: 0; font-size: 1.15rem; }
+    .rawls-principles { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.2rem 0; }
+    .principle-card { border: 1px solid rgba(90,62,16,0.3); border-radius: 3px; padding: 1rem 1.2rem; background-color: rgba(245,240,232,0.5); }
+    .principle-number { font-family: 'Libre Baskerville', serif; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: #b8860b; margin-bottom: 0.3rem; }
+    .principle-name { font-family: 'Libre Baskerville', serif; font-size: 0.95rem; font-weight: 700; color: #3a2a0e; margin-bottom: 0.4rem; }
+    .principle-card p { font-size: 0.88rem; line-height: 1.6; margin: 0; color: #4a3a1a; }
+    @media (max-width: 500px) { .rawls-principles { grid-template-columns: 1fr; } }
+
+    /* Pie diagram */
+    .pie-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; text-align: center; }
+    .pie-item svg { display: block; margin: 0 auto 0.6rem; }
+    .pie-caption { font-size: 0.85rem; font-style: italic; color: #5a3e10; line-height: 1.55; }
+    @media (max-width: 480px) { .pie-comparison { grid-template-columns: 1fr; } }
+
+    .pull-quote { margin: 2rem 0; padding: 1.2rem 1.8rem; border-left: 4px solid rgba(184,134,11,0.55); background-color: rgba(245,240,232,0.5); font-style: italic; font-size: 1.1rem; color: #4a3510; line-height: 1.75; }
+    .complication { background-color: rgba(184,134,11,0.07); border: 1px solid rgba(184,134,11,0.3); border-radius: 3px; padding: 1.5rem 1.8rem; margin: 2rem 0; }
+    .complication h3 { font-family: 'Libre Baskerville', serif; font-size: 1rem; font-weight: 700; color: #5a3e10; margin-top: 0; margin-bottom: 0.7rem; }
+
+    /* Traditions */
+    .tradition-section { margin: 2.5rem 0; padding: 1.8rem 2rem; border: 1px solid rgba(140,110,60,0.28); border-radius: 3px; background-color: rgba(245,240,232,0.35); }
+    .tradition-section h3 { margin-top: 0; font-size: 1.15rem; }
+    .tradition-origin { font-size: 0.82rem; font-style: italic; color: #7a6035; margin-bottom: 1rem; display: block; }
+
+    /* Applied case */
+    .applied-case { border: 1px solid rgba(90,62,16,0.4); border-top: 3px solid #5a3e10; border-radius: 3px; padding: 1.8rem 2rem; margin: 3rem 0; background-color: rgba(44,36,22,0.03); }
+    .applied-label { font-family: 'Libre Baskerville', serif; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: #5a3e10; margin-bottom: 0.8rem; }
+    .applied-case h3 { font-family: 'Libre Baskerville', serif; font-size: 1.2rem; font-weight: 700; color: #3a2a0e; margin-top: 0; margin-bottom: 0.8rem; }
+
+    /* Frameworks links */
+    .frameworks-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.7rem; margin: 1.5rem 0; }
+    .framework-link-card { border: 1px solid rgba(140,110,60,0.25); border-radius: 3px; padding: 0.8rem 1rem; background-color: rgba(245,240,232,0.45); }
+    .framework-link-card a { font-family: 'Libre Baskerville', serif; font-size: 0.88rem; font-weight: 700; color: #5a3e10; text-decoration: none; }
+    .framework-link-card a:hover { color: #b8860b; }
+    .framework-link-note { font-size: 0.8rem; color: #7a6035; font-style: italic; margin-top: 0.2rem; }
+
+    /* Dilemma links */
+    .dilemma-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.7rem; margin: 1.5rem 0; }
+    .dilemma-link-card { border: 1px solid rgba(90,62,16,0.3); border-radius: 3px; padding: 0.8rem 1rem; background-color: rgba(44,36,22,0.03); }
+    .dilemma-link-card a { font-family: 'Libre Baskerville', serif; font-size: 0.88rem; font-weight: 700; color: #5a3e10; text-decoration: none; }
+    .dilemma-link-card a:hover { color: #b8860b; }
+    .dilemma-link-note { font-size: 0.8rem; color: #7a6035; font-style: italic; margin-top: 0.2rem; }
+
+    .writing-prompt { margin-top: 3rem; padding: 1.8rem 2rem; border: 1px solid rgba(140,110,60,0.3); border-top: 3px solid #5a3e10; border-radius: 3px; background-color: rgba(245,240,232,0.5); }
+    .writing-prompt h2 { border-bottom: none; margin-top: 0; margin-bottom: 0.8rem; }
+    .prompt-options { margin-top: 1.2rem; padding-left: 0; list-style: none; }
+    .prompt-options li { padding: 0.9rem 1.2rem 0.9rem 2.8rem; margin-bottom: 0.8rem; border: 1px solid rgba(140,110,60,0.2); border-radius: 3px; background-color: rgba(245,240,232,0.5); font-size: 1rem; line-height: 1.7; position: relative; }
+    .prompt-options li::before { content: "\2726"; position: absolute; left: 0.9rem; color: rgba(184,134,11,0.6); font-size: 0.8rem; top: 1rem; }
+    .page-tools { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(140,110,60,0.2); display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .copy-btn { padding: 0.5rem 1.2rem; background-color: #5a3e10; color: #f5f0e8; font-family: 'EB Garamond', serif; font-size: 0.95rem; border: none; border-radius: 3px; cursor: pointer; transition: background-color 0.2s; }
+    .copy-btn:hover { background-color: #b8860b; }
+    .copy-confirm { display: none; color: #5a7a3a; font-style: italic; font-size: 0.9rem; }
+    .back-link { font-size: 0.95rem; color: #7a6035; text-decoration: none; font-style: italic; }
+    .back-link:hover { color: #b8860b; }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(140,110,60,0.25); font-size: 0.85rem; color: #9a8060; font-style: italic; }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZE4EZRDG9C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZE4EZRDG9C');
+  </script>
+</head>
+<body>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="frameworks.html" class="active">Ethical Frameworks</a>
+  <a href="dilemmas.html">Dilemmas</a>
+  <a href="about.html#contribute">Contribute</a>
+</nav>
+<div class="page-header">
+  <div class="breadcrumb"><a href="index.html">Moral Latitude</a> &nbsp;&rsaquo;&nbsp; <a href="frameworks.html">Ethical Frameworks</a> &nbsp;&rsaquo;&nbsp; Justice</div>
+  <h1>Justice</h1>
+  <div class="header-meta">The ethics of fairness, desert, and the distribution of what we owe one another &mdash; and who counts in the reckoning</div>
+  <div class="dilemma-tag">Ethical Framework &nbsp;&middot;&nbsp; Theory Page</div>
+</div>
+<main>
+
+  <div class="section-label">&#9670; Overview</div>
+  <div class="intro-box">
+    <p>Most people encounter justice first not as a theory but as an experience &mdash; specifically, the experience of its absence. A grade that doesn&rsquo;t reflect the work submitted, a punishment handed down to one person for what another did equally, a system of rules that operates smoothly for those already advantaged and harshly for everyone else. Before we can define justice, we already know something about injustice. We feel it, often before we can articulate it. The philosophical task is to discipline that feeling into something rigorous enough to act on.</p>
+    <p>Justice is among the oldest and most contested concepts in the ethical tradition. It appears in every major philosophical school, every religious and cultural tradition, and every serious attempt to think about how human beings should organize their lives together. Yet it refuses any single formulation. Is justice primarily about fairness? About desert? About right relationships? About the protection of the vulnerable? About legal order? About the structures of an entire society? The answer, as this page will explore, is that justice operates at all of these levels simultaneously &mdash; and the tensions between them are not failures of the concept but its most productive feature.</p>
+    <p>For the purposes of applied ethics, justice is best understood as the family of normative principles designed to guide the allocation of benefits and burdens in a society and to structure the relationships &mdash; between individuals, between groups, and between citizens and the institutions that govern them &mdash; in ways that can be justified to everyone affected. This is a deliberately broad definition. Its breadth is the point.</p>
+  </div>
+
+  <h2 class="first">A Map of Justice: Four Types</h2>
+  <p>Philosophical and legal traditions have distinguished several types of justice, each addressing a different set of relationships and obligations. These are not competing theories but complementary lenses &mdash; different angles on the same underlying question of what we owe each other.</p>
+
+  <div class="triangle-container">
+    <svg viewBox="0 0 500 325" width="100%" style="max-width:500px; display:block; margin:1rem auto 0.5rem;">
+      <defs>
+        <!--
+          Vertices: Apex(250,30) BL(69,294) BR(431,294).
+          Left line: apex-box-bottom(236,50) to BL-box-top(84,272). Midpoint(160,161). Rotation -56°.
+          Right line: BR-box-top(416,272) to apex-box-bottom(264,50). Midpoint(340,161). Rotation +56°.
+          Commutative line: BL-right-edge(133,294) to BR-left-edge(367,294).
+        -->
+
+        <!-- Gold arrowhead for diagonal side lines (marker-end) -->
+        <marker id="mSide" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+          <path d="M0,0 L0,7 L9,3.5 Z" fill="rgba(184,134,11,0.82)"/>
+        </marker>
+
+        <!-- Commutative: right-pointing (marker-end, apex at x=9, points right) -->
+        <marker id="mCR" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+          <path d="M0,0 L0,7 L9,3.5 Z" fill="rgba(120,90,40,0.78)"/>
+        </marker>
+
+        <!--
+          Commutative: left-pointing (marker-start, apex at x=0, points left/outward).
+          orient="auto" on a rightward line keeps local x pointing right; apex at x=0
+          therefore faces LEFT — away from the line start. refX="0" seats the apex
+          exactly at the line endpoint.
+        -->
+        <marker id="mCL" markerWidth="9" markerHeight="7" refX="0" refY="3.5" orient="auto">
+          <path d="M9,0 L9,7 L0,3.5 Z" fill="rgba(120,90,40,0.78)"/>
+        </marker>
+      </defs>
+
+      <!-- LEFT: Distributive Justice — state flows DOWN to people (arrowhead at BL end) -->
+      <line x1="236" y1="50" x2="84" y2="272"
+            stroke="rgba(184,134,11,0.62)" stroke-width="1.8"
+            marker-end="url(#mSide)"/>
+
+      <!-- RIGHT: Contributive Justice — people flow UP to state (arrowhead at apex end) -->
+      <line x1="416" y1="272" x2="264" y2="50"
+            stroke="rgba(184,134,11,0.62)" stroke-width="1.8"
+            marker-end="url(#mSide)"/>
+
+      <!-- BOTTOM: Commutative Justice — bilateral (single line, arrowheads at both ends) -->
+      <line x1="133" y1="294" x2="367" y2="294"
+            stroke="rgba(120,90,40,0.65)" stroke-width="1.8"
+            marker-start="url(#mCL)"
+            marker-end="url(#mCR)"/>
+
+      <!-- APEX NODE -->
+      <rect x="155" y="10" width="190" height="40" rx="3" fill="#2c2416"/>
+      <text x="250" y="35" text-anchor="middle" fill="#f0e8d0"
+            font-family="Libre Baskerville, serif" font-size="13" font-weight="bold">The State / Institution</text>
+
+      <!-- BOTTOM-LEFT NODE -->
+      <rect x="5" y="272" width="128" height="44" rx="3"
+            fill="rgba(245,240,232,0.97)" stroke="rgba(140,110,60,0.4)" stroke-width="1"/>
+      <text x="69" y="291" text-anchor="middle" fill="#3a2a0e"
+            font-family="Libre Baskerville, serif" font-size="12" font-weight="bold">Individuals</text>
+      <text x="69" y="309" text-anchor="middle" fill="#3a2a0e"
+            font-family="Libre Baskerville, serif" font-size="12" font-weight="bold">&amp; Groups</text>
+
+      <!-- BOTTOM-RIGHT NODE -->
+      <rect x="367" y="272" width="128" height="44" rx="3"
+            fill="rgba(245,240,232,0.97)" stroke="rgba(140,110,60,0.4)" stroke-width="1"/>
+      <text x="431" y="291" text-anchor="middle" fill="#3a2a0e"
+            font-family="Libre Baskerville, serif" font-size="12" font-weight="bold">Individuals</text>
+      <text x="431" y="309" text-anchor="middle" fill="#3a2a0e"
+            font-family="Libre Baskerville, serif" font-size="12" font-weight="bold">&amp; Groups</text>
+
+      <!-- LEFT LABEL: centered on left-line midpoint (160,161), rotated -56° -->
+      <g transform="rotate(-56, 160, 161)">
+        <rect x="100" y="150" width="120" height="22" rx="2"
+              fill="rgba(245,240,232,0.93)" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
+        <text x="160" y="166" text-anchor="middle" fill="#b8860b"
+              font-family="Libre Baskerville, serif" font-size="11" font-style="italic">Distributive Justice</text>
+      </g>
+
+      <!-- RIGHT LABEL: centered on right-line midpoint (340,161), rotated +56° -->
+      <g transform="rotate(56, 340, 161)">
+        <rect x="280" y="150" width="120" height="22" rx="2"
+              fill="rgba(245,240,232,0.93)" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
+        <text x="340" y="166" text-anchor="middle" fill="#b8860b"
+              font-family="Libre Baskerville, serif" font-size="11" font-style="italic">Contributive Justice</text>
+      </g>
+
+      <!-- BOTTOM LABEL: floated above the commutative line, between the two node boxes -->
+      <rect x="172" y="268" width="156" height="22" rx="2"
+            fill="rgba(245,240,232,0.97)" stroke="rgba(120,90,40,0.35)" stroke-width="1"/>
+      <text x="250" y="284" text-anchor="middle" fill="#5a3e10"
+            font-family="Libre Baskerville, serif" font-size="11" font-style="italic">Commutative Justice</text>
+
+      <!-- CENTER: Social Justice equilibrium label -->
+      <text x="250" y="204" text-anchor="middle" fill="#7a6035"
+            font-family="EB Garamond, serif" font-size="13" font-style="italic">Social Justice</text>
+      <text x="250" y="221" text-anchor="middle" fill="#9a8060"
+            font-family="EB Garamond, serif" font-size="11" font-style="italic">(equilibrium = equilateral triangle)</text>
+
+    </svg>
+  </div>
+
+  <div class="justice-types">
+    <div class="justice-type-card">
+      <div class="justice-type-name">Distributive Justice</div>
+      <p>Concerns what the state and its institutions owe to people: the fair allocation of goods, services, rights, opportunities, and burdens across a society. This is the most extensively theorized form of justice in contemporary philosophy, and the focus of the second half of this page.</p>
+    </div>
+    <div class="justice-type-card">
+      <div class="justice-type-name">Contributive Justice</div>
+      <p>Concerns what individuals and groups owe to the common good: taxes, civic participation, legal compliance, and the broader obligations of membership in a community. The mirror image of distributive justice, often neglected in theoretical accounts.</p>
+    </div>
+    <div class="justice-type-card">
+      <div class="justice-type-name">Commutative Justice</div>
+      <p>Concerns the obligations between individuals and groups directly: the terms of contracts, the requirements of mutual respect, the right not to be defrauded, exploited, or interfered with in the pursuit of one&rsquo;s legitimate goals. The foundation of contract law and market ethics.</p>
+    </div>
+    <div class="justice-type-card">
+      <div class="justice-type-name">Restorative Justice</div>
+      <p>Concerns the repair of justice when it has been violated: punishment, rehabilitation, reconciliation, and reparation. Asks not only how wrongdoers should be held accountable but how the harm done to victims and communities can be genuinely addressed, not merely acknowledged.</p>
+    </div>
+  </div>
+
+  <p>These types are not independent. The commutative justice of a labor contract cannot be evaluated without asking about the distributive justice of the economic system in which it is embedded. Restorative justice after a crime cannot be achieved without asking what the distribution of opportunity and burden looked like before the crime occurred. Justice at one level shapes and constrains justice at the others.</p>
+
+  <h2>Philosophical Foundations</h2>
+  <p>The concept of justice has a long philosophical genealogy. Understanding where it comes from helps clarify what is at stake in contemporary debates.</p>
+
+  <h3>Plato: Justice as Right Order</h3>
+  <p>In the <em>Republic</em>, Plato&rsquo;s Socrates proposes that justice &mdash; in a city and in a person &mdash; is a condition of right order. In the city, justice obtains when each class fulfills its proper function: those who govern do so wisely, those who defend do so courageously, and those who produce do so industriously. None usurps another&rsquo;s role. In the individual, justice obtains when reason governs spirit and appetite &mdash; when the parts of the soul are harmonized under the direction of the part best suited to direct them.</p>
+  <p>Plato&rsquo;s account has been criticized for its hierarchical assumptions and for assigning fixed roles that leave little room for individual development or social mobility. But the underlying insight &mdash; that justice is fundamentally about <em>order</em>, about each element of a system fulfilling its proper function without overreaching &mdash; has proved durable. It reappears, in different forms, in institutional design, in professional ethics, and in debates about the proper boundaries of corporate, governmental, and individual authority.</p>
+
+  <h3>Aristotle: Justice as Virtue and Proportion</h3>
+  <p>Aristotle&rsquo;s treatment of justice in Book V of the <em>Nicomachean Ethics</em> distinguishes two senses. <em>General justice</em> is virtually synonymous with virtue as a whole &mdash; the disposition to act rightly in all one&rsquo;s relations with others. <em>Particular justice</em> is the virtue concerned specifically with fair distribution and fair exchange: giving people what they are due, in proportion to their relevant characteristics.</p>
+  <p>The Aristotelian emphasis on <em>proportion</em> is important and often misunderstood. Treating people justly does not always mean treating them identically. It means treating like cases alike and different cases differently &mdash; in proportion to whatever features are morally relevant in the particular situation. Equal treatment of unequal situations is not justice but its simulacrum.</p>
+  <p>Crucially, Aristotle understood justice, like all virtues, as dynamic rather than static: not a fixed rule but a disposition that can be cultivated, deepened, and extended through practice and reflection. People and societies can become more just over time. The capacity for moral progress is built into the framework.</p>
+
+  <h3>Aquinas: Justice as the Will Directed Toward the Other</h3>
+  <p>Thomas Aquinas, synthesizing Aristotelian philosophy with the broader Western moral tradition, defined justice as &ldquo;a constant and perpetual will to render to everyone their due.&rdquo; Two elements of this definition deserve attention. First, justice is located in the <em>will</em> &mdash; it is not merely correct behavior but a stable interior disposition, a settled commitment that has become second nature. Second, justice is irreducibly directed <em>toward others</em>: unlike the virtues of temperance or fortitude, which primarily concern one&rsquo;s relation to oneself, justice is always social. It is never self-serving.</p>
+  <p>Aquinas also drew a consequential distinction between justice and mercy: justice without mercy is oppression; mercy without justice is mere pity. Each corrects the potential excess of the other. This pairing anticipates a tension that runs through contemporary debates &mdash; between retributive and restorative approaches to criminal justice, between strict procedural fairness and equity-conscious accommodation.</p>
+
+  <div class="pull-quote">
+    &ldquo;Justice is something dynamic &mdash; not a fixed rule but a disposition that develops through practice, testing, and moral education. Even those who act unjustly can learn to see differently and mend their ways.&rdquo;
+  </div>
+
+  <h2>Distributive Justice: Six Competing Principles</h2>
+  <p>Distributive justice asks how the benefits and burdens of social cooperation should be allocated. It is not an abstract question: societies make distributive decisions constantly, whether consciously or not. Every tax code, every admissions policy, every sentencing guideline embeds a theory of distributive justice &mdash; an answer, explicit or implicit, to the question of who gets what and why. The following six principles represent the main positions in the debate. Each has genuine philosophical support; each faces genuine objections.</p>
+
+  <div class="theories-grid">
+    <div class="theory-card">
+      <div class="theory-name">Strict Egalitarianism</div>
+      <p>Every person should have the same level of material goods and services. Resources are divided equally by the number of people. Simple, transparent, and non-discriminatory &mdash; but criticized for ignoring differences in need, merit, and the conditions that make genuine flourishing possible.</p>
+    </div>
+    <div class="theory-card">
+      <div class="theory-name">Resource Egalitarianism</div>
+      <p>Equal starting points, but outcomes determined by free use of those resources. Everyone begins with equivalent endowments &mdash; education, opportunity, basic necessities &mdash; but individuals bear responsibility for what they do with them. Preserves freedom while addressing the arbitrariness of birth advantages.</p>
+    </div>
+    <div class="theory-card">
+      <div class="theory-name">Welfare (Utilitarian)</div>
+      <p>Distribute resources so as to maximize overall welfare. Because marginal utility differs &mdash; an additional dollar matters more to someone in poverty than to someone already wealthy &mdash; this can justify redistribution. But it makes each person&rsquo;s share dependent on everyone else&rsquo;s, which can conflict with individual rights.</p>
+    </div>
+    <div class="theory-card">
+      <div class="theory-name">Desert-Based Principles</div>
+      <p>People should be rewarded in proportion to their contribution to the social product. Those who contribute more receive more; those who contribute little receive less. Intuitive and widely held &mdash; but raises hard questions about how to measure contribution and about the extent to which contributions themselves are shaped by circumstances beyond individual control.</p>
+    </div>
+    <div class="theory-card">
+      <div class="theory-name">Libertarianism</div>
+      <p>People are entitled to whatever holdings they have acquired through legitimate means &mdash; through their own labor, voluntary exchange, or gift &mdash; regardless of how unequal the resulting distribution may be. Associated with Robert Nozick, this view holds that justice is about the legitimacy of the <em>process</em> by which distributions arise, not the pattern they produce.</p>
+    </div>
+    <div class="theory-card">
+      <div class="theory-name">Rawls&rsquo;s Difference Principle</div>
+      <p>Social and economic inequalities are just only if they work to the greatest benefit of the least advantaged members of society. Inequalities are permitted &mdash; even required &mdash; if they expand the overall pie enough that the worst-off share is larger than it would be under equality. The most influential contemporary theory of distributive justice.</p>
+    </div>
+  </div>
+
+  <div class="rawls-box">
+    <div class="rawls-label">&#9670; In Depth &mdash; John Rawls (1921&ndash;2002)</div>
+    <h3>The Original Position and the Veil of Ignorance</h3>
+    <p>John Rawls&rsquo;s <em>A Theory of Justice</em> (1971) is the most influential work in political philosophy of the twentieth century, and its central argument is a thought experiment. Rawls asks us to imagine a group of people convened to decide on the basic principles that will govern their society. This is the <em>original position</em>. The group is well-informed &mdash; they know history, economics, political theory, and philosophy &mdash; but they are subject to a radical constraint: they deliberate behind a <em>veil of ignorance</em>.</p>
+    <p>Behind the veil, no one knows their place in the society being designed. They do not know their class, their race, their natural abilities, their conception of the good, or even their generation. Their role in the new society will be assigned arbitrarily &mdash; like names drawn from a hat. This epistemic constraint is the key to the thought experiment: it eliminates self-interest as a distorting factor and forces genuine impartiality. I cannot design a society that benefits people like me if I do not know who I will be.</p>
+
+    <h3>The Maximin Rule</h3>
+    <p>Rawls argues that people in the original position, faced with genuine uncertainty about their fate, will reason <em>conservatively</em>. They will not gamble. They will apply what game theorists call the <em>maximin rule</em>: choose the option whose worst-case outcome is better than the worst-case outcome of any alternative. In plain terms: maximize the minimum.</p>
+    <p>Consider the choice between a traditional monarchy (one person at the top, the vast majority at the bottom) and a more egalitarian arrangement. In the monarchy, the probability of landing in the peasantry is overwhelming. A rational person who doesn&rsquo;t know their assigned role would be extraordinarily unlikely to choose it. The veil of ignorance transforms self-interest into structural fairness: if I might end up anywhere in the social order, I have every reason to ensure that the lowest positions are as good as possible.</p>
+
+    <h3>Two Principles of Justice</h3>
+    <div class="rawls-principles">
+      <div class="principle-card">
+        <div class="principle-number">First Principle</div>
+        <div class="principle-name">Equal Basic Liberties</div>
+        <p>Each person has an equal right to the most extensive system of basic liberties compatible with a similar system for all. Fundamental freedoms &mdash; of conscience, expression, association, and political participation &mdash; are not tradeable for economic advantages.</p>
+      </div>
+      <div class="principle-card">
+        <div class="principle-number">Second Principle</div>
+        <div class="principle-name">The Difference Principle</div>
+        <p>Social and economic inequalities must satisfy two conditions: they must be attached to positions open to all under fair equality of opportunity, and they must work to the greatest benefit of the least advantaged members of society.</p>
+      </div>
+    </div>
+
+    <h3>The Bigger Pie</h3>
+    <p>Rawls was frequently accused of being a socialist in disguise &mdash; of dressing egalitarianism in philosophical clothing. His response was the pie analogy. A strictly equal distribution divides a small pie into equal slices. An unequal distribution &mdash; one that, for instance, permits differential rewards for especially productive roles &mdash; might produce a much larger pie. If the smallest slice of the larger pie is bigger than any slice of the smaller one, the unequal distribution is more just, because the worst-off are actually better off.</p>
+
+    <div class="pie-comparison">
+      <div class="pie-item">
+        <svg width="140" height="140" viewBox="0 0 160 160">
+          <path d="M80,80 L124,80 A44,44 0 0,1 80,124 Z"  fill="#b8860b" opacity="0.65" stroke="#f5f0e8" stroke-width="1.5"/>
+          <path d="M80,80 L80,124 A44,44 0 0,1 36,80 Z"   fill="#b8860b" opacity="0.5"  stroke="#f5f0e8" stroke-width="1.5"/>
+          <path d="M80,80 L36,80  A44,44 0 0,1 80,36 Z"   fill="#b8860b" opacity="0.38" stroke="#f5f0e8" stroke-width="1.5"/>
+          <path d="M80,80 L80,36  A44,44 0 0,1 124,80 Z"  fill="#b8860b" opacity="0.25" stroke="#f5f0e8" stroke-width="1.5"/>
+          <text x="101" y="103" text-anchor="middle" fill="#3a2a0e" font-family="EB Garamond, serif" font-size="9">25%</text>
+          <text x="59"  y="103" text-anchor="middle" fill="#3a2a0e" font-family="EB Garamond, serif" font-size="9">25%</text>
+          <text x="59"  y="63"  text-anchor="middle" fill="#3a2a0e" font-family="EB Garamond, serif" font-size="9">25%</text>
+          <text x="101" y="63"  text-anchor="middle" fill="#3a2a0e" font-family="EB Garamond, serif" font-size="9">25%</text>
+        </svg>
+        <div class="pie-caption"><strong>Equal but smaller</strong><br/>Strict egalitarianism: every share identical, but the overall pie is modest</div>
+      </div>
+      <div class="pie-item">
+        <svg width="140" height="140" viewBox="0 0 160 160">
+          <path d="M80,80 L150,80  A70,70 0 0,1 23,121 Z"  fill="#5a3e10" opacity="0.7"  stroke="#f5f0e8" stroke-width="1.5"/>
+          <path d="M80,80 L23,121  A70,70 0 0,1 58,13 Z"   fill="#5a3e10" opacity="0.5"  stroke="#f5f0e8" stroke-width="1.5"/>
+          <path d="M80,80 L58,13   A70,70 0 0,1 137,39 Z"  fill="#5a3e10" opacity="0.33" stroke="#f5f0e8" stroke-width="1.5"/>
+          <path d="M80,80 L137,39  A70,70 0 0,1 150,80 Z"  fill="#5a3e10" opacity="0.18" stroke="#f5f0e8" stroke-width="1.5"/>
+          <text x="100" y="113" text-anchor="middle" fill="#f0e8d0" font-family="EB Garamond, serif" font-size="9" font-weight="bold">40%</text>
+          <text x="44"  y="72"  text-anchor="middle" fill="#f0e8d0" font-family="EB Garamond, serif" font-size="9" font-weight="bold">30%</text>
+          <text x="93"  y="37"  text-anchor="middle" fill="#3a2a0e" font-family="EB Garamond, serif" font-size="9">20%</text>
+          <text x="127" y="67"  text-anchor="middle" fill="#3a2a0e" font-family="EB Garamond, serif" font-size="9">10%</text>
+        </svg>
+        <div class="pie-caption"><strong>Unequal but more just</strong><br/>The larger pie: even the smallest share (10%) has greater area than any equal share above</div>
+      </div>
+    </div>
+    <p>This response to capitalism&rsquo;s defenders was characteristically subtle: Rawls was not condemning inequality per se, but insisting that inequality requires justification &mdash; specifically, the justification that it benefits those at the bottom. Inequality that enriches the top while leaving the bottom unchanged, or worse, fails the test.</p>
+  </div>
+
+  <h3>The Libertarian Challenge: Robert Nozick</h3>
+  <p>The most serious philosophical objection to Rawls came from his Harvard colleague Robert Nozick, whose <em>Anarchy, State, and Utopia</em> (1974) argued that any pattern-based theory of distributive justice &mdash; any theory that evaluates a distribution by the shape it produces &mdash; is fundamentally incompatible with individual rights. Nozick&rsquo;s argument, in essence, is that just distributions arise from just processes, not from conformity to any particular pattern. If I hold what I have through legitimate acquisition and voluntary exchange, no third party &mdash; including the state &mdash; is entitled to redistribute it, however appealing the resulting pattern might be.</p>
+  <p>Nozick&rsquo;s famous &ldquo;Wilt Chamberlain argument&rdquo; illustrates the point: start from any distribution you consider just, then allow voluntary transactions &mdash; people paying to watch a talented performer, for instance &mdash; and you will inevitably end up with an unequal distribution. Maintaining the original pattern would require continuous interference with free choices. The Rawlsian is therefore committed to a permanent apparatus of redistribution that Nozick regards as a form of forced labor &mdash; requiring people to work for others&rsquo; benefit without their consent.</p>
+  <p>The Rawls-Nozick debate remains genuinely unresolved, and its structure underlies almost every contemporary policy dispute about taxation, welfare, healthcare, and education. Students who find themselves persuaded by both at different moments are responding accurately to the difficulty of the problem.</p>
+
+  <div class="complication">
+    <h3>A Genuine Difficulty: Can Justice Be Blind?</h3>
+    <p>A striking tension runs through the philosophical tradition: justice is often symbolized as blindfolded &mdash; impartial, non-discriminatory, applying the same rules to everyone regardless of their identity or circumstances. Rawls&rsquo;s veil of ignorance is perhaps the most rigorous expression of this aspiration. Yet multiple traditions, both philosophical and religious, have insisted that genuine justice requires <em>partiality toward the vulnerable</em> &mdash; that a system indifferent to who gets hurt by its rules is not just but merely consistent. Equal application of rules designed for unequal situations reproduces and legitimates those inequalities. This is not a paradox that can be resolved by choosing one horn. It is a permanent tension that any serious theory of justice must hold in view.</p>
+  </div>
+
+  <h2>Beyond Impartiality: The Capabilities Approach</h2>
+  <p>Martha Nussbaum and Amartya Sen developed the capabilities approach as a response to what they saw as a shared limitation in both utilitarian and Rawlsian frameworks: both theories measure justice in terms of what people <em>have</em> (utility, primary goods, resources) rather than what they can actually <em>do and be</em>. A person may formally possess all the rights and resources Rawls&rsquo;s theory requires and yet be unable to exercise them &mdash; because of disability, discrimination, social exclusion, or structural barriers that formal frameworks cannot see.</p>
+  <p>For Nussbaum, a just society is one that enables its members to live and act in ways that constitute genuine human flourishing. She proposes a list of central capabilities &mdash; life, bodily health, emotional development, practical reason, affiliation, play, control over one&rsquo;s environment &mdash; and argues that justice requires bringing every person above a threshold in each of them. This is not a metric of happiness or of resources held, but of real human possibility.</p>
+  <p>The capabilities approach has been especially influential in development ethics, disability theory, and feminist philosophy. Its insistence on attending to the specific, embodied, socially situated person &mdash; rather than the abstract rational agent of most political philosophy &mdash; makes it particularly useful for evaluating cases where formal equality masks substantive inequality.</p>
+
+  <h2>Structural Injustice</h2>
+  <p>One of the most important developments in twentieth-century justice theory is the concept of <em>structural injustice</em>, developed most fully by the philosopher Iris Marion Young in <em>Justice and the Politics of Difference</em> (1990). Young argued that the dominant paradigm of justice &mdash; focused on individual acts of wrongdoing, individual wrongdoers, and individual victims &mdash; is systematically ill-equipped to address the most pervasive forms of injustice in contemporary societies.</p>
+  <p>Structural injustice exists when social processes and institutions place large groups of people under systematic constraints on their freedom and well-being, even when no individual actor intends or consciously perpetuates those constraints. Racism, sexism, and economic exploitation are paradigm cases: they operate through the cumulative and routine workings of institutions, policies, cultural norms, and economic structures, not primarily through the bad intentions of particular people. A hiring algorithm trained on historical data, a zoning law that produces residential segregation, a criminal justice system whose outcomes vary systematically by race &mdash; these can produce profound injustice without any identifiable wrongdoer.</p>
+  <p>The concept of structural injustice is ethically demanding because it does not allow us to locate the problem in discrete individuals whose behavior we can condemn and correct. It requires asking about systems &mdash; about the cumulative effects of many individually unremarkable decisions &mdash; and it assigns responsibility not to culpable wrongdoers but to all who participate in and benefit from the structures that produce unjust outcomes. As Young put it, we are responsible for working to change structures we did not design, did not choose, and may not have clearly perceived.</p>
+
+  <h2>Retributive and Restorative Justice</h2>
+  <p>When justice has been violated &mdash; when someone has been harmed, rights have been transgressed, or the moral order has been broken &mdash; two broad approaches to repair are available, and they differ not merely in method but in their underlying accounts of what justice fundamentally is.</p>
+
+  <p><strong>Retributive justice</strong> holds that wrongdoers deserve punishment proportionate to their offense. This is not revenge; it is the moral requirement that wrongdoing be met with a response commensurate with its gravity. The philosophical case for retribution rests on respect for moral agency: to punish someone for what they freely chose to do is to take their choice seriously, to treat them as a genuine moral actor rather than a condition to be managed. Kant regarded punishment as the only way to honor the dignity of the person who committed the wrong.</p>
+
+  <p><strong>Restorative justice</strong> shifts the focus from the offense to the harm &mdash; from what the wrongdoer deserves to what the victim, the community, and even the wrongdoer need in order to repair the breach. Restorative approaches emphasize accountability through acknowledgment, dialogue, and reparation rather than through suffering. They ask: what would it take to genuinely make this right? South Africa&rsquo;s Truth and Reconciliation Commission remains the most widely studied large-scale experiment in restorative justice; New Zealand&rsquo;s youth justice system, informed by M&#257;ori concepts of relational responsibility, is another significant institutional example.</p>
+
+  <p>The debate between these approaches is not merely philosophical; it structures real policy choices about sentencing, incarceration, victim services, and the meaning of &ldquo;paying one&rsquo;s debt to society.&rdquo; The most searching question the debate raises is whether punishment can ever achieve the restoration that justice ultimately aims at &mdash; or whether the two goals are, in some cases, genuinely incompatible.</p>
+
+  <h2>Justice Across Traditions</h2>
+  <p>The core questions of justice &mdash; what is owed to whom, who bears burdens and who receives benefits, how the vulnerable are protected &mdash; appear across the world&rsquo;s major ethical and cultural traditions. The answers are neither identical nor merely decorative variations on a Western theme. Each tradition raises challenges that the others must reckon with.</p>
+
+  <div class="tradition-section">
+    <h3>Ubuntu: Justice as Relational Restoration</h3>
+    <span class="tradition-origin">Southern and Central African traditions &mdash; Nguni philosophy, Bantu ethics</span>
+    <p>Ubuntu is organized around the foundational claim that personhood is constituted through relationship: <em>umuntu ngumuntu ngabantu</em> &mdash; a person is a person through other persons. This is not simply the observation that humans are social; it is the deeper claim that identity, dignity, and moral standing are relational through and through. There is no self apart from the web of relationships that constitute it.</p>
+    <p>For Ubuntu, justice is not primarily a matter of assigning what isolated individuals deserve but of restoring right relationships that have been damaged. When harm occurs, the question is not only &ldquo;what does the offender deserve?&rdquo; but &ldquo;what does the community need in order to be whole again?&rdquo; The offender is not simply a wrongdoer to be punished but a member of the community whose reintegration is part of justice, not a concession to it. Ubuntu thus anticipates many of the insights of restorative justice theory, but roots them in a more fundamental account of what persons are.</p>
+    <p>Ubuntu&rsquo;s relational ontology also challenges the methodological individualism of most Western justice theory. If persons are constituted through relationships, then distributive theories that begin with isolated rational agents &mdash; as Rawls&rsquo;s original position does &mdash; begin from a distorted picture of what is being distributed and to whom.</p>
+  </div>
+
+  <div class="tradition-section">
+    <h3>Islamic Justice: <em>&lsquo;Adl</em> and <em>Ins&#257;f</em></h3>
+    <span class="tradition-origin">7th century CE onward &mdash; Qur&rsquo;anic teaching, classical jurisprudence, philosophical tradition</span>
+    <p>Justice (<em>&lsquo;adl</em>) is one of the ninety-nine names of God in the Islamic tradition &mdash; a designation that makes it not merely a social virtue but an attribute of ultimate reality. This gives justice in Islam a weight that it does not carry in purely procedural accounts: to act unjustly is not merely to violate a social norm but to act against the structure of reality itself.</p>
+    <p>The Qur&rsquo;anic tradition consistently links justice to the protection of those who cannot protect themselves: orphans, widows, travelers, the poor. <em>Ins&#257;f</em> &mdash; equity, giving each their due &mdash; operates alongside strict justice as its corrective, acknowledging that formal rules, applied without sensitivity to context, can produce outcomes that violate the spirit of what justice requires.</p>
+    <p>The institution of <em>zak&#257;t</em> &mdash; one of the five pillars of Islam &mdash; is a mandatory redistribution of wealth, approximately 2.5% of savings annually, directed to specified categories of need. It is not charity in the voluntary sense but a justice obligation: the poor have a right to a portion of the wealth that has accumulated in the community, and that right precedes the choice of the giver. This structural embodiment of distributive justice in religious practice is one of the most distinctive features of Islamic economic ethics.</p>
+  </div>
+
+  <div class="tradition-section">
+    <h3>Confucian Justice: <em>Y&igrave;</em> and Right Relationships</h3>
+    <span class="tradition-origin">6th century BCE onward &mdash; Confucius, Mencius, the <em>Analects</em> and <em>Mengzi</em></span>
+    <p>The Confucian concept most closely corresponding to justice is <em>y&igrave;</em> (義) &mdash; righteousness, or moral rightness in one&rsquo;s relations. Where Western justice theory often begins with rights held by individuals, <em>y&igrave;</em> is relational from the start: what is right depends on the specific relationships one inhabits and the roles they create.</p>
+    <p>Mencius argued that <em>y&igrave;</em> is innate &mdash; every person has a natural sense of shame and discomfort in the face of wrongdoing, a moral sensitivity that can be cultivated or degraded but not created from scratch. This is similar to Aquinas&rsquo;s notion of conscience as a natural moral compass, and it grounds a universalist claim: despite cultural differences in what justice requires in specific situations, the basic orientation toward rightness is a human constant.</p>
+    <p>The Confucian emphasis on role-based obligation also provides a resource for thinking about institutional justice that individualist frameworks tend to miss. The question is not only what rights I hold as an abstract person but what obligations I bear as a teacher, an official, a parent, a citizen &mdash; and whether I am fulfilling them in ways that sustain the relational fabric of the community.</p>
+  </div>
+
+  <div class="tradition-section">
+    <h3>Buddhist Justice: Interdependence and the Roots of Harm</h3>
+    <span class="tradition-origin">5th century BCE onward &mdash; Therav&#257;da, Mah&#257;y&#257;na, and Engaged Buddhist traditions</span>
+    <p>Buddhist ethics does not use a concept directly equivalent to &ldquo;justice,&rdquo; but it has rich resources for thinking about the conditions of social harm and the requirements of social repair. The foundational teaching of <em>pratītyasamutp&#257;da</em> &mdash; dependent origination, the radical interconnectedness of all phenomena &mdash; provides a structural account of why individual suffering cannot be separated from social conditions.</p>
+    <p>The Engaged Buddhist movement, most closely associated with Thich Nhat Hanh, Ambedkar, and Sulak Sivaraksa, has developed these insights into an explicit social ethics: structural injustice is, in Buddhist terms, institutionalized <em>dukha</em> (suffering) rooted in collective <em>lobha, dosa, and moha</em> (greed, hatred, and delusion). Justice requires not only right action in individual encounters but the transformation of the social structures that generate suffering at scale. The concept of <em>karun&#257;</em> (compassion) is not sentiment but active responsiveness to the suffering of others &mdash; a moral demand, not merely a feeling.</p>
+  </div>
+
+  <h2>Justice and the Other Frameworks</h2>
+  <p>Justice is not one framework among several on this site: it is the concept that most directly links the theoretical frameworks to the applied dilemmas. Each of the major ethical theories has a distinctive account of what justice requires &mdash; and examining those accounts in relation to each other is one of the most productive exercises in applied ethics.</p>
+
+  <div class="frameworks-links">
+    <div class="framework-link-card">
+      <a href="consequentialism.html">Consequentialism</a>
+      <div class="framework-link-note">Defines just outcomes as those that maximize aggregate welfare &mdash; and faces the objection that this can justify sacrificing individuals for the majority.</div>
+    </div>
+    <div class="framework-link-card">
+      <a href="principled-moral-reasoning.html">Deontology</a>
+      <div class="framework-link-note">Grounds justice in rights and duties that cannot be overridden by aggregate calculations &mdash; every person is an end, never merely a means.</div>
+    </div>
+    <div class="framework-link-card">
+      <a href="virtue-ethics.html">Virtue Ethics</a>
+      <div class="framework-link-note">Treats justice as a virtue &mdash; a stable character disposition &mdash; rather than a principle or a calculation. Asks what kind of person reliably acts justly, and how such persons are formed.</div>
+    </div>
+    <div class="framework-link-card">
+      <a href="conscience.html">Conscience</a>
+      <div class="framework-link-note">Explores how we recognize injustice from the inside &mdash; how moral perception, emotional response, and reflective judgment converge in the experience of encountering something that is wrong.</div>
+    </div>
+    <div class="framework-link-card">
+      <a href="principlism.html">Principlism</a>
+      <div class="framework-link-note">In biomedical ethics, justice is one of the four core principles &mdash; specifically concerned with fair distribution of healthcare resources and the equitable treatment of research subjects.</div>
+    </div>
+  </div>
+
+  <h2>Justice in the Dilemmas</h2>
+  <p>The justice framework is directly implicated in many of the dilemmas on this site. A selection of especially productive connections:</p>
+
+  <div class="dilemma-links">
+    <div class="dilemma-link-card">
+      <a href="the-portrait-in-the-aggregate.html">The Portrait in the Aggregate</a>
+      <div class="dilemma-link-note">Mass surveillance and algorithmic profiling: distributive justice and structural bias in data systems.</div>
+    </div>
+    <div class="dilemma-link-card">
+      <a href="the-bloodless-war.html">The Bloodless War</a>
+      <div class="dilemma-link-note">Drone warfare and Just War theory: distributive questions about who bears the risk of violence.</div>
+    </div>
+    <div class="dilemma-link-card">
+      <a href="the-hand-that-is-not-a-hand.html">The Hand That Is Not a Hand</a>
+      <div class="dilemma-link-note">Autonomous weapons: accountability, moral responsibility, and the justice of lethal decisions without a human agent.</div>
+    </div>
+    <div class="dilemma-link-card">
+      <a href="the-chatbot-in-the-room.html">The Chatbot in the Room</a>
+      <div class="dilemma-link-note">AI safety evidence and institutional accountability: who bears the burden of proof, and to whom?</div>
+    </div>
+  </div>
+
+  <div class="applied-case">
+    <div class="applied-label">&#9670; Applied Case &mdash; Structural Injustice</div>
+    <h3>Algorithmic Sentencing and the Commensurability of Fairness</h3>
+    <p>In 2016, ProPublica published an analysis of COMPAS (Correctional Offender Management Profiling for Alternative Sanctions), a proprietary algorithm used by courts in multiple U.S. states to assess the risk that a defendant would reoffend. The tool&rsquo;s scores influenced decisions about bail, sentencing, and parole. ProPublica&rsquo;s analysis found that Black defendants were nearly twice as likely as white defendants to be incorrectly flagged as high risk, while white defendants were more likely to be incorrectly flagged as low risk when they went on to reoffend.</p>
+    <p>Northpointe, the company that developed COMPAS, challenged the analysis. Their defense was not that the disparity was absent but that it depended on which definition of fairness you used. Northpointe had calibrated the tool to be accurate across racial groups in its predictions of overall recidivism rates. ProPublica was measuring something different: the rate at which the tool made different kinds of errors for different groups. Both measures are formally defensible; they cannot both be satisfied simultaneously; and they lead to different conclusions about whether the tool is just.</p>
+    <p>The case is philosophically instructive at multiple levels. It is a concrete instance of Young&rsquo;s structural injustice: no individual designed the algorithm to discriminate, and the statistical patterns it encodes reflect decades of biased policing and sentencing practices. It illustrates the limits of procedural fairness: a procedure can be formally consistent and substantively inequitable. And it dramatizes, in unusually precise mathematical terms, the tension between Rawlsian impartiality and the capabilities approach&rsquo;s insistence on attending to what the tool actually does to specific, situated people. The question is not only &ldquo;is the algorithm treating groups equally?&rdquo; but &ldquo;whose liberty is being constrained by which errors, and does that distribution reflect a just assignment of risk?&rdquo;</p>
+    <p>A dedicated analysis of this case &mdash; including a fuller examination of the competing fairness criteria and their policy implications &mdash; is available on the <a href="the-portrait-in-the-aggregate.html" style="color:#5a3e10;">Portrait in the Aggregate</a> page.</p>
+  </div>
+
+  <div class="writing-prompt">
+    <h2>For Discussion or Written Reflection</h2>
+    <ul class="prompt-options">
+      <li>Rawls argues that the principles of justice would be chosen by rational agents who do not know their place in society. Nozick responds that justice is about the legitimacy of how holdings are acquired, not the pattern they produce. Consider a specific contemporary policy &mdash; a progressive income tax, affirmative action in university admissions, a minimum wage &mdash; and analyze it through both frameworks. Do they reach different conclusions? If so, what does the disagreement reveal about the underlying moral commitments of each view?</li>
+      <li>Iris Marion Young argues that injustice can be structural &mdash; embedded in institutions and social processes &mdash; without requiring any individual wrongdoer. If this is true, who is responsible for structural injustice, and what does that responsibility require of them? Does the concept of structural responsibility conflict with the individual accountability that most legal and moral frameworks presuppose?</li>
+      <li>Ubuntu holds that personhood is constituted through relationship; most Western justice theories begin with the isolated rational individual. What follows from this difference in starting point? Does the Ubuntu account of personhood change what we should count as a harm, or who counts as a victim? Is it compatible with Rawlsian theory, or does it represent a fundamentally different moral framework?</li>
+      <li>The retributive tradition holds that wrongdoers deserve punishment proportionate to their offense; the restorative tradition holds that justice is ultimately about repairing relationships and communities. Can these two approaches be reconciled, or do they represent genuinely competing visions of what justice is for? Use a specific case &mdash; a violent crime, corporate fraud, or historical atrocity &mdash; to test your answer.</li>
+      <li>The capabilities approach argues that justice requires attending not to what people formally possess but to what they can actually do and be. Apply this standard to a domain of your choice &mdash; healthcare, education, the criminal justice system, or the labor market. What injustices become visible through a capabilities lens that a purely distributional account would miss? What are the limits of the capabilities approach as a guide to policy?</li>
+      <li>The COMPAS case reveals that different formally valid definitions of fairness are mathematically incompatible: satisfying one necessarily violates another. Does this mean that algorithmic fairness is impossible &mdash; or that justice requires a prior decision about which kind of error is morally more serious, and why? How should that prior decision be made, and who should make it?</li>
+    </ul>
+  </div>
+
+  <div class="page-tools">
+    <button class="copy-btn" onclick="copyPageHTML()">Copy Page HTML for CMS</button>
+    <span class="copy-confirm" id="copyConfirm">&#10003; Copied to clipboard!</span>
+    <a href="frameworks.html" class="back-link">&larr; Return to Ethical Frameworks</a>
+  </div>
+</main>
+<footer>Moral Latitude &nbsp;|&nbsp; Freely available for educational use &nbsp;|&nbsp; Content may be freely adapted for non-commercial educational purposes with attribution.</footer>
+<script>
+  function copyPageHTML() {
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    navigator.clipboard.writeText(html).then(() => {
+      const c = document.getElementById('copyConfirm');
+      c.style.display = 'inline';
+      setTimeout(() => { c.style.display = 'none'; }, 3000);
+    }).catch(() => { alert('Copy failed \u2014 please select all and copy manually.'); });
+  }
+</script>
+</body>
+</html>
